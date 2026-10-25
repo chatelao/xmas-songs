@@ -1,9 +1,152 @@
 {
-  "count": 1,
+  "count": 13,
   "songs": [
     {
-      "id": "stille_nacht",
+      "id": "alle_jahre_wieder",
       "number": 1,
+      "title": "Alle Jahre wieder",
+      "composer": "Friedrich Silcher (1842)",
+      "poet": "Johann Wilhelm Hey (1837)",
+      "assets": {
+        "ly": "src/songs/alle_jahre_wieder/alle_jahre_wieder.ly",
+        "pdf": "pdf/alle_jahre_wieder.pdf",
+        "abc": "abc/alle_jahre_wieder.abc",
+        "mp3": "mp3/alle_jahre_wieder.mp3"
+      }
+    },
+    {
+      "id": "am_weihnachtsbaume_die_lichter_brennen",
+      "number": 2,
+      "title": "Am Weihnachtsbaume die Lichter brennen",
+      "composer": "Traditionell",
+      "poet": "Hermann Kletke (1841)",
+      "assets": {
+        "ly": "src/songs/am_weihnachtsbaume_die_lichter_brennen/am_weihnachtsbaume_die_lichter_brennen.ly",
+        "pdf": "pdf/am_weihnachtsbaume_die_lichter_brennen.pdf",
+        "abc": "abc/am_weihnachtsbaume_die_lichter_brennen.abc",
+        "mp3": "mp3/am_weihnachtsbaume_die_lichter_brennen.mp3"
+      }
+    },
+    {
+      "id": "der_christbaum_ist_der_schoenste_baum",
+      "number": 3,
+      "title": "Der Christbaum ist der schönste Baum",
+      "composer": "Georg Eisenbach (1842)",
+      "poet": "Johannes Carl (1842)",
+      "assets": {
+        "ly": "src/songs/der_christbaum_ist_der_schoenste_baum/der_christbaum_ist_der_schoenste_baum.ly",
+        "pdf": "pdf/der_christbaum_ist_der_schoenste_baum.pdf",
+        "abc": "abc/der_christbaum_ist_der_schoenste_baum.abc",
+        "mp3": "mp3/der_christbaum_ist_der_schoenste_baum.mp3"
+      }
+    },
+    {
+      "id": "es_ist_ein_ros_entsprungen",
+      "number": 4,
+      "title": "Es ist ein Ros entsprungen",
+      "composer": "Speyerer Gesangbuch (1599)",
+      "poet": "Traditionell (16. Jh.)",
+      "assets": {
+        "ly": "src/songs/es_ist_ein_ros_entsprungen/es_ist_ein_ros_entsprungen.ly",
+        "pdf": "pdf/es_ist_ein_ros_entsprungen.pdf",
+        "abc": "abc/es_ist_ein_ros_entsprungen.abc",
+        "mp3": "mp3/es_ist_ein_ros_entsprungen.mp3"
+      }
+    },
+    {
+      "id": "es_wird_scho_glei_dumpa",
+      "number": 5,
+      "title": "Es wird scho glei dumpa",
+      "composer": "Anton Reidinger (1884)",
+      "poet": "Anton Reidinger (1884)",
+      "assets": {
+        "ly": "src/songs/es_wird_scho_glei_dumpa/es_wird_scho_glei_dumpa.ly",
+        "pdf": "pdf/es_wird_scho_glei_dumpa.pdf",
+        "abc": "abc/es_wird_scho_glei_dumpa.abc",
+        "mp3": "mp3/es_wird_scho_glei_dumpa.mp3"
+      }
+    },
+    {
+      "id": "froehliche_weihnacht_ueberall",
+      "number": 6,
+      "title": "Fröhliche Weihnacht überall",
+      "composer": "Traditionell",
+      "poet": "August Heinrich Hoffmann von Fallersleben (1885)",
+      "assets": {
+        "ly": "src/songs/froehliche_weihnacht_ueberall/froehliche_weihnacht_ueberall.ly",
+        "pdf": "pdf/froehliche_weihnacht_ueberall.pdf",
+        "abc": "abc/froehliche_weihnacht_ueberall.abc",
+        "mp3": "mp3/froehliche_weihnacht_ueberall.mp3"
+      }
+    },
+    {
+      "id": "ihr_kinderlein_kommet",
+      "number": 7,
+      "title": "Ihr Kinderlein, kommet",
+      "composer": "Johann Abraham Peter Schulz (1796)",
+      "poet": "Christoph von Schmid (1798)",
+      "assets": {
+        "ly": "src/songs/ihr_kinderlein_kommet/ihr_kinderlein_kommet.ly",
+        "pdf": "pdf/ihr_kinderlein_kommet.pdf",
+        "abc": "abc/ihr_kinderlein_kommet.abc",
+        "mp3": "mp3/ihr_kinderlein_kommet.mp3"
+      }
+    },
+    {
+      "id": "in_dulci_jubilo",
+      "number": 8,
+      "title": "In dulci jubilo",
+      "composer": "Heinrich Seuse (14. Jh.)",
+      "poet": "Heinrich Seuse (14. Jh.)",
+      "assets": {
+        "ly": "src/songs/in_dulci_jubilo/in_dulci_jubilo.ly",
+        "pdf": "pdf/in_dulci_jubilo.pdf",
+        "abc": "abc/in_dulci_jubilo.abc",
+        "mp3": "mp3/in_dulci_jubilo.mp3"
+      }
+    },
+    {
+      "id": "jingle_bells",
+      "number": 9,
+      "title": "Jingle Bells",
+      "composer": "James Lord Pierpont (1857)",
+      "poet": "James Lord Pierpont",
+      "assets": {
+        "ly": "src/songs/jingle_bells/jingle_bells.ly",
+        "pdf": "pdf/jingle_bells.pdf",
+        "abc": "abc/jingle_bells.abc",
+        "mp3": "mp3/jingle_bells.mp3"
+      }
+    },
+    {
+      "id": "kling_gloeckchen_klingelingeling",
+      "number": 10,
+      "title": "Kling, Glöckchen, klingelingeling",
+      "composer": "Volksweise (19. Jh.)",
+      "poet": "Karl Enslin (1854)",
+      "assets": {
+        "ly": "src/songs/kling_gloeckchen_klingelingeling/kling_gloeckchen_klingelingeling.ly",
+        "pdf": "pdf/kling_gloeckchen_klingelingeling.pdf",
+        "abc": "abc/kling_gloeckchen_klingelingeling.abc",
+        "mp3": "mp3/kling_gloeckchen_klingelingeling.mp3"
+      }
+    },
+    {
+      "id": "kommet_ihr_hirten",
+      "number": 11,
+      "title": "Kommet, ihr Hirten",
+      "composer": "Böhmische Volksweise (1605)",
+      "poet": "Carl Riedel (1870)",
+      "assets": {
+        "ly": "src/songs/kommet_ihr_hirten/kommet_ihr_hirten.ly",
+        "pdf": "pdf/kommet_ihr_hirten.pdf",
+        "abc": "abc/kommet_ihr_hirten.abc",
+        "mp3": "mp3/kommet_ihr_hirten.mp3"
+      }
+    },
+    {
+      "id": "stille_nacht",
+      "number": 12,
       "title": "Stille Nacht, heilige Nacht",
       "composer": "Franz Xaver Gruber (1818)",
       "poet": "Joseph Mohr (1816)",
@@ -12,6 +155,19 @@
         "pdf": "pdf/stille_nacht.pdf",
         "abc": "abc/stille_nacht.abc",
         "mp3": "mp3/stille_nacht.mp3"
+      }
+    },
+    {
+      "id": "we_wish_you_a_merry_christmas",
+      "number": 13,
+      "title": "We Wish You a Merry Christmas",
+      "composer": "Traditionell (England)",
+      "poet": "Traditionell",
+      "assets": {
+        "ly": "src/songs/we_wish_you_a_merry_christmas/we_wish_you_a_merry_christmas.ly",
+        "pdf": "pdf/we_wish_you_a_merry_christmas.pdf",
+        "abc": "abc/we_wish_you_a_merry_christmas.abc",
+        "mp3": "mp3/we_wish_you_a_merry_christmas.mp3"
       }
     }
   ]

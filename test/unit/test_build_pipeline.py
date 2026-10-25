@@ -15,9 +15,11 @@ EXPECTED_SONGS = [
     "froehliche_weihnacht_ueberall",
     "ihr_kinderlein_kommet",
     "in_dulci_jubilo",
+    "jingle_bells",
     "kling_gloeckchen_klingelingeling",
     "kommet_ihr_hirten",
     "stille_nacht",
+    "we_wish_you_a_merry_christmas",
 ]
 
 class TestBuildPipeline(unittest.TestCase):
