@@ -54,6 +54,7 @@ Eine Sammlung der 25 bekanntesten deutschen Weihnachtslieder in den Formaten .ly
 
 # HOWTO
 - Keep `src/install.sh` to install all tools to build the application (test only tools, see below)
+- Consult https://github.com/chatelao/ai-tooling for proven tool installation methods when setting up or updating installation scripts (`src/install.sh` and `test/install.sh`).
 - Use “ReadTheDocs.org” (RTD) or GitHub Pages for documentation and web player publishing from the main branch.
 
 # Testing Locally & with Github Action Workflow (GH Action WF)
