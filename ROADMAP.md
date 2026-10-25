@@ -9,7 +9,7 @@ This document outlines the execution roadmap for the **German Christmas Carols C
 | Phase | Description | Status |
 | :--- | :--- | :--- |
 | **Phase 1** | Repository Architecture & Documentation Infrastructure | ✅ Completed |
-| **Phase 2** | Build Pipeline & Asset Generation Toolchain | ⏳ Planned |
+| **Phase 2** | Build Pipeline & Asset Generation Toolchain | ✅ Completed |
 | **Phase 3** | LilyPond Master Score Corpus (25 Carols) | ⏳ Planned |
 | **Phase 4** | Interactive Web Application (abcjs Web Player) | ⏳ Planned |
 | **Phase 5** | Test Harness & Visual Verification Suite | ⏳ Planned |
@@ -20,7 +20,7 @@ This document outlines the execution roadmap for the **German Christmas Carols C
 ## Goals
 
 - [ ] 🎼 **Single Primary Master Source**: Store all sheet music scores and lyrics in LilyPond (`.ly`) master files within `src/songs/`. ⏳
-- [ ] ⚙️ **Automated Compilation Pipeline**: Automatically derive PDF, ABC notation, and SoundFont acoustic piano MP3 audio files during build. ⏳
+- [x] ⚙️ **Automated Compilation Pipeline**: Automatically derive PDF, ABC notation, and SoundFont acoustic piano MP3 audio files during build. ✅
 - [ ] 🌐 **Interactive Web Player**: Provide an accessible GitHub Pages web app with `abcjs` dynamic rendering and Web Audio playback for 25 German Christmas carols. ⏳
 - [ ] 🧪 **Automated Testing & Visual Verification**: End-to-end browser testing with Playwright visual screenshots and notation validation. ⏳
 
@@ -46,16 +46,16 @@ Establish repository structure, core documentation specifications, and basic too
 ### Phase 2: Build Pipeline & Asset Generation Toolchain
 Build automated tools for compiling `.ly` master files into derived assets (`.pdf`, `.abc`, `.mp3`).
 
-- [ ] **Task 2.1: PDF Compilation Pipeline** ⏳
-  - [ ] Configure LilyPond compiler invocation scripts for vector PDF rendering in `build/pdf/`.
-- [ ] **Task 2.2: LilyPond to ABC Derivation Engine** ⏳
-  - [ ] Develop `src/scripts/ly2abc.py` using AST parser (`python-ly`) to convert LilyPond scores into clean `.abc` files in `build/abc/`.
-- [ ] **Task 2.3: Acoustic Piano MP3 Synthesis Engine** ⏳
-  - [ ] Implement MIDI extraction from LilyPond score blocks (`\midi {}`).
-  - [ ] Implement FluidSynth SoundFont (`.sf2`) synthesis pipeline to convert MIDI to WAV.
-  - [ ] Implement LAME encoder script to convert WAV to 192kbps MP3 audio in `build/mp3/`.
-- [ ] **Task 2.4: Catalog Manifest Generator** ⏳
-  - [ ] Create script to scan song metadata and generate `build/catalog.json` index.
+- [x] **Task 2.1: PDF Compilation Pipeline** ✅
+  - [x] Configure LilyPond compiler invocation scripts for vector PDF rendering in `build/pdf/`.
+- [x] **Task 2.2: LilyPond to ABC Derivation Engine** ✅
+  - [x] Develop `src/scripts/ly2abc.py` using AST parser (`python-ly`) to convert LilyPond scores into clean `.abc` files in `build/abc/`.
+- [x] **Task 2.3: Acoustic Piano MP3 Synthesis Engine** ✅
+  - [x] Implement MIDI extraction from LilyPond score blocks (`\midi {}`).
+  - [x] Implement FluidSynth SoundFont (`.sf2`) synthesis pipeline to convert MIDI to WAV.
+  - [x] Implement LAME encoder script to convert WAV to 192kbps MP3 audio in `build/mp3/`.
+- [x] **Task 2.4: Catalog Manifest Generator** ✅
+  - [x] Create script to scan song metadata and generate `build/catalog.json` index.
 
 ---
 
