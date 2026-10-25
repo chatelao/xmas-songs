@@ -10,7 +10,9 @@ This document provides the detailed technical design for the open-source **Germa
    - Publication-grade print PDF documents via `lilypond`.
    - Dynamic ABC notation (`.abc`) files derived via parse engines for web rendering.
    - High-quality piano MP3 audio files generated via MIDI and FluidSynth acoustic SoundFont synthesis.
-3. **Interactive Web Application**: Deliver a responsive web application hosted on GitHub Pages utilizing `abcjs` for dynamic sheet music rendering, browser-side audio synthesis (Web Audio API), and audio streaming/download capabilities.
+   - Clean, pure text Markdown (`.md`) lyrics files extracted automatically from `.ly` master sources.
+   - Standalone pure text lyrics PDF documents compiled without musical score clutter.
+3. **Interactive Web Application**: Deliver a responsive web application hosted on GitHub Pages utilizing `abcjs` for dynamic sheet music rendering, browser-side audio synthesis (Web Audio API), pure text lyrics Markdown display, and audio streaming/download capabilities.
 4. **Automated Verification & CI/CD Pipeline**: Maintain `src/install.sh` and `test/install.sh` scripts alongside GitHub Actions workflows for automated build, verification testing, visual regression screenshot captures, and static site deployment.
 
 ---
@@ -32,18 +34,24 @@ The overall architecture showing major modules and dataflows is illustrated belo
                        +-----------------------------------+
                        |    Build & Toolchain Pipeline     |
                        |         (src/scripts/*)           |
-                       +--------+--------+--------+--------+
-                                |        |        |
-           +--------------------+        |        +--------------------+
-           |                             v                             |
-           v                   +-------------------+                   v
-+--------------------+         |  Derived ABC Src  |         +--------------------+
-|  Print PDF Assets  |         |   (build/*.abc)   |         |   Piano MP3 Assets |
-|   (build/*.pdf)    |         +---------+---------+         |    (build/*.mp3)   |
-+--------------------+                   |                   +--------------------+
+                       +---+--------+--------+--------+----+
+                           |        |        |        |
+           +---------------+        |        |        +--------------------+
+           |                        v        v                             |
+           v              +-------------------+               v
++--------------------+    | Derived ABC Src   |    +--------------------+
+| Print PDF Assets   |    |  (build/*.abc)    |    | Piano MP3 Assets   |
+| (Sheet & Text PDF) |    +---------+---------+    |   (build/*.mp3)    |
++--------------------+              |              +--------------------+
+                                    v
+                       +-----------------------------------+
+                       | Derived Pure Text Lyrics (MD)     |
+                       |          (build/lyrics/)          |
+                       +-----------------+-----------------+
+                                         |
                                          v
                        +-----------------------------------+
-                       |     Web Player App (abcjs)        |
+                       |  Web App Player & Lyrics Viewer   |
                        |           (src/web/)              |
                        +-----------------+-----------------+
                                          |
@@ -78,6 +86,11 @@ The overall architecture showing major modules and dataflows is illustrated belo
     - *Command*: `python3 src/scripts/ly2abc.py src/songs/<song_id>/<song_id>.ly build/abc/<song_id>.abc`
     - *Input*: `.ly` AST / notation structure.
     - *Output*: Clean, validated `.abc` notation file.
+  - **Pure Text Lyrics Extractor & PDF Compiler**:
+    - *Command 1*: `python3 src/scripts/ly2lyrics.py src/songs/<song_id>/<song_id>.ly build/lyrics/<song_id>.md`
+    - *Command 2*: `python3 src/scripts/lyrics2pdf.py build/lyrics/<song_id>.md build/lyrics_pdf/<song_id>_lyrics.pdf`
+    - *Input*: `.ly` master source file.
+    - *Output*: Pure text Markdown (`.md`) file and standalone text-only lyrics PDF document (`.pdf`).
 
 #### 3. Interactive Web Application Module (`src/web/`)
 - **Description**: Static client-side Single Page Application (SPA) utilizing `abcjs` for visual sheet music rendering and audio playback.
@@ -104,7 +117,8 @@ The overall architecture showing major modules and dataflows is illustrated belo
 | Domain | Technology / Tool | Version / Specification | Rationale & Usage |
 | :--- | :--- | :--- | :--- |
 | **Master Source Notation** | LilyPond | 2.24+ | Primary single source of truth for sheet music and MIDI export. |
-| **Derivation Engine** | Python | 3.10+ (`python-ly`) | AST-based parsing and compilation scripts to derive ABC notation. |
+| **Derivation Engine** | Python | 3.10+ (`python-ly`) | AST-based parsing and compilation scripts to derive ABC notation and extract pure text Markdown lyrics. |
+| **Lyrics PDF Compiler** | Python / WeasyPrint / Pandoc | Standard Linux Toolchain | Compiles clean Markdown lyrics into standalone pure text lyrics PDFs. |
 | **Audio Synthesizer** | FluidSynth | 2.3+ | Software synthesizer using SoundFont 2 (`.sf2`) acoustic piano patches. |
 | **Audio Encoder** | LAME / ffmpeg | 3.100+ | Encodes WAV synth output into compressed MP3 (192 kbps). |
 | **Web Frontend** | HTML5 / CSS3 / ES6 JS | Standard Modern Web | Lightweight client-side application logic without heavy dependencies. |
@@ -153,6 +167,15 @@ The overall architecture showing major modules and dataflows is illustrated belo
 
 ---
 
+### Technical Decision 5: Pure Text Lyrics Extraction & PDF Toolchain
+- **Alternative 5A (Chosen)**: AST/Regex Python Extractor (`ly2lyrics.py`) & Markdown/PDF Compiler — Parses LilyPond `\lyricmode` and `\markup` blocks to produce clean, formatted Markdown files, and compiles them into lightweight text PDFs via automated build scripts.
+- **Alternative 5B**: Separate Duplicate Markdown Source Maintenance — Manually write and maintain separate `.md` lyrics files alongside `.ly` files in each carol folder.
+- **Alternative 5C**: Browser Client-Side JS Parsing from ABC Notation — Parse ABC notation strings in JavaScript inside the browser to generate lyrics dynamically in DOM.
+
+*Selection Rationale*: Alternative 5A upholds the single master source constraint in LilyPond (`.ly`), guarantees synchronization across all exported formats, and allows generating both static Markdown files for GitHub Pages and standalone text-only lyrics PDFs in the CI/CD pipeline.
+
+---
+
 ## 5. Repository Directory Layout
 
 ```
@@ -179,6 +202,8 @@ The overall architecture showing major modules and dataflows is illustrated belo
 └── build/                    # Temporary build output directory (git-ignored)
     ├── pdf/                  # Compiled sheet music PDFs
     ├── abc/                  # Derived ABC notation files
+    ├── lyrics/               # Derived pure text Markdown lyrics (.md)
+    ├── lyrics_pdf/           # Compiled pure text lyrics PDFs (_lyrics.pdf)
     ├── midi/                 # Intermediate MIDI files
     ├── wav/                  # Intermediate WAV audio
     ├── mp3/                  # Final compiled piano MP3 audio
@@ -204,11 +229,13 @@ The overall architecture showing major modules and dataflows is illustrated belo
         ├── 3. Synthesize Audio Assets
         │       └── FluidSynth + SF2 + LAME -> build/mp3/*.mp3
         │
-        ├── 4. Derive ABC Notation
-        │       └── ly2abc.py -> build/abc/*.abc
+        ├── 4. Derive ABC Notation & Pure Text Lyrics
+        │       ├── ly2abc.py -> build/abc/*.abc
+        │       ├── ly2lyrics.py -> build/lyrics/*.md
+        │       └── lyrics2pdf.py -> build/lyrics_pdf/*_lyrics.pdf
         │
         ├── 5. Execute Test Suite & UI Screenshots
-        │       ├── Validate syntax & compiled assets
+        │       ├── Validate syntax & compiled assets (PDF, MP3, ABC, MD, Text PDF)
         │       └── Playwright E2E tests -> Capture screenshots
         │
         ├── 6. Assemble Web Site Package (build/site/)
@@ -233,3 +260,5 @@ The following table summarizes all technical choices evaluated in this design, h
 | **Web Architecture** | Alt 3C: Multi-Page Static HTML IFrames | Prevents seamless audio playback when users browse between songs in the catalog. |
 | **Testing Suite** | Alt 4B: Cypress E2E Framework | Slower CI execution and higher setup overhead compared to lightweight Playwright runner. |
 | **Testing Suite** | Alt 4C: Manual Visual Testing | Lacks automated verification in CI/CD, risking visual regressions and broken links. |
+| **Lyrics Extraction** | Alt 5B: Separate Duplicate Markdown | Dual editing maintenance introduces typos, stanza mismatches, and synchronization drift. |
+| **Lyrics Extraction** | Alt 5C: Client-Side Browser Parsing | Fails to generate standalone downloadable text PDFs or SEO-friendly static Markdown files. |

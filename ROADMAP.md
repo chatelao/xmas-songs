@@ -20,8 +20,9 @@ This document outlines the execution roadmap for the **German Christmas Carols C
 ## Goals
 
 - [ ] 🎼 **Single Primary Master Source**: Store all sheet music scores and lyrics in LilyPond (`.ly`) master files within `src/songs/`. ⏳
-- [x] ⚙️ **Automated Compilation Pipeline**: Automatically derive PDF, ABC notation, and SoundFont acoustic piano MP3 audio files during build. ✅
-- [ ] 🌐 **Interactive Web Player**: Provide an accessible GitHub Pages web app with `abcjs` dynamic rendering and Web Audio playback for 25 German Christmas carols. ⏳
+- [x] ⚙️ **Automated Compilation Pipeline**: Automatically derive sheet music PDF, ABC notation, and SoundFont acoustic piano MP3 audio files during build. ✅
+- [x] 📝 **Pure Text Lyrics Collection**: Automatically extract pure text Markdown (`.md`) lyrics for GitHub Pages and compile standalone text-only lyrics PDFs. ✅
+- [ ] 🌐 **Interactive Web Player**: Provide an accessible GitHub Pages web app with `abcjs` dynamic rendering, pure text lyrics reader, and Web Audio playback for 25 German Christmas carols. ⏳
 - [ ] 🧪 **Automated Testing & Visual Verification**: End-to-end browser testing with Playwright visual screenshots and notation validation. ⏳
 
 ---
@@ -56,6 +57,9 @@ Build automated tools for compiling `.ly` master files into derived assets (`.pd
   - [x] Implement LAME encoder script to convert WAV to 192kbps MP3 audio in `build/mp3/`.
 - [x] **Task 2.4: Catalog Manifest Generator** ✅
   - [x] Create script to scan song metadata and generate `build/catalog.json` index.
+- [x] **Task 2.5: Pure Text Lyrics & PDF Pipeline** ✅
+  - [x] Develop `src/scripts/ly2lyrics.py` to extract pure text Markdown lyrics into `build/lyrics/`.
+  - [x] Develop `src/scripts/lyrics2pdf.py` to compile Markdown lyrics into standalone pure text PDFs in `build/lyrics_pdf/`.
 
 ---
 
@@ -108,6 +112,9 @@ Build the client-side Single Page Application hosted on GitHub Pages.
   - [ ] Integrate `abcjs` in `src/web/app.js` to render vector SVG scores from derived `.abc` files.
   - [ ] Integrate Web Audio API synth controller for interactive score playback and measure highlighting.
   - [ ] Implement MP3 streaming audio player and direct asset download links (`.pdf`, `.mp3`, `.ly`, `.abc`).
+- [ ] **Task 4.3: Pure Text Lyrics Reader & Downloads** ⏳
+  - [ ] Integrate Markdown pure text lyrics viewer into GitHub Pages web player.
+  - [ ] Provide direct download links for pure text Markdown lyrics files (`.md`) and standalone text PDFs (`_lyrics.pdf`).
 
 ---
 

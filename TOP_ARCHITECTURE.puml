@@ -1,0 +1,64 @@
+@startuml
+!theme plain
+skinparam componentStyle uml2
+skinparam rectangle {
+    BackgroundColor white
+    BorderColor #333333
+}
+
+package "Primary Source Repository" {
+    [LilyPond Master Sources\n(src/songs/*/*.ly)] as LY_Master
+}
+
+package "Asset Build Pipeline (src/scripts/)" {
+    [LilyPond Compiler] as LY_Comp
+    [MIDI & SoundFont Synthesizer\n(FluidSynth + LAME)] as MIDI_Synth
+    [ABC Derivation Engine\n(ly2abc.py)] as ABC_Engine
+    [Lyrics Extractor & PDF Engine\n(ly2lyrics.py & lyrics2pdf.py)] as Lyrics_Engine
+}
+
+package "Compiled & Derived Assets" {
+    [Sheet Music PDFs\n(build/pdf/*.pdf)] as Sheet_PDF
+    [Piano MP3 Audio\n(build/mp3/*.mp3)] as Piano_MP3
+    [ABC Notation Files\n(build/abc/*.abc)] as ABC_Files
+    [Pure Text Lyrics Markdowns\n(build/lyrics/*.md)] as Lyrics_MD
+    [Pure Text Lyrics PDFs\n(build/lyrics_pdf/*_lyrics.pdf)] as Lyrics_PDF
+}
+
+package "Web Application & Player (src/web/)" {
+    [abcjs Sheet Music Renderer] as ABC_Render
+    [Web Audio Synthesizer] as Web_Audio
+    [Pure Text Lyrics Viewer\n(Markdown Reader)] as Lyrics_Viewer
+    [Asset Download Manager] as Download_Mgr
+}
+
+cloud "GitHub Pages Hosting" {
+    [Static Web Server & CDN] as GH_Pages
+}
+
+' Data Flows
+LY_Master --> LY_Comp : Primary Source Input
+LY_Master --> MIDI_Synth : MIDI Output Processing
+LY_Master --> ABC_Engine : AST Parsing
+LY_Master --> Lyrics_Engine : Lyric Text Extraction
+
+LY_Comp --> Sheet_PDF : Compiles Vector Sheet Music
+MIDI_Synth --> Piano_MP3 : Synthesizes 192kbps MP3
+ABC_Engine --> ABC_Files : Generates ABC Notation
+Lyrics_Engine --> Lyrics_MD : Generates Markdown Lyrics
+Lyrics_Engine --> Lyrics_PDF : Compiles Text-Only PDFs
+
+ABC_Files --> ABC_Render : Parses Notation
+ABC_Files --> Web_Audio : Powers Browser Audio
+Lyrics_MD --> Lyrics_Viewer : Renders Markdown Text
+Sheet_PDF --> Download_Mgr : Offline Download Link
+Piano_MP3 --> Download_Mgr : Offline Download Link
+Lyrics_PDF --> Download_Mgr : Offline Download Link
+LY_Master --> Download_Mgr : Primary Source Link
+
+ABC_Render --> GH_Pages : Published Web App
+Web_Audio --> GH_Pages : Published Web App
+Lyrics_Viewer --> GH_Pages : Published Web App
+Download_Mgr --> GH_Pages : Published Web App
+
+@enduml
