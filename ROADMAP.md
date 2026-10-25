@@ -8,7 +8,7 @@ This document outlines the execution roadmap for the **German Christmas Carols C
 
 | Phase | Description | Status |
 | :--- | :--- | :--- |
-| **Phase 1** | Repository Architecture & Documentation Infrastructure | 🚧 In Progress |
+| **Phase 1** | Repository Architecture & Documentation Infrastructure | ✅ Completed |
 | **Phase 2** | Build Pipeline & Asset Generation Toolchain | ⏳ Planned |
 | **Phase 3** | LilyPond Master Score Corpus (25 Carols) | ⏳ Planned |
 | **Phase 4** | Interactive Web Application (abcjs Web Player) | ⏳ Planned |
@@ -37,9 +37,9 @@ Establish repository structure, core documentation specifications, and basic too
   - [x] Create `TOP_ARCHITECTURE.puml` diagram.
   - [x] Create `TECHNICAL_DEBTS.md` tracking initial debts.
   - [x] Update `README.md` with overview and song list.
-- [ ] **Task 1.2: Environment Setup Scripts** ⏳
-  - [ ] Create `src/install.sh` for build dependencies installation.
-  - [ ] Create `test/install.sh` for test toolchain installation.
+- [x] **Task 1.2: Environment Setup Scripts** ✅
+  - [x] Create `src/install.sh` for build dependencies installation.
+  - [x] Create `test/install.sh` for test toolchain installation.
 
 ---
 
