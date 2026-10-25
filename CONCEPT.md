@@ -2,12 +2,14 @@
 
 ## 1. Goal and Vision
 
-The primary goal of this project is to curate and publish a open-source collection of the **25 most popular German Christmas carols** (*die 25 bekanntesten deutschen Weihnachtslieder*).
+The primary goal of this project is to curate and publish an open-source collection of the **25 most popular German Christmas carols** (*die 25 bekanntesten deutschen Weihnachtslieder*).
 
-The collection will be made available in multiple standard sheet music formats:
-- **LilyPond (`.ly`)**: High-quality typographic source files and sheets.
-- **ABC Notation (`.abc`)**: Compact, text-based music notation suited for web rendering and audio synthesis.
-- **PDF**: Ready-to-print, publication-grade vector sheet music documents.
+The collection will be maintained with **LilyPond (`.ly`)** as the single primary source of truth for all sheet music.
+
+The final assets made available include:
+- **LilyPond (`.ly`)**: Primary typographic master source files containing musical score and lyrics.
+- **ABC Notation (`.abc`)**: Derived or compiled text-based notation for web rendering and audio synthesis.
+- **PDF**: Ready-to-print, publication-grade vector sheet music compiled directly from the `.ly` master source.
 
 Additionally, the project provides an interactive web application hosted on **GitHub Pages**. This web application leverages `abcjs` to dynamically render sheet music scores and provide real-time audio playback (MIDI/Web Audio synthesis) directly in modern web browsers across desktop and mobile devices.
 
@@ -16,10 +18,11 @@ Additionally, the project provides an interactive web application hosted on **Gi
 ## 2. Business & Use Cases
 
 ### Business Goals
-1. **Accessibility**: Provide free, accessible, and high-quality Christmas carol scores to musicians, choirs, teachers, and families.
-2. **Interactivity**: Allow users to listen to and view scores online without requiring specialized sheet music software.
-3. **Portability**: Offer downloadable digital assets (`.ly`, `.abc`, `.pdf`) for offline printing and editing in notation software.
-4. **Automation**: Establish a robust CI/CD workflow to validate score notation, build PDFs, and automatically deploy the web application.
+1. **Single Source of Truth**: Maintain all musical content and lyrics primarily in LilyPond (`.ly`) format to prevent synchronization errors between formats.
+2. **Accessibility**: Provide free, accessible, and high-quality Christmas carol scores to musicians, choirs, teachers, and families.
+3. **Interactivity**: Allow users to listen to and view scores online without requiring specialized sheet music software.
+4. **Portability**: Offer downloadable digital assets (`.ly`, `.abc`, `.pdf`) for offline printing and editing in notation software.
+5. **Automation**: Establish a robust CI/CD workflow to validate LilyPond source notation, compile PDFs and derived ABC files, and automatically deploy the web application.
 
 ### Key Use Cases
 
@@ -30,18 +33,18 @@ Additionally, the project provides an interactive web application hosted on **Gi
 
 #### UC-2: Render Sheet Music & Play Audio
 - **Actor**: End User
-- **Description**: Upon selecting a song, the web application dynamically renders the score using `abcjs`. The user can press play to listen to a synthesized audio playback (via Web Audio API / MIDI) synchronized with the score.
+- **Description**: Upon selecting a song, the web application dynamically renders the score using `abcjs` (from the derived ABC files). The user can press play to listen to a synthesized audio playback (via Web Audio API / MIDI) synchronized with the score.
 - **Outcome**: Interactive score display and audible playback directly in the browser.
 
 #### UC-3: Download Music Assets
 - **Actor**: End User / Choir Conductor / Arranger
-- **Description**: From the song detail view or download directory, the user downloads `.pdf` files for printing, or `.ly` / `.abc` source files for personal adaptation.
+- **Description**: From the song detail view or download directory, the user downloads `.pdf` files for printing, or `.ly` primary master sources / `.abc` files for personal adaptation.
 - **Outcome**: User receives local copies of desired sheet music assets.
 
 #### UC-4: Score Validation & Automated Deployment
 - **Actor**: Content Maintainer / GitHub Actions
-- **Description**: When new or updated `.ly` or `.abc` files are committed to the repository, automated workflows build PDF files, execute verification tests, and publish the static site to GitHub Pages.
-- **Outcome**: Continuous deployment of verified scores and updated web application.
+- **Description**: When new or updated `.ly` primary source files are committed to the repository, automated workflows compile PDF files, generate/validate `.abc` files, execute verification tests, and publish the static site to GitHub Pages.
+- **Outcome**: Continuous deployment of verified scores and updated web application from the single `.ly` primary source.
 
 ---
 
@@ -49,23 +52,31 @@ Additionally, the project provides an interactive web application hosted on **Gi
 
 ```
 +-------------------------------------------------------------------------+
-|                                Repository                               |
+|                        Primary Source Repository                        |
 |                                                                         |
-|  +------------------------+             +----------------------------+  |
-|  |   LilyPond Sources     |             |    ABC Notation Sources    |  |
-|  |       (src/*.ly)       |             |        (src/*.abc)         |  |
-|  +-----------+------------+             +--------------+-------------+  |
-+--------------|-----------------------------------------|----------------+
-               |                                         |
-               v                                         v
-+------------------------------+          +-------------------------------+
-|  Asset Build Pipeline        |          |  Web Application & Player     |
-|  (LilyPond compiler -> PDF)  |          |  (HTML5 / JS / abcjs)         |
-+--------------+---------------+          +--------------+----------------+
-               |                                         |
-               +-------------------+---------------------+
-                                   |
-                                   v
+|                       +------------------------+                        |
+|                       |  LilyPond Master Src   |                        |
+|                       |       (src/*.ly)       |                        |
+|                       +-----------+------------+                        |
++-----------------------------------|-------------------------------------+
+                                    |
+                                    v
++-------------------------------------------------------------------------+
+|                         Asset Build Pipeline                            |
+|  +-------------------------------+    +------------------------------+  |
+|  | LilyPond Compiler -> PDF      |    | .ly -> .abc Conversion       |  |
+|  +---------------+---------------+    +--------------+---------------+  |
++------------------|-----------------------------------|------------------+
+                   |                                   |
+                   v                                   v
++----------------------------------+    +---------------------------------+
+|      Compiled PDF Assets         |    |   Web Application & Player      |
+|           (build/*.pdf)          |    |     (HTML5 / JS / abcjs)        |
++------------------+---------------+    +--------------+------------------+
+                   |                                   |
+                   +-------------------+---------------+
+                                       |
+                                       v
 +-------------------------------------------------------------------------+
 |                     GitHub Pages Static Web Host                        |
 +-------------------------------------------------------------------------+
@@ -73,17 +84,17 @@ Additionally, the project provides an interactive web application hosted on **Gi
 
 ### Functional Components and Business Interfaces
 
-1. **Content Repository Component**
-   - *Responsibility*: Stores source notation files for all 25 carols in `.ly` and `.abc` format alongside metadata (title, lyrics, key, tempo).
-   - *Interface*: Standardized file layout and naming schema (`src/songs/<song_id>/`).
+1. **Primary Content Repository Component**
+   - *Responsibility*: Stores primary source LilyPond notation files (`.ly`) for all 25 carols alongside metadata (title, lyrics, key, tempo).
+   - *Interface*: Standardized file layout and naming schema (`src/songs/<song_id>/<song_id>.ly`).
 
 2. **Asset Build Pipeline Component**
-   - *Responsibility*: Compiles `.ly` files into `.pdf` documents and validates `.abc` file syntax during CI/CD.
+   - *Responsibility*: Serves as the automated compilation engine that compiles `.ly` primary sources into publication-grade `.pdf` documents and generates/verifies `.abc` files for web playback during CI/CD.
    - *Interface*: Command-line scripts (`src/install.sh`, build tasks) producing output artifacts in `build/` or deployment directories.
 
 3. **Web Player Component**
-   - *Responsibility*: Client-side application rendering ABC scores via `abcjs`, providing playback controls (play, pause, tempo adjustment), responsive layout, and direct download links.
-   - *Interface*: RESTful/static fetch of `.abc` files and static `.pdf` assets from the server.
+   - *Responsibility*: Client-side application rendering ABC scores via `abcjs`, providing playback controls (play, pause, tempo adjustment), responsive layout, and direct download links for `.pdf` and `.ly` files.
+   - *Interface*: RESTful/static fetch of `.abc` files and static `.pdf`/`.ly` assets from the server.
 
 4. **Hosting & Deployment Component**
    - *Responsibility*: Serves the static website assets, scores, and audio engine assets over HTTPS via GitHub Pages.
@@ -93,12 +104,12 @@ Additionally, the project provides an interactive web application hosted on **Gi
 
 ## 4. Strategic Choices & Major Alternatives
 
-### Strategic Choice 1: Sheet Music Source Strategy & Compilation
-- **Alternative 1A (Chosen)**: Dual-Source Strategy — Maintain `.ly` files for primary PDF generation (via LilyPond) and `.abc` files for web score rendering and synthesized playback.
-- **Alternative 1B**: LilyPond Primary with Automated Conversion — Maintain `.ly` only and attempt automated translation to `.abc` or MusicXML using tools like `python-ly` or `midi`.
-- **Alternative 1C**: ABC Notation Primary — Maintain `.abc` files only and compile them to PDF using `abcm2ps` / `abc2ps`.
+### Strategic Choice 1: Sheet Music Source Strategy & Compilation Workflow
+- **Alternative 1A (Chosen)**: LilyPond (`.ly`) Primary Master Source — Maintain `.ly` files as the single primary source of truth, compiling high-grade print PDFs directly via LilyPond and deriving `.abc` files for web rendering and audio playback.
+- **Alternative 1B**: Dual Independent Primary Sources — Maintain both `.ly` and `.abc` files independently side-by-side as two primary sources.
+- **Alternative 1C**: ABC Notation Primary Master Source — Maintain `.abc` files as primary source and compile them to PDF using `abcm2ps` / `abc2ps`.
 
-*Selection Reason*: Alternative 1A ensures maximum output quality. LilyPond produces publication-quality print PDFs unmatched by ABC converters, while native `.abc` files guarantee flawless client-side rendering and Web Audio synthesis using `abcjs` without translation errors.
+*Selection Reason*: Alternative 1A establishes a single source of truth in LilyPond (`.ly`), eliminating double-entry maintenance and synchronization errors across formats. LilyPond provides superior, publication-grade musical typography for print PDFs, while automated pipeline tools derive lightweight `.abc` files for web rendering with `abcjs`.
 
 ---
 
@@ -126,7 +137,7 @@ Below is a summary of all discarded options and the rationale behind choosing th
 
 | Strategic Decision | Discarded Alternative | Rationale for Rejection |
 | :--- | :--- | :--- |
-| **Source Strategy** | Alt 1B: LilyPond to ABC auto-conversion | Automated converters (`ly2abc` or intermediate MIDI) frequently lose articulation, lyric alignment, or custom formatting, resulting in poor web rendering. |
+| **Source Strategy** | Alt 1B: Dual Independent Sources (`.ly` and `.abc`) | Maintaining two separate primary sources leads to notation drift, mismatched lyrics, and duplicate editing effort. |
 | **Source Strategy** | Alt 1C: ABC primary with `abcm2ps` | ABC-generated PDFs lack the precise, publication-grade musical typography and layout flexibility provided by LilyPond. |
 | **Web Rendering** | Alt 2B: Pre-rendered SVG/PNG + MP3 | Significantly increases repository and storage size (25 MP3s); lacks dynamic playback speed controls, interactive measure highlighting, and responsive resizing. |
 | **Web Rendering** | Alt 2C: MusicXML + OSMD | MusicXML files are verbose and complex to edit by hand compared to lightweight `.abc` files; requires larger Javascript bundle size and soundfont management. |
