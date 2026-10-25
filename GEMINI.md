@@ -1,56 +1,42 @@
-GEMINI.md
-
 # Goal
-Eine Sammlung der 25 bekanntesten deutscher Weihnachtslieder in den Formaten .ly, .abc und PDF.
+Eine Sammlung der 25 bekanntesten deutschen Weihnachtslieder in den Formaten .ly, .abc und PDF sowie eine interaktive Web-Anwendung auf GitHub Pages zum Anzeigen und Abspielen der ABC-Dateien.
 
 # Structure
 - `CONCEPT.md`: The overall structure of the product, including Business & Use Cases as well as the High-Level Architecture.
 - `DESIGN.md`: The detailed design of the solution, including the architecture, used tech stack for development, production and testing, etc.
 - `TOP_ARCHITECTURE.puml`: The top-level component overview showing all major modules and the dataflows between them.
 - `ROADMAP.md`: The list of accomplished and planned steps of the project.
-- `TECHNICAL_DEBTS.md`: If you find technical debts, like outdate components, security flaws, old patterns, etc. log them here, but don’t fix them until asked to do so.
-- `README.md`: Add a link to the GitHub pages if any are produced / present.
+- `TECHNICAL_DEBTS.md`: If you find technical debts, like outdated components, security flaws, old patterns, etc. log them here, but don’t fix them until asked to do so.
+- `README.md`: Add a link to the GitHub pages web application for viewing and playing the ABC sheet music files.
 - `/specification/`: External Know-How as datasheet, standards, etc. Should be converted to Markdown if PDF, etc.
-- `/src/`: The source code of the project
+- `/src/`: The source code of the project (e.g. LilyPond files, ABC files, sheet music generation scripts, and web app player source)
 - `/test/`: All tools, configurations & test cases
 - `/build/`: Only temporary place for compilation, may be cached by Github
 
 # `CONCEPT.md` handling
-- The `CONCEPT.md` add the business and use cases to the top Goal this file.
+- The `CONCEPT.md` adds the business and use cases to the top Goal of this file.
 - It contains an architecture with top-level functional components and their business interfaces.
 - It does not contain all precise implementation choices.
-- Every major choice is first drawn out as three alternatives, the best one is chosen and the ohter, discarded ones kept in summary in the last chapter of the concept.
+- Every major choice is first drawn out as three alternatives, the best one is chosen and the other, discarded ones kept in summary in the last chapter of the concept.
 
-# `DESIGN.md`: 
+# `DESIGN.md`
 - The `DESIGN.md` derives all necessary technological choices from `CONCEPT.md`.
-- It does contain precise implementation choices.
-- Every major choice is first drawn out as three alternatives, the best one is chosen and the ohter, discarded ones kept in summary in the last chapter of the concept.
+- It contains precise implementation choices.
+- Every major choice is first drawn out as three alternatives, the best one is chosen and the other, discarded ones kept in summary in the last chapter of the concept.
 - It contains a detailed architecture of all components and their technical interfaces.
-- Included the TOP_ARCHITECTURE.puml` as dynamic-rendering image as soon as available.
+- Includes the `TOP_ARCHITECTURE.puml` as dynamic-rendering image as soon as available.
 
-## REST-API
-- If the API is used, always regenerate the client SDKs and the server stubs from the original interface definitions
-- If there are OpenAPI definitions, render them with redocly to the GH page directory /apis.
-- If there are othe API definitions, render them with suitable tools to the GH page directory /apis too.
-- Verify and add descriptions to the API definitions until they are useable for any product manager / developer using them later.
-- If there are REST-APIs, describe them in `api/openapi.yaml`
-- If there are SOAP-APIs, describe them in `api/api.wsdl`
-- Keep the api definitions up-to-date with every system change
+## GitHub Pages & ABC Web Player
+- Provide an interactive web interface hosted on GitHub Pages (e.g. deployed via GitHub Actions workflow or from the `docs/` folder).
+- Integrate `abcjs` (or a similar JavaScript library) to visually render `.abc` notation into sheet music scores and enable interactive audio playback (MIDI / Web Audio synth) directly in the browser.
+- Allow users to select, view, and play any of the 25 Christmas songs.
+- Ensure a responsive layout compatible with both desktop and mobile web browsers.
 
-## Command-Line Interface (CLI)
-- Every option should be available as short and long form
-
-## Database
-- If SQL statements are required, use the oldest, most common standard dialect available to improve cross-plattform compatibility.
-- Draw database schematics as plantUML entities with crowfoot notation.
-
-## GUI / UI
-- Create screenshots of each UI step tested and store it as asset of the Action Workflow for review
-
-
+## UI / Visualisierung
+- Create screenshots of UI components and the web player interface for testing and review purposes.
 
 # `ROADMAP.md` handling
-- The `ROADMAP.md` is the final plan to implement the `CONCEPT.md` and `DESIGN.md` to achive the top goal
+- The `ROADMAP.md` is the final plan to implement the `CONCEPT.md` and `DESIGN.md` to achieve the top goal.
 - Define the steps in a way to allow for parallelization by defining interfaces only first and implementing functions later.
 - The `ROADMAP.md` file is structured into several key sections:
   - **Progress Overview**: A table summarizing Phases, Descriptions, and Status (using ✅ for completed, 🚧 for in-progress, ⏳ for planned).
@@ -58,7 +44,7 @@ Eine Sammlung der 25 bekanntesten deutscher Weihnachtslieder in den Formaten .ly
   - **Phases**: Detailed chapters for each project phase.
 - The Tasks, and Subtasks if necessary, have checkboxes to show the progress.
 - Every task to be implemented has to be modest, feasible and reasonable.
-  - If no such task is available, then break down a bigger steps to modest ones without implementing anything, just changing the `ROADMAP.md`.
+  - If no such task is available, then break down a bigger step into modest ones without implementing anything, just changing the `ROADMAP.md`.
 - Status Emojis:
   - ✅: Completed
   - 🚧: In Progress
@@ -68,16 +54,14 @@ Eine Sammlung der 25 bekanntesten deutscher Weihnachtslieder in den Formaten .ly
 
 # HOWTO
 - Keep `src/install.sh` to install all tools to build the application (test only tools, see below)
-- Used “ReadTheDocs.org” (RTD) for documentation publishing from main branch
+- Use “ReadTheDocs.org” (RTD) or GitHub Pages for documentation and web player publishing from the main branch.
 
 # Testing Locally & with Github Action Workflow (GH Action WF)
 - Setup the empty CI/CD pipeline before coding anything
-- Write CI/CD test independent as `test` script of the Github action workflows
+- Write CI/CD tests independent as `test` script of the Github action workflows
 - Create screenshots of each UI step tested and store it as asset of the Action Workflow for review
 - Use `test/install.sh` to install test tools.
 - Use the Github action workflows to run the tests after commits.
 - Before committing fetch all changes from the remote repository and merge the changes
 - Run the CI/CD on every commit on every branch
 - Add as much caching as possible to the Github action workflows
-
-
