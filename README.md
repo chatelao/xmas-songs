@@ -16,7 +16,10 @@ This repository serves as a curated collection of sheet music and lyrics for 25 
 The collection provides:
 - **LilyPond (`.ly`)**: Primary typographic master source files containing musical scores and lyrics.
 - **ABC Notation (`.abc`)**: Light-weight notation derived for browser-based rendering and audio synthesis.
-- **PDF Documents**: Publication-grade vector sheet music compiled directly from LilyPond.
+- **PDF Documents (Sheet Music)**: Publication-grade vector sheet music compiled directly from LilyPond.
+- **MP3 Audio**: High-quality piano recordings synthesized directly from LilyPond MIDI files.
+- **Markdown (`.md`)**: Pure text lyrics collection formatted as Markdown on GitHub Pages.
+- **PDF Documents (Pure Text Lyrics)**: Standalone text-only lyrics documents compiled without score clutter for easy reading and printing.
 
 ---
 

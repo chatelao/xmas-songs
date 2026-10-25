@@ -9,10 +9,12 @@ The collection will be maintained with **LilyPond (`.ly`)** as the single primar
 The final assets made available include:
 - **LilyPond (`.ly`)**: Primary typographic master source files containing musical score and lyrics.
 - **ABC Notation (`.abc`)**: Derived or compiled text-based notation for web rendering and audio synthesis.
-- **PDF**: Ready-to-print, publication-grade vector sheet music compiled directly from the `.ly` master source.
+- **PDF (Sheet Music)**: Ready-to-print, publication-grade vector sheet music compiled directly from the `.ly` master source.
 - **MP3**: High-quality piano audio recordings (`.mp3`) compiled directly from `.ly` master sources via MIDI audio synthesis.
+- **Markdown (`.md`)**: Pure text lyrics collection exported as clean Markdown files, published directly on GitHub Pages for easy reading and copy-pasting.
+- **PDF (Pure Text Lyrics)**: Standalone, clean text-only lyrics PDF documents without musical scores for easy singing and printing.
 
-Additionally, the project provides an interactive web application hosted on **GitHub Pages**. This web application leverages `abcjs` to dynamically render sheet music scores and provide real-time audio playback (MIDI/Web Audio synthesis) directly in modern web browsers across desktop and mobile devices, along with streaming/download options for the pre-rendered piano MP3 files.
+Additionally, the project provides an interactive web application hosted on **GitHub Pages**. This web application leverages `abcjs` to dynamically render sheet music scores and provide real-time audio playback (MIDI/Web Audio synthesis) directly in modern web browsers across desktop and mobile devices, alongside a pure text lyrics reader viewing Markdown files, and download options for piano MP3 files, sheet music PDFs, and pure text lyrics PDFs.
 
 ---
 
@@ -22,8 +24,9 @@ Additionally, the project provides an interactive web application hosted on **Gi
 1. **Single Source of Truth**: Maintain all musical content and lyrics primarily in LilyPond (`.ly`) format to prevent synchronization errors between formats.
 2. **Accessibility**: Provide free, accessible, and high-quality Christmas carol scores and piano audio recordings to musicians, choirs, teachers, and families.
 3. **Interactivity**: Allow users to listen to and view scores online without requiring specialized sheet music software.
-4. **Portability**: Offer downloadable digital assets (`.ly`, `.abc`, `.pdf`, `.mp3`) for offline printing, listening, and editing in notation software.
-5. **Automation**: Establish a robust CI/CD workflow to validate LilyPond source notation, compile PDFs, generate piano MP3 audio, derive/validate ABC files, and automatically deploy the web application.
+4. **Portability**: Offer downloadable digital assets (`.ly`, `.abc`, `.pdf`, `.mp3`, pure text `.md` lyrics, and text-only `.pdf` lyrics) for offline printing, listening, and editing in notation software.
+5. **Pure Text Lyrics Accessibility**: Provide a clean text-only lyrics reader on GitHub Pages and standalone text PDFs for users, choirs, and teachers who need the lyrics without musical notation clutter.
+6. **Automation**: Establish a robust CI/CD workflow to validate LilyPond source notation, compile sheet music PDFs, generate piano MP3 audio, derive/validate ABC files, extract pure text Markdown lyrics, compile text-only lyrics PDFs, and automatically deploy the web application.
 
 ### Key Use Cases
 
@@ -44,8 +47,13 @@ Additionally, the project provides an interactive web application hosted on **Gi
 
 #### UC-4: Score Validation & Automated Deployment
 - **Actor**: Content Maintainer / GitHub Actions
-- **Description**: When new or updated `.ly` primary source files are committed to the repository, automated workflows compile PDF files, render piano `.mp3` audio files, generate/validate `.abc` files, execute verification tests, and publish the static site to GitHub Pages.
-- **Outcome**: Continuous deployment of verified scores, audio files, and updated web application from the single `.ly` primary source.
+- **Description**: When new or updated `.ly` primary source files are committed to the repository, automated workflows compile PDF files, render piano `.mp3` audio files, generate/validate `.abc` files, extract pure text Markdown lyrics, compile text-only lyrics PDFs, execute verification tests, and publish the static site to GitHub Pages.
+- **Outcome**: Continuous deployment of verified scores, audio files, text lyrics, and updated web application from the single `.ly` primary source.
+
+#### UC-5: Browse and Download Pure Text Lyrics
+- **Actor**: End User / Educator / Singer
+- **Description**: The user navigates to the lyrics collection section on GitHub Pages to read clean pure text lyrics formatted in Markdown or downloads text-only lyrics PDFs for printouts and rehearsals without score notation.
+- **Outcome**: User accesses clean, readable pure text lyrics without musical notation clutter.
 
 ---
 
@@ -66,16 +74,20 @@ Additionally, the project provides an interactive web application hosted on **Gi
 |                         Asset Build Pipeline                            |
 |  +-------------------+  +-----------------------+  +-----------------+  |
 |  | LilyPond Compiler |  | LilyPond MIDI ->      |  | .ly -> .abc     |  |
-|  |   -> PDF          |  | Piano SoundFont MP3   |  | Conversion      |  |
+|  |   -> Sheet PDF    |  | Piano SoundFont MP3   |  | Conversion      |  |
 |  +---------+---------+  +-----------+-----------+  +--------+--------+  |
+|                                                             |           |
+|  +----------------------------------------------------------+--------+  |
+|  | .ly -> Lyrics Extractor -> Markdown (.md) & Text-Only Lyrics PDF  |  |
+|  +-----------------------------------+-------------------------------+  |
 +------------|------------------------|-----------------------|-----------+
              |                        |                       |
              v                        v                       v
 +----------------------+  +-----------------------+  +--------------------+
-| Compiled PDF Assets  |  | Compiled Piano MP3    |  | Web Application &  |
-|    (build/*.pdf)     |  | (build/*.mp3)         |  | Player (abcjs)     |
-+----------+-----------+  +-----------+-----------+  +--------+-----------+
-           |                          |                       |
+| Compiled PDF Assets  |  | Compiled Piano MP3    |  | Web Application,   |
+| (Sheet & Text PDF)   |  | (build/*.mp3)         |  | Player & Text      |
++----------+-----------+  +-----------+-----------+  | Lyrics (Markdown)  |
+           |                          |              +--------+-----------+
            +--------------------------+-----------------------+
                                       |
                                       v
@@ -91,12 +103,12 @@ Additionally, the project provides an interactive web application hosted on **Gi
    - *Interface*: Standardized file layout and naming schema (`src/songs/<song_id>/<song_id>.ly`).
 
 2. **Asset Build Pipeline Component**
-   - *Responsibility*: Serves as the automated compilation engine that compiles `.ly` primary sources into publication-grade `.pdf` documents, synthesizes high-quality piano `.mp3` audio files via MIDI, and generates/verifies `.abc` files for web playback during CI/CD.
+   - *Responsibility*: Serves as the automated compilation engine that compiles `.ly` primary sources into publication-grade `.pdf` sheet music documents, synthesizes high-quality piano `.mp3` audio files via MIDI, generates/verifies `.abc` files, extracts pure text Markdown (`.md`) lyrics, and compiles standalone text-only lyrics `.pdf` documents during CI/CD.
    - *Interface*: Command-line scripts (`src/install.sh`, build tasks) producing output artifacts in `build/` or deployment directories.
 
-3. **Web Player Component**
-   - *Responsibility*: Client-side application rendering ABC scores via `abcjs`, providing playback controls (play, pause, tempo adjustment, piano MP3 streaming), responsive layout, and direct download links for `.pdf`, `.mp3`, and `.ly` files.
-   - *Interface*: RESTful/static fetch of `.abc` files, `.mp3` audio, and static `.pdf`/`.ly` assets from the server.
+3. **Web Application & Lyrics Reader Component**
+   - *Responsibility*: Client-side application rendering ABC scores via `abcjs`, providing playback controls (play, pause, tempo adjustment, piano MP3 streaming), a dedicated Markdown pure text lyrics viewer, responsive layout, and direct download links for sheet music `.pdf`, text-only lyrics `.pdf`, `.mp3`, `.md`, and `.ly` files.
+   - *Interface*: RESTful/static fetch of `.abc` files, `.mp3` audio, Markdown `.md` lyrics files, and static `.pdf`/`.ly` assets from the server.
 
 4. **Hosting & Deployment Component**
    - *Responsibility*: Serves the static website assets, scores, and pre-rendered piano `.mp3` audio files over HTTPS via GitHub Pages.
@@ -142,6 +154,15 @@ Additionally, the project provides an interactive web application hosted on **Gi
 
 ---
 
+### Strategic Choice 5: Pure Text Lyrics Extraction & Formatting Strategy
+- **Alternative 5A (Chosen)**: Automated Extraction from LilyPond (`.ly`) Primary Master Source to Markdown (`.md`) and Text PDF — Automatically extract all stanzas/lyrics from `.ly` master source files using an automated AST/regex extraction engine (`ly2lyrics.py`), outputting structured Markdown files for GitHub Pages and compiling clean text-only lyrics PDFs.
+- **Alternative 5B**: Manual Pure Text Lyrics File Maintenance — Maintain separate `.txt` or `.md` lyrics files manually in `src/songs/` alongside `.ly` primary master sources.
+- **Alternative 5C**: Client-Side Dynamic DOM Lyrics Extraction from ABC Notation — Parse ABC notation inside the browser via JavaScript at runtime to dynamically reconstruct pure text lyrics in the DOM without pre-generated Markdown or text PDF files.
+
+*Selection Reason*: Alternative 5A upholds the core principle of a single primary source of truth in LilyPond (`.ly`), eliminating double-entry maintenance and synchronization risk. It generates ready-to-use, SEO-friendly Markdown files for GitHub Pages as well as clean standalone text-only lyrics PDFs during the automated build pipeline.
+
+---
+
 ## 5. Summary of Discarded Alternatives
 
 Below is a summary of all discarded options and the rationale behind choosing the primary alternatives:
@@ -156,3 +177,5 @@ Below is a summary of all discarded options and the rationale behind choosing th
 | **Hosting Platform**| Alt 3C: External Jamstack (Vercel/Netlify) | Adds third-party service dependencies when GitHub Pages natively provides all required static web hosting capability for open-source repositories. |
 | **Piano MP3 Synthesis** | Alt 4B: Manual Studio/Piano Recordings | Extremely time-consuming, requires studio recording equipment, and breaks automated synchronization with `.ly` source changes. |
 | **Piano MP3 Synthesis** | Alt 4C: Client-Side Only Synthesis (No MP3s) | Fails to provide downloadable standalone `.mp3` audio files for users wishing to listen offline or on standard media players. |
+| **Lyrics Extraction** | Alt 5B: Manual Pure Text Lyrics Files | Dual source maintenance leads to lyrics mismatch, missing stanzas, and extra manual effort across 25 carols. |
+| **Lyrics Extraction** | Alt 5C: Client-Side Browser DOM Extraction | Fails to provide downloadable pure text lyrics PDFs or static Markdown pages on GitHub Pages for offline reading or search indexers. |

@@ -1,5 +1,5 @@
 # Goal
-Eine Sammlung der 25 bekanntesten deutschen Weihnachtslieder in den Formaten .ly, .abc und PDF sowie eine interaktive Web-Anwendung auf GitHub Pages zum Anzeigen und Abspielen der ABC-Dateien.
+Eine Sammlung der 25 bekanntesten deutschen Weihnachtslieder in den Formaten .ly, .abc, PDF und MP3, eine reine Text-Liedtext-Sammlung als Markdown-Dateien auf GitHub Pages und als reine Text-PDFs sowie eine interaktive Web-Anwendung auf GitHub Pages zum Anzeigen und Abspielen der ABC-Dateien.
 
 # Structure
 - `CONCEPT.md`: The overall structure of the product, including Business & Use Cases as well as the High-Level Architecture.
