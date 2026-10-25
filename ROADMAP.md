@@ -62,12 +62,12 @@ Build automated tools for compiling `.ly` master files into derived assets (`.pd
 ### Phase 3: LilyPond Master Score Corpus Creation (25 Carols)
 Create LilyPond primary master source files (`.ly`) for all 25 German Christmas carols, adhering to Swiss German spelling conventions (using 'ss' instead of 'ß').
 
-- [ ] **Task 3.1: Group 1 Carols (Songs 1–5)** ⏳
-  - [ ] `Alle Jahre wieder`
-  - [ ] `Am Weihnachtsbaume die Lichter brennen`
-  - [ ] `Der Christbaum ist der schönste Baum`
-  - [ ] `Es ist ein Ros entsprungen`
-  - [ ] `Es wird scho glei dumpa`
+- [x] **Task 3.1: Group 1 Carols (Songs 1–5)** ✅
+  - [x] `Alle Jahre wieder`
+  - [x] `Am Weihnachtsbaume die Lichter brennen`
+  - [x] `Der Christbaum ist der schönste Baum`
+  - [x] `Es ist ein Ros entsprungen`
+  - [x] `Es wird scho glei dumpa`
 - [ ] **Task 3.2: Group 2 Carols (Songs 6–10)** ⏳
   - [ ] `Fröhliche Weihnacht überall`
   - [ ] `Ihr Kinderlein, kommet`

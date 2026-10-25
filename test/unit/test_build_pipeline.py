@@ -6,6 +6,15 @@ import subprocess
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 REPO_ROOT = os.path.abspath(os.path.join(SCRIPT_DIR, "../.."))
 
+EXPECTED_SONGS = [
+    "alle_jahre_wieder",
+    "am_weihnachtsbaume_die_lichter_brennen",
+    "der_christbaum_ist_der_schoenste_baum",
+    "es_ist_ein_ros_entsprungen",
+    "es_wird_scho_glei_dumpa",
+    "stille_nacht",
+]
+
 class TestBuildPipeline(unittest.TestCase):
 
     @classmethod
@@ -15,25 +24,28 @@ class TestBuildPipeline(unittest.TestCase):
         res = subprocess.run([build_script], capture_output=True, text=True)
         assert res.returncode == 0, f"Build pipeline failed with output:\n{res.stderr}"
 
-    def test_pdf_generation(self):
-        pdf_path = os.path.join(REPO_ROOT, "build", "pdf", "stille_nacht.pdf")
-        self.assertTrue(os.path.exists(pdf_path), "PDF asset does not exist")
-        self.assertGreater(os.path.getsize(pdf_path), 0, "PDF asset is empty")
+    def test_pdf_generation_for_all_songs(self):
+        for song_id in EXPECTED_SONGS:
+            pdf_path = os.path.join(REPO_ROOT, "build", "pdf", f"{song_id}.pdf")
+            self.assertTrue(os.path.exists(pdf_path), f"PDF asset for {song_id} does not exist")
+            self.assertGreater(os.path.getsize(pdf_path), 0, f"PDF asset for {song_id} is empty")
 
-    def test_abc_generation(self):
-        abc_path = os.path.join(REPO_ROOT, "build", "abc", "stille_nacht.abc")
-        self.assertTrue(os.path.exists(abc_path), "ABC asset does not exist")
-        self.assertGreater(os.path.getsize(abc_path), 0, "ABC asset is empty")
+    def test_abc_generation_for_all_songs(self):
+        for song_id in EXPECTED_SONGS:
+            abc_path = os.path.join(REPO_ROOT, "build", "abc", f"{song_id}.abc")
+            self.assertTrue(os.path.exists(abc_path), f"ABC asset for {song_id} does not exist")
+            self.assertGreater(os.path.getsize(abc_path), 0, f"ABC asset for {song_id} is empty")
 
-        with open(abc_path, 'r', encoding='utf-8') as f:
-            content = f.read()
-            self.assertIn("T:Stille Nacht, heilige Nacht", content)
-            self.assertIn("X:1", content)
+            with open(abc_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+                self.assertIn("X:1", content)
+                self.assertIn("T:", content)
 
-    def test_mp3_generation(self):
-        mp3_path = os.path.join(REPO_ROOT, "build", "mp3", "stille_nacht.mp3")
-        self.assertTrue(os.path.exists(mp3_path), "MP3 asset does not exist")
-        self.assertGreater(os.path.getsize(mp3_path), 0, "MP3 asset is empty")
+    def test_mp3_generation_for_all_songs(self):
+        for song_id in EXPECTED_SONGS:
+            mp3_path = os.path.join(REPO_ROOT, "build", "mp3", f"{song_id}.mp3")
+            self.assertTrue(os.path.exists(mp3_path), f"MP3 asset for {song_id} does not exist")
+            self.assertGreater(os.path.getsize(mp3_path), 0, f"MP3 asset for {song_id} is empty")
 
     def test_catalog_json_generation(self):
         catalog_path = os.path.join(REPO_ROOT, "build", "catalog.json")
@@ -42,13 +54,16 @@ class TestBuildPipeline(unittest.TestCase):
         with open(catalog_path, 'r', encoding='utf-8') as f:
             data = json.load(f)
             self.assertIn("songs", data)
-            self.assertGreater(data["count"], 0)
+            self.assertEqual(data["count"], len(EXPECTED_SONGS))
 
-            song = data["songs"][0]
-            self.assertEqual(song["id"], "stille_nacht")
-            self.assertIsNotNone(song["assets"]["pdf"])
-            self.assertIsNotNone(song["assets"]["abc"])
-            self.assertIsNotNone(song["assets"]["mp3"])
+            catalog_song_ids = [song["id"] for song in data["songs"]]
+            for song_id in EXPECTED_SONGS:
+                self.assertIn(song_id, catalog_song_ids)
+
+            for song in data["songs"]:
+                self.assertIsNotNone(song["assets"]["pdf"])
+                self.assertIsNotNone(song["assets"]["abc"])
+                self.assertIsNotNone(song["assets"]["mp3"])
 
 if __name__ == "__main__":
     unittest.main()
