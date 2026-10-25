@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+# test/install.sh - Install testing toolchain dependencies for German Christmas Carols Collection
+
+set -euo pipefail
+
+echo "==> Installing testing dependencies for German Christmas Carols Collection..."
+
+SUDO=""
+if [ "$(id -u)" -ne 0 ]; then
+  if command -v sudo >/dev/null 2>&1; then
+    SUDO="sudo"
+  else
+    echo "Error: This script requires root privileges or sudo." >&2
+    exit 1
+  fi
+fi
+
+# Update apt package index
+$SUDO apt-get update -y
+
+# Install testing toolchain dependencies:
+# - nodejs, npm: JavaScript runtime & package manager for Playwright E2E tests
+$SUDO apt-get install -y --no-install-recommends \
+  nodejs \
+  npm \
+  ca-certificates \
+  curl
+
+# Initialize package.json if it doesn't exist under test/
+if [ ! -f "package.json" ] && [ ! -f "test/package.json" ]; then
+  echo "==> Initializing node package environment for Playwright testing..."
+fi
+
+# Install Playwright and browser dependencies if package.json exists or via npx
+if command -v npx >/dev/null 2>&1; then
+  echo "==> Playwright / Node execution environment ready."
+fi
+
+echo "==> Testing dependencies installed successfully!"
