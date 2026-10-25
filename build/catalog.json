@@ -1,0 +1,18 @@
+{
+  "count": 1,
+  "songs": [
+    {
+      "id": "stille_nacht",
+      "number": 1,
+      "title": "Stille Nacht, heilige Nacht",
+      "composer": "Franz Xaver Gruber (1818)",
+      "poet": "Joseph Mohr (1816)",
+      "assets": {
+        "ly": "src/songs/stille_nacht/stille_nacht.ly",
+        "pdf": "pdf/stille_nacht.pdf",
+        "abc": "abc/stille_nacht.abc",
+        "mp3": "mp3/stille_nacht.mp3"
+      }
+    }
+  ]
+}
