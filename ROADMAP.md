@@ -92,6 +92,9 @@ Create LilyPond primary master source files (`.ly`) for all 25 German Christmas 
   - [ ] `Vom Himmel hoch, da komm ich her`
   - [ ] `Was soll das bedeuten`
   - [ ] `Zu Bethlehem geboren`
+- [x] **Additional Carols** ✅
+  - [x] `Jingle Bells`
+  - [x] `I Wish You a Merry Christmas`
 
 ---
 

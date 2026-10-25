@@ -50,6 +50,10 @@ The collection includes the following 25 carols:
 24. **Was soll das bedeuten**
 25. **Zu Bethlehem geboren**
 
+### Additional Carols
+- **Jingle Bells**
+- **I Wish You a Merry Christmas**
+
 ---
 
 ## 🛠 Project Structure
