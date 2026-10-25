@@ -84,12 +84,12 @@ Create LilyPond primary master source files (`.ly`) for all 25 German Christmas 
   - [x] `Macht hoch die Tür`
   - [x] `Maria durch ein Dornwald ging`
   - [x] `Morgen, Kinder, wird’s was geben`
-- [ ] **Task 3.4: Group 4 Carols (Songs 16–20)** ⏳
-  - [ ] `O du fröhliche`
-  - [ ] `O Tannenbaum`
-  - [ ] `Schneeflöckchen, Weissröckchen`
-  - [ ] `Stern über Bethlehem`
-  - [ ] `Stille Nacht, heilige Nacht`
+- [x] **Task 3.4: Group 4 Carols (Songs 16–20)** ✅
+  - [x] `O du fröhliche`
+  - [x] `O Tannenbaum`
+  - [x] `Schneeflöckchen, Weissröckchen`
+  - [x] `Stern über Bethlehem`
+  - [x] `Stille Nacht, heilige Nacht`
 - [ ] **Task 3.5: Group 5 Carols (Songs 21–25)** ⏳
   - [ ] `Süsser die Glocken nie klingen`
   - [ ] `Tochter Zion, freue dich`
