@@ -5,20 +5,12 @@ import subprocess
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 REPO_ROOT = os.path.abspath(os.path.join(SCRIPT_DIR, "../.."))
+SONGS_DIR = os.path.join(REPO_ROOT, "src", "songs")
 
-EXPECTED_SONGS = [
-    "alle_jahre_wieder",
-    "am_weihnachtsbaume_die_lichter_brennen",
-    "der_christbaum_ist_der_schoenste_baum",
-    "es_ist_ein_ros_entsprungen",
-    "es_wird_scho_glei_dumpa",
-    "froehliche_weihnacht_ueberall",
-    "ihr_kinderlein_kommet",
-    "in_dulci_jubilo",
-    "kling_gloeckchen_klingelingeling",
-    "kommet_ihr_hirten",
-    "stille_nacht",
-]
+EXPECTED_SONGS = sorted([
+    d for d in os.listdir(SONGS_DIR)
+    if os.path.isdir(os.path.join(SONGS_DIR, d))
+])
 
 class TestBuildPipeline(unittest.TestCase):
 

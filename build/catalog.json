@@ -1,9 +1,204 @@
 {
-  "count": 1,
+  "count": 16,
   "songs": [
     {
-      "id": "stille_nacht",
+      "id": "alle_jahre_wieder",
       "number": 1,
+      "title": "Alle Jahre wieder",
+      "composer": "Friedrich Silcher (1842)",
+      "poet": "Johann Wilhelm Hey (1837)",
+      "assets": {
+        "ly": "src/songs/alle_jahre_wieder/alle_jahre_wieder.ly",
+        "pdf": "pdf/alle_jahre_wieder.pdf",
+        "abc": "abc/alle_jahre_wieder.abc",
+        "mp3": "mp3/alle_jahre_wieder.mp3"
+      }
+    },
+    {
+      "id": "am_weihnachtsbaume_die_lichter_brennen",
+      "number": 2,
+      "title": "Am Weihnachtsbaume die Lichter brennen",
+      "composer": "Traditionell",
+      "poet": "Hermann Kletke (1841)",
+      "assets": {
+        "ly": "src/songs/am_weihnachtsbaume_die_lichter_brennen/am_weihnachtsbaume_die_lichter_brennen.ly",
+        "pdf": "pdf/am_weihnachtsbaume_die_lichter_brennen.pdf",
+        "abc": "abc/am_weihnachtsbaume_die_lichter_brennen.abc",
+        "mp3": "mp3/am_weihnachtsbaume_die_lichter_brennen.mp3"
+      }
+    },
+    {
+      "id": "der_christbaum_ist_der_schoenste_baum",
+      "number": 3,
+      "title": "Der Christbaum ist der schönste Baum",
+      "composer": "Georg Eisenbach (1842)",
+      "poet": "Johannes Carl (1842)",
+      "assets": {
+        "ly": "src/songs/der_christbaum_ist_der_schoenste_baum/der_christbaum_ist_der_schoenste_baum.ly",
+        "pdf": "pdf/der_christbaum_ist_der_schoenste_baum.pdf",
+        "abc": "abc/der_christbaum_ist_der_schoenste_baum.abc",
+        "mp3": "mp3/der_christbaum_ist_der_schoenste_baum.mp3"
+      }
+    },
+    {
+      "id": "es_ist_ein_ros_entsprungen",
+      "number": 4,
+      "title": "Es ist ein Ros entsprungen",
+      "composer": "Speyerer Gesangbuch (1599)",
+      "poet": "Traditionell (16. Jh.)",
+      "assets": {
+        "ly": "src/songs/es_ist_ein_ros_entsprungen/es_ist_ein_ros_entsprungen.ly",
+        "pdf": "pdf/es_ist_ein_ros_entsprungen.pdf",
+        "abc": "abc/es_ist_ein_ros_entsprungen.abc",
+        "mp3": "mp3/es_ist_ein_ros_entsprungen.mp3"
+      }
+    },
+    {
+      "id": "es_wird_scho_glei_dumpa",
+      "number": 5,
+      "title": "Es wird scho glei dumpa",
+      "composer": "Anton Reidinger (1884)",
+      "poet": "Anton Reidinger (1884)",
+      "assets": {
+        "ly": "src/songs/es_wird_scho_glei_dumpa/es_wird_scho_glei_dumpa.ly",
+        "pdf": "pdf/es_wird_scho_glei_dumpa.pdf",
+        "abc": "abc/es_wird_scho_glei_dumpa.abc",
+        "mp3": "mp3/es_wird_scho_glei_dumpa.mp3"
+      }
+    },
+    {
+      "id": "froehliche_weihnacht_ueberall",
+      "number": 6,
+      "title": "Fröhliche Weihnacht überall",
+      "composer": "Traditionell",
+      "poet": "August Heinrich Hoffmann von Fallersleben (1885)",
+      "assets": {
+        "ly": "src/songs/froehliche_weihnacht_ueberall/froehliche_weihnacht_ueberall.ly",
+        "pdf": "pdf/froehliche_weihnacht_ueberall.pdf",
+        "abc": "abc/froehliche_weihnacht_ueberall.abc",
+        "mp3": "mp3/froehliche_weihnacht_ueberall.mp3"
+      }
+    },
+    {
+      "id": "ihr_kinderlein_kommet",
+      "number": 7,
+      "title": "Ihr Kinderlein, kommet",
+      "composer": "Johann Abraham Peter Schulz (1796)",
+      "poet": "Christoph von Schmid (1798)",
+      "assets": {
+        "ly": "src/songs/ihr_kinderlein_kommet/ihr_kinderlein_kommet.ly",
+        "pdf": "pdf/ihr_kinderlein_kommet.pdf",
+        "abc": "abc/ihr_kinderlein_kommet.abc",
+        "mp3": "mp3/ihr_kinderlein_kommet.mp3"
+      }
+    },
+    {
+      "id": "in_dulci_jubilo",
+      "number": 8,
+      "title": "In dulci jubilo",
+      "composer": "Heinrich Seuse (14. Jh.)",
+      "poet": "Heinrich Seuse (14. Jh.)",
+      "assets": {
+        "ly": "src/songs/in_dulci_jubilo/in_dulci_jubilo.ly",
+        "pdf": "pdf/in_dulci_jubilo.pdf",
+        "abc": "abc/in_dulci_jubilo.abc",
+        "mp3": "mp3/in_dulci_jubilo.mp3"
+      }
+    },
+    {
+      "id": "kling_gloeckchen_klingelingeling",
+      "number": 9,
+      "title": "Kling, Glöckchen, klingelingeling",
+      "composer": "Volksweise (19. Jh.)",
+      "poet": "Karl Enslin (1854)",
+      "assets": {
+        "ly": "src/songs/kling_gloeckchen_klingelingeling/kling_gloeckchen_klingelingeling.ly",
+        "pdf": "pdf/kling_gloeckchen_klingelingeling.pdf",
+        "abc": "abc/kling_gloeckchen_klingelingeling.abc",
+        "mp3": "mp3/kling_gloeckchen_klingelingeling.mp3"
+      }
+    },
+    {
+      "id": "kommet_ihr_hirten",
+      "number": 10,
+      "title": "Kommet, ihr Hirten",
+      "composer": "Böhmische Volksweise (1605)",
+      "poet": "Carl Riedel (1870)",
+      "assets": {
+        "ly": "src/songs/kommet_ihr_hirten/kommet_ihr_hirten.ly",
+        "pdf": "pdf/kommet_ihr_hirten.pdf",
+        "abc": "abc/kommet_ihr_hirten.abc",
+        "mp3": "mp3/kommet_ihr_hirten.mp3"
+      }
+    },
+    {
+      "id": "lasst_uns_froh_und_munter_sein",
+      "number": 11,
+      "title": "Lasst uns froh und munter sein",
+      "composer": "Traditionell",
+      "poet": "Volkslied aus dem Hunsrück (19. Jh.)",
+      "assets": {
+        "ly": "src/songs/lasst_uns_froh_und_munter_sein/lasst_uns_froh_und_munter_sein.ly",
+        "pdf": "pdf/lasst_uns_froh_und_munter_sein.pdf",
+        "abc": "abc/lasst_uns_froh_und_munter_sein.abc",
+        "mp3": "mp3/lasst_uns_froh_und_munter_sein.mp3"
+      }
+    },
+    {
+      "id": "leise_rieselt_der_schnee",
+      "number": 12,
+      "title": "Leise rieselt der Schnee",
+      "composer": "Eduard Ebel (1895)",
+      "poet": "Eduard Ebel (1895)",
+      "assets": {
+        "ly": "src/songs/leise_rieselt_der_schnee/leise_rieselt_der_schnee.ly",
+        "pdf": "pdf/leise_rieselt_der_schnee.pdf",
+        "abc": "abc/leise_rieselt_der_schnee.abc",
+        "mp3": "mp3/leise_rieselt_der_schnee.mp3"
+      }
+    },
+    {
+      "id": "macht_hoch_die_tuer",
+      "number": 13,
+      "title": "Macht hoch die Tür",
+      "composer": "Freylinghausensches Gesangbuch (1704)",
+      "poet": "Georg Weissel (1623)",
+      "assets": {
+        "ly": "src/songs/macht_hoch_die_tuer/macht_hoch_die_tuer.ly",
+        "pdf": "pdf/macht_hoch_die_tuer.pdf",
+        "abc": "abc/macht_hoch_die_tuer.abc",
+        "mp3": "mp3/macht_hoch_die_tuer.mp3"
+      }
+    },
+    {
+      "id": "maria_durch_ein_dornwald_ging",
+      "number": 14,
+      "title": "Maria durch ein Dornwald ging",
+      "composer": "Traditionell (Eichsfeld)",
+      "poet": "Traditionelles Volkslied (16. Jh.)",
+      "assets": {
+        "ly": "src/songs/maria_durch_ein_dornwald_ging/maria_durch_ein_dornwald_ging.ly",
+        "pdf": "pdf/maria_durch_ein_dornwald_ging.pdf",
+        "abc": "abc/maria_durch_ein_dornwald_ging.abc",
+        "mp3": "mp3/maria_durch_ein_dornwald_ging.mp3"
+      }
+    },
+    {
+      "id": "morgen_kinder_wirds_was_geben",
+      "number": 15,
+      "title": "Morgen, Kinder, wird’s was geben",
+      "composer": "Carl Gottlieb Hering (1809)",
+      "poet": "Karl Friedrich Splittegarb (1795)",
+      "assets": {
+        "ly": "src/songs/morgen_kinder_wirds_was_geben/morgen_kinder_wirds_was_geben.ly",
+        "pdf": "pdf/morgen_kinder_wirds_was_geben.pdf",
+        "abc": "abc/morgen_kinder_wirds_was_geben.abc",
+        "mp3": "mp3/morgen_kinder_wirds_was_geben.mp3"
+      }
+    },
+    {
+      "id": "stille_nacht",
+      "number": 16,
       "title": "Stille Nacht, heilige Nacht",
       "composer": "Franz Xaver Gruber (1818)",
       "poet": "Joseph Mohr (1816)",
