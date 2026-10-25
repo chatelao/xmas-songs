@@ -41,10 +41,10 @@ The collection includes the following 25 carols:
 15. **Morgen, Kinder, wird’s was geben**
 16. **O du fröhliche**
 17. **O Tannenbaum**
-18. **Schneeflöckchen, Weißröckchen**
+18. **Schneeflöckchen, Weissröckchen**
 19. **Stern über Bethlehem**
 20. **Stille Nacht, heilige Nacht**
-21. **Süßer die Glocken nie klingen**
+21. **Süsser die Glocken nie klingen**
 22. **Tochter Zion, freue dich**
 23. **Vom Himmel hoch, da komm ich her**
 24. **Was soll das bedeuten**
