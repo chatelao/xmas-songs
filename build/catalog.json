@@ -1,5 +1,5 @@
 {
-  "count": 16,
+  "count": 27,
   "songs": [
     {
       "id": "alle_jahre_wieder",
@@ -80,8 +80,21 @@
       }
     },
     {
-      "id": "ihr_kinderlein_kommet",
+      "id": "i_wish_you_a_merry_christmas",
       "number": 7,
+      "title": "I Wish You a Merry Christmas",
+      "composer": "Englisches Volkslied",
+      "poet": "Traditionell",
+      "assets": {
+        "ly": "src/songs/i_wish_you_a_merry_christmas/i_wish_you_a_merry_christmas.ly",
+        "pdf": "pdf/i_wish_you_a_merry_christmas.pdf",
+        "abc": "abc/i_wish_you_a_merry_christmas.abc",
+        "mp3": "mp3/i_wish_you_a_merry_christmas.mp3"
+      }
+    },
+    {
+      "id": "ihr_kinderlein_kommet",
+      "number": 8,
       "title": "Ihr Kinderlein, kommet",
       "composer": "Johann Abraham Peter Schulz (1796)",
       "poet": "Christoph von Schmid (1798)",
@@ -94,7 +107,7 @@
     },
     {
       "id": "in_dulci_jubilo",
-      "number": 8,
+      "number": 9,
       "title": "In dulci jubilo",
       "composer": "Heinrich Seuse (14. Jh.)",
       "poet": "Heinrich Seuse (14. Jh.)",
@@ -106,8 +119,21 @@
       }
     },
     {
+      "id": "jingle_bells",
+      "number": 10,
+      "title": "Jingle Bells",
+      "composer": "James Lord Pierpont (1857)",
+      "poet": "James Lord Pierpont (1857)",
+      "assets": {
+        "ly": "src/songs/jingle_bells/jingle_bells.ly",
+        "pdf": "pdf/jingle_bells.pdf",
+        "abc": "abc/jingle_bells.abc",
+        "mp3": "mp3/jingle_bells.mp3"
+      }
+    },
+    {
       "id": "kling_gloeckchen_klingelingeling",
-      "number": 9,
+      "number": 11,
       "title": "Kling, Glöckchen, klingelingeling",
       "composer": "Volksweise (19. Jh.)",
       "poet": "Karl Enslin (1854)",
@@ -120,7 +146,7 @@
     },
     {
       "id": "kommet_ihr_hirten",
-      "number": 10,
+      "number": 12,
       "title": "Kommet, ihr Hirten",
       "composer": "Böhmische Volksweise (1605)",
       "poet": "Carl Riedel (1870)",
@@ -133,7 +159,7 @@
     },
     {
       "id": "lasst_uns_froh_und_munter_sein",
-      "number": 11,
+      "number": 13,
       "title": "Lasst uns froh und munter sein",
       "composer": "Traditionell",
       "poet": "Volkslied aus dem Hunsrück (19. Jh.)",
@@ -146,7 +172,7 @@
     },
     {
       "id": "leise_rieselt_der_schnee",
-      "number": 12,
+      "number": 14,
       "title": "Leise rieselt der Schnee",
       "composer": "Eduard Ebel (1895)",
       "poet": "Eduard Ebel (1895)",
@@ -159,7 +185,7 @@
     },
     {
       "id": "macht_hoch_die_tuer",
-      "number": 13,
+      "number": 15,
       "title": "Macht hoch die Tür",
       "composer": "Freylinghausensches Gesangbuch (1704)",
       "poet": "Georg Weissel (1623)",
@@ -172,7 +198,7 @@
     },
     {
       "id": "maria_durch_ein_dornwald_ging",
-      "number": 14,
+      "number": 16,
       "title": "Maria durch ein Dornwald ging",
       "composer": "Traditionell (Eichsfeld)",
       "poet": "Traditionelles Volkslied (16. Jh.)",
@@ -185,7 +211,7 @@
     },
     {
       "id": "morgen_kinder_wirds_was_geben",
-      "number": 15,
+      "number": 17,
       "title": "Morgen, Kinder, wird’s was geben",
       "composer": "Carl Gottlieb Hering (1809)",
       "poet": "Karl Friedrich Splittegarb (1795)",
@@ -197,8 +223,60 @@
       }
     },
     {
+      "id": "o_du_froehliche",
+      "number": 18,
+      "title": "O du fröhliche",
+      "composer": "Sizilianische Volksweise",
+      "poet": "Johannes Daniel Falk (1816) / Heinrich Holzschuher (1829)",
+      "assets": {
+        "ly": "src/songs/o_du_froehliche/o_du_froehliche.ly",
+        "pdf": "pdf/o_du_froehliche.pdf",
+        "abc": "abc/o_du_froehliche.abc",
+        "mp3": "mp3/o_du_froehliche.mp3"
+      }
+    },
+    {
+      "id": "o_tannenbaum",
+      "number": 19,
+      "title": "O Tannenbaum",
+      "composer": "Traditionell",
+      "poet": "Joachim August Zarnack (1819) / Ernst Anschütz (1824)",
+      "assets": {
+        "ly": "src/songs/o_tannenbaum/o_tannenbaum.ly",
+        "pdf": "pdf/o_tannenbaum.pdf",
+        "abc": "abc/o_tannenbaum.abc",
+        "mp3": "mp3/o_tannenbaum.mp3"
+      }
+    },
+    {
+      "id": "schneefloeckchen_weissroeckchen",
+      "number": 20,
+      "title": "Schneeflöckchen, Weissröckchen",
+      "composer": "Traditionell",
+      "poet": "Hedwig Haberkern (1869)",
+      "assets": {
+        "ly": "src/songs/schneefloeckchen_weissroeckchen/schneefloeckchen_weissroeckchen.ly",
+        "pdf": "pdf/schneefloeckchen_weissroeckchen.pdf",
+        "abc": "abc/schneefloeckchen_weissroeckchen.abc",
+        "mp3": "mp3/schneefloeckchen_weissroeckchen.mp3"
+      }
+    },
+    {
+      "id": "stern_ueber_bethlehem",
+      "number": 21,
+      "title": "Stern über Bethlehem",
+      "composer": "Alfred Hans Zoller (1964)",
+      "poet": "Alfred Hans Zoller (1964)",
+      "assets": {
+        "ly": "src/songs/stern_ueber_bethlehem/stern_ueber_bethlehem.ly",
+        "pdf": "pdf/stern_ueber_bethlehem.pdf",
+        "abc": "abc/stern_ueber_bethlehem.abc",
+        "mp3": "mp3/stern_ueber_bethlehem.mp3"
+      }
+    },
+    {
       "id": "stille_nacht",
-      "number": 16,
+      "number": 22,
       "title": "Stille Nacht, heilige Nacht",
       "composer": "Franz Xaver Gruber (1818)",
       "poet": "Joseph Mohr (1816)",
@@ -207,6 +285,71 @@
         "pdf": "pdf/stille_nacht.pdf",
         "abc": "abc/stille_nacht.abc",
         "mp3": "mp3/stille_nacht.mp3"
+      }
+    },
+    {
+      "id": "suesser_die_glocken_nie_klingen",
+      "number": 23,
+      "title": "Süsser die Glocken nie klingen",
+      "composer": "Traditionell",
+      "poet": "Friedrich Wilhelm Kritzinger (1860)",
+      "assets": {
+        "ly": "src/songs/suesser_die_glocken_nie_klingen/suesser_die_glocken_nie_klingen.ly",
+        "pdf": "pdf/suesser_die_glocken_nie_klingen.pdf",
+        "abc": "abc/suesser_die_glocken_nie_klingen.abc",
+        "mp3": "mp3/suesser_die_glocken_nie_klingen.mp3"
+      }
+    },
+    {
+      "id": "tochter_zion_freue_dich",
+      "number": 24,
+      "title": "Tochter Zion, freue dich",
+      "composer": "Georg Friedrich Händel (1747)",
+      "poet": "Friedrich Heinrich Ranke (1820)",
+      "assets": {
+        "ly": "src/songs/tochter_zion_freue_dich/tochter_zion_freue_dich.ly",
+        "pdf": "pdf/tochter_zion_freue_dich.pdf",
+        "abc": "abc/tochter_zion_freue_dich.abc",
+        "mp3": "mp3/tochter_zion_freue_dich.mp3"
+      }
+    },
+    {
+      "id": "vom_himmel_hoch_da_komm_ich_her",
+      "number": 25,
+      "title": "Vom Himmel hoch, da komm ich her",
+      "composer": "Martin Luther (1539)",
+      "poet": "Martin Luther (1535)",
+      "assets": {
+        "ly": "src/songs/vom_himmel_hoch_da_komm_ich_her/vom_himmel_hoch_da_komm_ich_her.ly",
+        "pdf": "pdf/vom_himmel_hoch_da_komm_ich_her.pdf",
+        "abc": "abc/vom_himmel_hoch_da_komm_ich_her.abc",
+        "mp3": "mp3/vom_himmel_hoch_da_komm_ich_her.mp3"
+      }
+    },
+    {
+      "id": "was_soll_das_bedeuten",
+      "number": 26,
+      "title": "Was soll das bedeuten",
+      "composer": "Schlesische Volksweise",
+      "poet": "Traditionell aus Schlesien",
+      "assets": {
+        "ly": "src/songs/was_soll_das_bedeuten/was_soll_das_bedeuten.ly",
+        "pdf": "pdf/was_soll_das_bedeuten.pdf",
+        "abc": "abc/was_soll_das_bedeuten.abc",
+        "mp3": "mp3/was_soll_das_bedeuten.mp3"
+      }
+    },
+    {
+      "id": "zu_bethlehem_geboren",
+      "number": 27,
+      "title": "Zu Bethlehem geboren",
+      "composer": "Traditionell (1638)",
+      "poet": "Friedrich Spee (1637)",
+      "assets": {
+        "ly": "src/songs/zu_bethlehem_geboren/zu_bethlehem_geboren.ly",
+        "pdf": "pdf/zu_bethlehem_geboren.pdf",
+        "abc": "abc/zu_bethlehem_geboren.abc",
+        "mp3": "mp3/zu_bethlehem_geboren.mp3"
       }
     }
   ]
