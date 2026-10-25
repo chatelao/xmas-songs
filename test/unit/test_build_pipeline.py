@@ -12,6 +12,11 @@ EXPECTED_SONGS = [
     "der_christbaum_ist_der_schoenste_baum",
     "es_ist_ein_ros_entsprungen",
     "es_wird_scho_glei_dumpa",
+    "froehliche_weihnacht_ueberall",
+    "ihr_kinderlein_kommet",
+    "in_dulci_jubilo",
+    "kling_gloeckchen_klingelingeling",
+    "kommet_ihr_hirten",
     "stille_nacht",
 ]
 
