@@ -74,12 +74,12 @@ Create LilyPond primary master source files (`.ly`) for all 25 German Christmas 
   - [x] `In dulci jubilo`
   - [x] `Kling, Glöckchen, klingelingeling`
   - [x] `Kommet, ihr Hirten`
-- [ ] **Task 3.3: Group 3 Carols (Songs 11–15)** ⏳
-  - [ ] `Lasst uns froh und munter sein`
-  - [ ] `Leise rieselt der Schnee`
-  - [ ] `Macht hoch die Tür`
-  - [ ] `Maria durch ein Dornwald ging`
-  - [ ] `Morgen, Kinder, wird’s was geben`
+- [x] **Task 3.3: Group 3 Carols (Songs 11–15)** ✅
+  - [x] `Lasst uns froh und munter sein`
+  - [x] `Leise rieselt der Schnee`
+  - [x] `Macht hoch die Tür`
+  - [x] `Maria durch ein Dornwald ging`
+  - [x] `Morgen, Kinder, wird’s was geben`
 - [ ] **Task 3.4: Group 4 Carols (Songs 16–20)** ⏳
   - [ ] `O du fröhliche`
   - [ ] `O Tannenbaum`
