@@ -68,12 +68,12 @@ Create LilyPond primary master source files (`.ly`) for all 25 German Christmas 
   - [x] `Der Christbaum ist der schönste Baum`
   - [x] `Es ist ein Ros entsprungen`
   - [x] `Es wird scho glei dumpa`
-- [ ] **Task 3.2: Group 2 Carols (Songs 6–10)** ⏳
-  - [ ] `Fröhliche Weihnacht überall`
-  - [ ] `Ihr Kinderlein, kommet`
-  - [ ] `In dulci jubilo`
-  - [ ] `Kling, Glöckchen, klingelingeling`
-  - [ ] `Kommet, ihr Hirten`
+- [x] **Task 3.2: Group 2 Carols (Songs 6–10)** ✅
+  - [x] `Fröhliche Weihnacht überall`
+  - [x] `Ihr Kinderlein, kommet`
+  - [x] `In dulci jubilo`
+  - [x] `Kling, Glöckchen, klingelingeling`
+  - [x] `Kommet, ihr Hirten`
 - [ ] **Task 3.3: Group 3 Carols (Songs 11–15)** ⏳
   - [ ] `Lasst uns froh und munter sein`
   - [ ] `Leise rieselt der Schnee`
