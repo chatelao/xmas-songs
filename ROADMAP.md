@@ -10,7 +10,7 @@ This document outlines the execution roadmap for the **German Christmas Carols C
 | :--- | :--- | :--- |
 | **Phase 1** | Repository Architecture & Documentation Infrastructure | ✅ Completed |
 | **Phase 2** | Build Pipeline & Asset Generation Toolchain | ✅ Completed |
-| **Phase 3** | LilyPond Master Score Corpus (25 Carols) | ⏳ Planned |
+| **Phase 3** | LilyPond Master Score Corpus (25 Carols) | ✅ Completed |
 | **Phase 4** | Interactive Web Application (abcjs Web Player) | ⏳ Planned |
 | **Phase 5** | Test Harness & Visual Verification Suite | ⏳ Planned |
 | **Phase 6** | CI/CD Integration & GitHub Pages Deployment | ⏳ Planned |
@@ -90,12 +90,12 @@ Create LilyPond primary master source files (`.ly`) for all 25 German Christmas 
   - [x] `Schneeflöckchen, Weissröckchen`
   - [x] `Stern über Bethlehem`
   - [x] `Stille Nacht, heilige Nacht`
-- [ ] **Task 3.5: Group 5 Carols (Songs 21–25)** ⏳
-  - [ ] `Süsser die Glocken nie klingen`
-  - [ ] `Tochter Zion, freue dich`
-  - [ ] `Vom Himmel hoch, da komm ich her`
-  - [ ] `Was soll das bedeuten`
-  - [ ] `Zu Bethlehem geboren`
+- [x] **Task 3.5: Group 5 Carols (Songs 21–25)** ✅
+  - [x] `Süsser die Glocken nie klingen`
+  - [x] `Tochter Zion, freue dich`
+  - [x] `Vom Himmel hoch, da komm ich her`
+  - [x] `Was soll das bedeuten`
+  - [x] `Zu Bethlehem geboren`
 - [x] **Additional Carols** ✅
   - [x] `Jingle Bells`
   - [x] `I Wish You a Merry Christmas`
