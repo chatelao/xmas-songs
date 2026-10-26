@@ -124,9 +124,9 @@ Build the client-side Single Page Application hosted on GitHub Pages.
 ### Phase 5: Test Harness & Visual Verification Suite
 Build automated test suites for notation syntax, compilation integrity, and visual UI verification.
 
-- [ ] **Task 5.1: Notation & Asset Validation Tests** ⏳
-  - [ ] Implement LilyPond syntax validation tests (`lilypond --parse-only`).
-  - [ ] Implement asset integrity check script verifying non-zero size for compiled `.pdf`, `.abc`, and `.mp3` files.
+- [x] **Task 5.1: Notation & Asset Validation Tests** ✅
+  - [x] Implement LilyPond syntax validation tests (`lilypond --parse-only`).
+  - [x] Implement asset integrity check script verifying non-zero size for compiled `.pdf`, `.abc`, and `.mp3` files.
 - [ ] **Task 5.2: Playwright Visual Regression & UI Verification** ⏳
   - [ ] Set up Playwright test framework under `test/e2e/`.
   - [ ] Implement automated browser UI tests to verify score rendering and audio playback controls.
