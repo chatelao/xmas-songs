@@ -12,7 +12,7 @@ This document outlines the execution roadmap for the **German Christmas Carols C
 | **Phase 2** | Build Pipeline & Asset Generation Toolchain | ✅ Completed |
 | **Phase 3** | LilyPond Master Score Corpus (25 Carols) | ✅ Completed |
 | **Phase 4** | Interactive Web Application (abcjs Web Player) | ✅ Completed |
-| **Phase 5** | Test Harness & Visual Verification Suite | ⏳ Planned |
+| **Phase 5** | Test Harness & Visual Verification Suite | ✅ Completed |
 | **Phase 6** | CI/CD Integration & GitHub Pages Deployment | ⏳ Planned |
 
 ---
@@ -23,7 +23,7 @@ This document outlines the execution roadmap for the **German Christmas Carols C
 - [x] ⚙️ **Automated Compilation Pipeline**: Automatically derive sheet music PDF, ABC notation, and SoundFont acoustic piano MP3 audio files during build. ✅
 - [x] 📝 **Pure Text Lyrics Collection**: Automatically extract pure text Markdown (`.md`) lyrics for GitHub Pages and compile standalone text-only lyrics PDFs. ✅
 - [x] 🌐 **Interactive Web Player**: Provide an accessible GitHub Pages web app with `abcjs` dynamic rendering, pure text lyrics reader, and Web Audio playback for 25 German Christmas carols. ✅
-- [ ] 🧪 **Automated Testing & Visual Verification**: End-to-end browser testing with Playwright visual screenshots and notation validation. ⏳
+- [x] 🧪 **Automated Testing & Visual Verification**: End-to-end browser testing with Playwright visual screenshots and notation validation. ✅
 
 ---
 
@@ -127,10 +127,10 @@ Build automated test suites for notation syntax, compilation integrity, and visu
 - [x] **Task 5.1: Notation & Asset Validation Tests** ✅
   - [x] Implement LilyPond syntax validation tests (`lilypond --parse-only`).
   - [x] Implement asset integrity check script verifying non-zero size for compiled `.pdf`, `.abc`, and `.mp3` files.
-- [ ] **Task 5.2: Playwright Visual Regression & UI Verification** ⏳
-  - [ ] Set up Playwright test framework under `test/e2e/`.
-  - [ ] Implement automated browser UI tests to verify score rendering and audio playback controls.
-  - [ ] Capture and store screenshot artifacts of web player component states.
+- [x] **Task 5.2: Playwright Visual Regression & UI Verification** ✅
+  - [x] Set up Playwright test framework under `test/e2e/`.
+  - [x] Implement automated browser UI tests to verify score rendering and audio playback controls.
+  - [x] Capture and store screenshot artifacts of web player component states.
 
 ---
 
