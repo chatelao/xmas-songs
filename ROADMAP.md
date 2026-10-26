@@ -105,9 +105,12 @@ Create LilyPond primary master source files (`.ly`) for all 25 German Christmas 
 ### Phase 4: Interactive Web Application & Player Development
 Build the client-side Single Page Application hosted on GitHub Pages.
 
-- [ ] **Task 4.1: Shell & Visual Layout (`src/web/`)** ⏳
-  - [ ] Create `index.html` structure with catalog selector and player container.
-  - [ ] Create responsive stylesheet `style.css` supporting mobile and desktop viewports.
+- [ ] **Task 4.1: Shell & Visual Layout (`src/web/`)** 🚧
+  - [x] **Subtask 4.1a: Shell & Responsive Layout** ✅
+    - [x] Create `index.html` structure with header, catalog selector, player container, and lyrics view.
+    - [x] Create responsive stylesheet `style.css` supporting mobile and desktop viewports.
+  - [ ] **Subtask 4.1b: App Logic & Catalog Integration** ⏳
+    - [ ] Create application entry point `app.js` to fetch `catalog.json` and initialize web app interface.
 - [ ] **Task 4.2: Dynamic Score Rendering & Audio Playback** ⏳
   - [ ] Integrate `abcjs` in `src/web/app.js` to render vector SVG scores from derived `.abc` files.
   - [ ] Integrate Web Audio API synth controller for interactive score playback and measure highlighting.

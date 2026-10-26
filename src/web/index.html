@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deutsche Weihnachtslieder - Interaktiver Web-Player</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- abcjs library script and style -->
+  <script src="https://cdn.jsdelivr.net/npm/abcjs@6.2.2/dist/abcjs-basic-min.js"></script>
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-container">
+      <h1>🎄 Deutsche Weihnachtslieder</h1>
+      <p class="subtitle">Interaktive Noten, Audio-Player & Liedtexte</p>
+    </div>
+  </header>
+
+  <main class="app-layout">
+    <!-- Sidebar / Navigation -->
+    <aside class="sidebar">
+      <div class="search-box">
+        <input type="text" id="song-search" placeholder="Lied suchen..." aria-label="Lied suchen">
+      </div>
+      <div class="catalog-container">
+        <h2>Liederverzeichnis</h2>
+        <ul id="song-list" class="song-list">
+          <!-- Populated dynamically by app.js -->
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <section class="content-area">
+      <!-- Active Song Title Header -->
+      <div class="song-header">
+        <h2 id="current-song-title">Bitte wählen Sie ein Lied aus</h2>
+        <p id="current-song-meta" class="song-meta"></p>
+      </div>
+
+      <!-- Controls & Playback Bar -->
+      <div class="player-toolbar">
+        <div class="audio-controls">
+          <button id="btn-play" class="btn btn-primary" aria-label="Abspielen / Pause">
+            <span class="icon">▶</span> Abspielen
+          </button>
+          <button id="btn-stop" class="btn btn-secondary" aria-label="Stopp">
+            <span class="icon">⏹</span> Stopp
+          </button>
+          <div class="tempo-control">
+            <label for="tempo-slider">Tempo:</label>
+            <input type="range" id="tempo-slider" min="50" max="150" value="100">
+            <span id="tempo-value">100%</span>
+          </div>
+        </div>
+
+        <div class="view-toggle">
+          <button id="toggle-score" class="btn btn-tab active">Noten</button>
+          <button id="toggle-lyrics" class="btn btn-tab">Liedtext</button>
+        </div>
+      </div>
+
+      <!-- Audio Stream Container -->
+      <div class="mp3-player-container">
+        <label for="mp3-audio">Klavier-Audio (MP3):</label>
+        <audio id="mp3-audio" controls>
+          <source src="" type="audio/mpeg">
+          Ihr Browser unterstützt das Audio-Element nicht.
+        </audio>
+      </div>
+
+      <!-- Main Display Views -->
+      <div class="views-container">
+        <!-- ABC Score Sheet View -->
+        <div id="score-view" class="view-panel active-panel">
+          <div id="paper" class="paper-container">
+            <div class="placeholder-msg">Lade Notenbild...</div>
+          </div>
+        </div>
+
+        <!-- Pure Text Lyrics View -->
+        <div id="lyrics-view" class="view-panel hidden-panel">
+          <div id="lyrics-content" class="lyrics-container">
+            <p class="placeholder-msg">Wählen Sie ein Lied, um den Liedtext anzuzeigen.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Downloads Section -->
+      <section class="downloads-section">
+        <h3>Downloads & Formate</h3>
+        <div class="download-buttons">
+          <a id="dl-pdf" href="#" class="btn btn-dl" download target="_blank">📄 Sheet Music PDF</a>
+          <a id="dl-mp3" href="#" class="btn btn-dl" download target="_blank">🎵 Piano MP3</a>
+          <a id="dl-lyrics-pdf" href="#" class="btn btn-dl" download target="_blank">📑 Lyrics PDF</a>
+          <a id="dl-lyrics-md" href="#" class="btn btn-dl" download target="_blank">📝 Markdown Lyrics</a>
+          <a id="dl-abc" href="#" class="btn btn-dl" download target="_blank">🎼 ABC Notation</a>
+          <a id="dl-ly" href="#" class="btn btn-dl" download target="_blank">🎹 LilyPond Master Source</a>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <p>&copy; German Christmas Carols Collection — Open Source Sheet Music & Audio. Powered by <a href="https://www.abcjs.net/" target="_blank" rel="noopener">abcjs</a>.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
