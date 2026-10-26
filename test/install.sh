@@ -31,7 +31,12 @@ if [ ! -f "package.json" ] && [ ! -f "test/package.json" ]; then
   echo "==> Initializing node package environment for Playwright testing..."
 fi
 
-# Install Playwright and browser dependencies if package.json exists or via npx
+# Install Playwright and browser dependencies if package.json exists or via npx / python3
+if command -v python3 >/dev/null 2>&1; then
+  echo "==> Installing Playwright browser dependencies (chromium)..."
+  python3 -m playwright install chromium || true
+fi
+
 if command -v npx >/dev/null 2>&1; then
   echo "==> Playwright / Node execution environment ready."
 fi

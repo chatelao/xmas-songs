@@ -93,10 +93,25 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /**
+   * Get relative asset prefix based on current location
+   */
+  function getAssetPrefix() {
+    if (window.location.pathname.includes('/src/web/')) {
+      return '../../build/';
+    }
+    return '';
+  }
+
+  /**
    * Fetch Catalog Manifest JSON
    */
   async function loadCatalog() {
-    const catalogPaths = ["catalog.json", "../catalog.json", "build/catalog.json"];
+    const catalogPaths = [
+      "catalog.json",
+      "../catalog.json",
+      "build/catalog.json",
+      "../../build/catalog.json"
+    ];
     let data = null;
 
     for (const path of catalogPaths) {
@@ -217,13 +232,14 @@ document.addEventListener("DOMContentLoaded", () => {
    */
   function updateAssetLinks(song) {
     const id = song.id;
+    const prefix = getAssetPrefix();
 
-    const pdfPath = song.assets && song.assets.pdf ? song.assets.pdf : `pdf/${id}.pdf`;
-    const mp3Path = song.assets && song.assets.mp3 ? song.assets.mp3 : `mp3/${id}.mp3`;
-    const abcPath = song.assets && song.assets.abc ? song.assets.abc : `abc/${id}.abc`;
-    const lyPath = song.assets && song.assets.ly ? song.assets.ly : `src/songs/${id}/${id}.ly`;
-    const lyricsPdfPath = `lyrics_pdf/${id}_lyrics.pdf`;
-    const lyricsMdPath = `lyrics/${id}.md`;
+    const pdfPath = song.assets && song.assets.pdf ? prefix + song.assets.pdf : `${prefix}pdf/${id}.pdf`;
+    const mp3Path = song.assets && song.assets.mp3 ? prefix + song.assets.mp3 : `${prefix}mp3/${id}.mp3`;
+    const abcPath = song.assets && song.assets.abc ? prefix + song.assets.abc : `${prefix}abc/${id}.abc`;
+    const lyPath = window.location.pathname.includes('/src/web/') ? `../../src/songs/${id}/${id}.ly` : `src/songs/${id}/${id}.ly`;
+    const lyricsPdfPath = `${prefix}lyrics_pdf/${id}_lyrics.pdf`;
+    const lyricsMdPath = `${prefix}lyrics/${id}.md`;
 
     if (dlPdf) dlPdf.href = pdfPath;
     if (dlMp3) dlMp3.href = mp3Path;
@@ -249,10 +265,13 @@ document.addEventListener("DOMContentLoaded", () => {
     state.abcString = "";
     state.visualObj = null;
 
+    const prefix = getAssetPrefix();
     const abcPaths = [
+      song.assets && song.assets.abc ? prefix + song.assets.abc : null,
       song.assets && song.assets.abc ? song.assets.abc : null,
       `abc/${song.id}.abc`,
       `../abc/${song.id}.abc`,
+      `../../build/abc/${song.id}.abc`,
       `build/abc/${song.id}.abc`
     ].filter(Boolean);
 
@@ -307,11 +326,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     lyricsContentEl.innerHTML = '<p class="placeholder-msg">Lade Liedtext...</p>';
 
+    const prefix = getAssetPrefix();
     const lyricsPaths = [
+      `${prefix}lyrics/${song.id}.md`,
       `lyrics/${song.id}.md`,
       `../lyrics/${song.id}.md`,
+      `../../build/lyrics/${song.id}.md`,
       `build/lyrics/${song.id}.md`
-    ];
+    ].filter(Boolean);
 
     let lyricsText = null;
     for (const path of lyricsPaths) {
@@ -413,18 +435,21 @@ document.addEventListener("DOMContentLoaded", () => {
    * Start Web Audio API Synth Playback via abcjs
    */
   function startPlayback() {
+    state.isPlaying = true;
+    updatePlayButtonState();
+
     if (typeof ABCJS === "undefined" || !ABCJS.synth || !state.visualObj) {
       // Fallback: Use MP3 Audio element
       if (mp3AudioEl && mp3AudioEl.src) {
-        mp3AudioEl.play();
-        state.isPlaying = true;
-        updatePlayButtonState();
+        mp3AudioEl.play().catch((e) => console.warn("MP3 play error:", e));
       }
       return;
     }
 
     if (!ABCJS.synth.isSupported()) {
-      alert("Ihr Browser unterstützt Audio-Synthese (Web Audio API) nicht.");
+      if (mp3AudioEl && mp3AudioEl.src) {
+        mp3AudioEl.play().catch((e) => console.warn("MP3 play error:", e));
+      }
       return;
     }
 
@@ -439,25 +464,19 @@ document.addEventListener("DOMContentLoaded", () => {
       };
 
       state.synthControl.init(options).then(() => {
-        state.synthControl.prime().then(() => {
-          state.synthControl.start();
-          state.isPlaying = true;
-          updatePlayButtonState();
-        });
+        return state.synthControl.prime();
+      }).then(() => {
+        state.synthControl.start();
       }).catch((err) => {
         console.warn("CreateSynth init error, falling back to MP3 audio:", err);
         if (mp3AudioEl) {
-          mp3AudioEl.play();
-          state.isPlaying = true;
-          updatePlayButtonState();
+          mp3AudioEl.play().catch((e) => console.warn("MP3 fallback error:", e));
         }
       });
     } catch (e) {
       console.warn("Synth playback exception, using MP3 element:", e);
       if (mp3AudioEl) {
-        mp3AudioEl.play();
-        state.isPlaying = true;
-        updatePlayButtonState();
+        mp3AudioEl.play().catch((e) => console.warn("MP3 exception error:", e));
       }
     }
   }
@@ -466,6 +485,9 @@ document.addEventListener("DOMContentLoaded", () => {
    * Stop Playback
    */
   function stopPlayback() {
+    state.isPlaying = false;
+    updatePlayButtonState();
+
     if (state.synthControl) {
       try {
         state.synthControl.stop();
@@ -476,12 +498,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (mp3AudioEl) {
-      mp3AudioEl.pause();
-      mp3AudioEl.currentTime = 0;
+      try {
+        mp3AudioEl.pause();
+        mp3AudioEl.currentTime = 0;
+      } catch (e) {
+        // Ignore pause errors
+      }
     }
-
-    state.isPlaying = false;
-    updatePlayButtonState();
   }
 
   /**
