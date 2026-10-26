@@ -11,7 +11,7 @@ This document outlines the execution roadmap for the **German Christmas Carols C
 | **Phase 1** | Repository Architecture & Documentation Infrastructure | ✅ Completed |
 | **Phase 2** | Build Pipeline & Asset Generation Toolchain | ✅ Completed |
 | **Phase 3** | LilyPond Master Score Corpus (25 Carols) | ✅ Completed |
-| **Phase 4** | Interactive Web Application (abcjs Web Player) | ⏳ Planned |
+| **Phase 4** | Interactive Web Application (abcjs Web Player) | ✅ Completed |
 | **Phase 5** | Test Harness & Visual Verification Suite | ⏳ Planned |
 | **Phase 6** | CI/CD Integration & GitHub Pages Deployment | ⏳ Planned |
 
@@ -22,7 +22,7 @@ This document outlines the execution roadmap for the **German Christmas Carols C
 - [ ] 🎼 **Single Primary Master Source**: Store all sheet music scores and lyrics in LilyPond (`.ly`) master files within `src/songs/`. ⏳
 - [x] ⚙️ **Automated Compilation Pipeline**: Automatically derive sheet music PDF, ABC notation, and SoundFont acoustic piano MP3 audio files during build. ✅
 - [x] 📝 **Pure Text Lyrics Collection**: Automatically extract pure text Markdown (`.md`) lyrics for GitHub Pages and compile standalone text-only lyrics PDFs. ✅
-- [ ] 🌐 **Interactive Web Player**: Provide an accessible GitHub Pages web app with `abcjs` dynamic rendering, pure text lyrics reader, and Web Audio playback for 25 German Christmas carols. ⏳
+- [x] 🌐 **Interactive Web Player**: Provide an accessible GitHub Pages web app with `abcjs` dynamic rendering, pure text lyrics reader, and Web Audio playback for 25 German Christmas carols. ✅
 - [ ] 🧪 **Automated Testing & Visual Verification**: End-to-end browser testing with Playwright visual screenshots and notation validation. ⏳
 
 ---
@@ -105,19 +105,19 @@ Create LilyPond primary master source files (`.ly`) for all 25 German Christmas 
 ### Phase 4: Interactive Web Application & Player Development
 Build the client-side Single Page Application hosted on GitHub Pages.
 
-- [ ] **Task 4.1: Shell & Visual Layout (`src/web/`)** 🚧
+- [x] **Task 4.1: Shell & Visual Layout (`src/web/`)** ✅
   - [x] **Subtask 4.1a: Shell & Responsive Layout** ✅
     - [x] Create `index.html` structure with header, catalog selector, player container, and lyrics view.
     - [x] Create responsive stylesheet `style.css` supporting mobile and desktop viewports.
-  - [ ] **Subtask 4.1b: App Logic & Catalog Integration** ⏳
-    - [ ] Create application entry point `app.js` to fetch `catalog.json` and initialize web app interface.
-- [ ] **Task 4.2: Dynamic Score Rendering & Audio Playback** ⏳
-  - [ ] Integrate `abcjs` in `src/web/app.js` to render vector SVG scores from derived `.abc` files.
-  - [ ] Integrate Web Audio API synth controller for interactive score playback and measure highlighting.
-  - [ ] Implement MP3 streaming audio player and direct asset download links (`.pdf`, `.mp3`, `.ly`, `.abc`).
-- [ ] **Task 4.3: Pure Text Lyrics Reader & Downloads** ⏳
-  - [ ] Integrate Markdown pure text lyrics viewer into GitHub Pages web player.
-  - [ ] Provide direct download links for pure text Markdown lyrics files (`.md`) and standalone text PDFs (`_lyrics.pdf`).
+  - [x] **Subtask 4.1b: App Logic & Catalog Integration** ✅
+    - [x] Create application entry point `app.js` to fetch `catalog.json` and initialize web app interface.
+- [x] **Task 4.2: Dynamic Score Rendering & Audio Playback** ✅
+  - [x] Integrate `abcjs` in `src/web/app.js` to render vector SVG scores from derived `.abc` files.
+  - [x] Integrate Web Audio API synth controller for interactive score playback and measure highlighting.
+  - [x] Implement MP3 streaming audio player and direct asset download links (`.pdf`, `.mp3`, `.ly`, `.abc`).
+- [x] **Task 4.3: Pure Text Lyrics Reader & Downloads** ✅
+  - [x] Integrate Markdown pure text lyrics viewer into GitHub Pages web player.
+  - [x] Provide direct download links for pure text Markdown lyrics files (`.md`) and standalone text PDFs (`_lyrics.pdf`).
 
 ---
 
