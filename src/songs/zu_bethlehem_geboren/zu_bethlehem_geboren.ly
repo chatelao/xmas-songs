@@ -13,7 +13,14 @@ global = {
   \tempo 4. = 50
 }
 
-melody = \relative c' {
+harmonies = \chordmode {
+  f2. | f2. | g2.:m | c2. |
+  f2. | f2. | c2.:7 | f2. |
+  f2. | f2. | g2.:m | c2. |
+  f2. | f2. | c2.:7 | f2. |
+}
+
+soprano = \relative c' {
   \global
   f4 f8 g4 g8 |
   a4. f4. |
@@ -31,6 +38,66 @@ melody = \relative c' {
   a4. f4. |
   g4 f8 e4 e8 |
   f2. \bar "|."
+}
+
+alto = \relative c' {
+  \global
+  c4 c8 e4 e8 |
+  f4. c4. |
+  d4 d8 f4 f8 |
+  e2. |
+  c4 c8 e4 e8 |
+  f4. c4. |
+  e4 d8 c4 c8 |
+  c2. |
+  f4 f8 f4 f8 |
+  f4. f4. |
+  d4 d8 f4 f8 |
+  e2. |
+  c4 c8 e4 e8 |
+  f4. c4. |
+  e4 d8 c4 c8 |
+  c2. \bar "|."
+}
+
+tenor = \relative c' {
+  \global
+  a4 a8 c4 c8 |
+  c4. a4. |
+  f4 g8 a4 d8 |
+  c2. |
+  a4 a8 c4 c8 |
+  c4. a4. |
+  c4 a8 g4 g8 |
+  a2. |
+  a4 a8 bes4 bes8 |
+  a4. c4. |
+  f,4 g8 a4 d8 |
+  c2. |
+  a4 a8 c4 c8 |
+  c4. a4. |
+  c4 a8 g4 g8 |
+  a2. \bar "|."
+}
+
+bass = \relative c {
+  \global
+  f4 f8 c4 c8 |
+  f4. f,4. |
+  g4 g8 d'4 d8 |
+  c2. |
+  f4 f8 c4 c8 |
+  f4. f,4. |
+  c'4 d8 c4 c8 |
+  f,2. |
+  f'4 f8 bes,4 bes8 |
+  f4. f4. |
+  g4 g8 d'4 d8 |
+  c2. |
+  f4 f8 c4 c8 |
+  f4. f,4. |
+  c'4 d8 c4 c8 |
+  f,2. \bar "|."
 }
 
 firstVerse = \lyricmode {
@@ -59,12 +126,25 @@ thirdVerse = \lyricmode {
 
 \score {
   <<
-    \new Staff {
-      \new Voice = "singer" { \melody }
+    \new ChordNames {
+      \set chordChanges = ##t
+      \harmonies
     }
-    \new Lyrics \lyricsto "singer" \firstVerse
-    \new Lyrics \lyricsto "singer" \secondVerse
-    \new Lyrics \lyricsto "singer" \thirdVerse
+    \new ChoirStaff <<
+      \new Staff \with { instrumentName = "S / A" } <<
+        \clef treble
+        \new Voice = "soprano" { \voiceOne \soprano }
+        \new Voice = "alto" { \voiceTwo \alto }
+      >>
+      \new Staff \with { instrumentName = "T / B" } <<
+        \clef "treble_8"
+        \new Voice = "tenor" { \voiceOne \tenor }
+        \new Voice = "bass" { \voiceTwo \bass }
+      >>
+    >>
+    \new Lyrics \lyricsto "soprano" \firstVerse
+    \new Lyrics \lyricsto "soprano" \secondVerse
+    \new Lyrics \lyricsto "soprano" \thirdVerse
   >>
   \layout { }
   \midi { }

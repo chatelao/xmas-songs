@@ -2,7 +2,7 @@
 
 \header {
   title = "Es ist ein Ros entsprungen"
-  composer = "Speyerer Gesangbuch (1599)"
+  composer = "Michael Praetorius (1609)"
   poet = "Traditionell (16. Jh.)"
   tagline = ##f
 }
@@ -13,7 +13,14 @@ global = {
   \tempo 4 = 92
 }
 
-melody = \relative c'' {
+harmonies = \chordmode {
+  f1 | bes2 f2 | d2:m c4:m f4 | c2 f2 |
+  f1 | bes2 f2 | d2:m c4:m f4 | c2 f2 |
+  d4:m c4 a4:m d4:m | g2 c2 |
+  f1 | bes2 f2 | d2:m c4:m f4 | c2 f2 |
+}
+
+soprano = \relative c'' {
   \global
   c2 c4 c4 |
   d4 c4 c2 |
@@ -29,6 +36,60 @@ melody = \relative c'' {
   d4 c4 c2 |
   a4 bes4 c4 a4 |
   g2 f2 \bar "|."
+}
+
+alto = \relative c' {
+  \global
+  a'2 a4 f4 |
+  f4 f4 e2 |
+  f4 f4 e4 f4 |
+  e2 c2 \bar "||"
+  a'2 a4 f4 |
+  f4 f4 e2 |
+  f4 f4 e4 f4 |
+  e2 c2 \bar "||"
+  f4 d4 c4 c4 |
+  b2 c2 |
+  a'2 a4 f4 |
+  f4 f4 e2 |
+  f4 f4 e4 f4 |
+  e2 c2 \bar "|."
+}
+
+tenor = \relative c' {
+  \global
+  c2 c4 a4 |
+  bes4 a4 g2 |
+  c4 d4 g,4 c4 |
+  c4 b4 a2 \bar "||"
+  c2 c4 a4 |
+  bes4 a4 g2 |
+  c4 d4 g,4 c4 |
+  c4 b4 a2 \bar "||"
+  c4 bes4 a4 a4 |
+  g2 g2 |
+  c2 c4 a4 |
+  bes4 a4 g2 |
+  c4 d4 g,4 c4 |
+  c4 b4 a2 \bar "|."
+}
+
+bass = \relative c {
+  \global
+  f2 f4 f4 |
+  bes,4 f'4 c2 |
+  f4 bes,4 c4 f,4 |
+  c'2 f,2 \bar "||"
+  f'2 f4 f4 |
+  bes,4 f'4 c2 |
+  f4 bes,4 c4 f,4 |
+  c'2 f,2 \bar "||"
+  f'4 g4 a4 f4 |
+  g2 c,2 |
+  f2 f4 f4 |
+  bes,4 f'4 c2 |
+  f4 bes,4 c4 f,4 |
+  c'2 f,2 \bar "|."
 }
 
 firstVerse = \lyricmode {
@@ -53,11 +114,24 @@ secondVerse = \lyricmode {
 
 \score {
   <<
-    \new Staff {
-      \new Voice = "singer" { \melody }
+    \new ChordNames {
+      \set chordChanges = ##t
+      \harmonies
     }
-    \new Lyrics \lyricsto "singer" \firstVerse
-    \new Lyrics \lyricsto "singer" \secondVerse
+    \new ChoirStaff <<
+      \new Staff \with { instrumentName = "S / A" } <<
+        \clef treble
+        \new Voice = "soprano" { \voiceOne \soprano }
+        \new Voice = "alto" { \voiceTwo \alto }
+      >>
+      \new Staff \with { instrumentName = "T / B" } <<
+        \clef "treble_8"
+        \new Voice = "tenor" { \voiceOne \tenor }
+        \new Voice = "bass" { \voiceTwo \bass }
+      >>
+    >>
+    \new Lyrics \lyricsto "soprano" \firstVerse
+    \new Lyrics \lyricsto "soprano" \secondVerse
   >>
   \layout { }
   \midi { }

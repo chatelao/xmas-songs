@@ -13,7 +13,14 @@ global = {
   \tempo 4 = 100
 }
 
-melody = \relative c'' {
+harmonies = \chordmode {
+  g2 | g2 | d2:7 | g2 |
+  g2 | g2 | d2:7 | g2 |
+  g2 | g2 | c2 | d2 |
+  g2 | g2 | d2:7 | g2 |
+}
+
+soprano = \relative c'' {
   \global
   d8 g,8 g8 b8 |
   d4. b8 |
@@ -31,6 +38,66 @@ melody = \relative c'' {
   g4 d4 |
   a'8 a8 b8 a8 |
   g2 \bar "|."
+}
+
+alto = \relative c' {
+  \global
+  b'8 d,8 d8 g8 |
+  b4. g8 |
+  a8 f8 d8 f8 |
+  d2 |
+  b'8 d,8 d8 g8 |
+  b4. g8 |
+  a8 f8 d8 f8 |
+  d2 \bar "||"
+  g8 g8 g8 f8 |
+  d4 d4 |
+  g8 g8 g8 g8 |
+  fis2 |
+  g8 g8 g8 f8 |
+  d4 d4 |
+  fis8 fis8 g8 fis8 |
+  d2 \bar "|."
+}
+
+tenor = \relative c' {
+  \global
+  d8 b8 b8 d8 |
+  d4. d8 |
+  d8 c8 a8 c8 |
+  b2 |
+  d8 b8 b8 d8 |
+  d4. d8 |
+  d8 c8 a8 c8 |
+  b2 \bar "||"
+  d8 d8 d8 c8 |
+  b4 b4 |
+  e8 e8 e8 d8 |
+  d2 |
+  d8 d8 d8 c8 |
+  b4 b4 |
+  c8 c8 d8 c8 |
+  b2 \bar "|."
+}
+
+bass = \relative c {
+  \global
+  g'8 g8 g8 g8 |
+  g4. g8 |
+  d8 d8 d8 d8 |
+  g,2 |
+  g'8 g8 g8 g8 |
+  g4. g8 |
+  d8 d8 d8 d8 |
+  g,2 \bar "||"
+  g'8 g8 g8 g8 |
+  g4 g,4 |
+  c8 c8 c8 c8 |
+  d2 |
+  g8 g8 g8 g8 |
+  g4 g,4 |
+  d'8 d8 d8 d8 |
+  g,2 \bar "|."
 }
 
 firstVerse = \lyricmode {
@@ -57,11 +124,24 @@ secondVerse = \lyricmode {
 
 \score {
   <<
-    \new Staff {
-      \new Voice = "singer" { \melody }
+    \new ChordNames {
+      \set chordChanges = ##t
+      \harmonies
     }
-    \new Lyrics \lyricsto "singer" \firstVerse
-    \new Lyrics \lyricsto "singer" \secondVerse
+    \new ChoirStaff <<
+      \new Staff \with { instrumentName = "S / A" } <<
+        \clef treble
+        \new Voice = "soprano" { \voiceOne \soprano }
+        \new Voice = "alto" { \voiceTwo \alto }
+      >>
+      \new Staff \with { instrumentName = "T / B" } <<
+        \clef "treble_8"
+        \new Voice = "tenor" { \voiceOne \tenor }
+        \new Voice = "bass" { \voiceTwo \bass }
+      >>
+    >>
+    \new Lyrics \lyricsto "soprano" \firstVerse
+    \new Lyrics \lyricsto "soprano" \secondVerse
   >>
   \layout { }
   \midi { }

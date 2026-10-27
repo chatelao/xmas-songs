@@ -13,20 +13,78 @@ global = {
   \tempo 4. = 44
 }
 
-melody = \relative c' {
+harmonies = \chordmode {
+  bes2. | bes2. | bes2. | bes2. |
+  f2. | bes2. | es2. | bes2. |
+  es2. | bes2. | f2.:7 | bes2. |
+  f2.:7 | bes2. |
+}
+
+soprano = \relative c' {
   \global
-  f4.( g8 f4) d2.
-  f4.( g8 f4) d2.
-  c'2 c4 a2.
-  bes2. bes2.
-  g2 g4 bes2 g4
-  f4.( g8 f4) d2.
-  g2 g4 bes2 g4
-  f4.( g8 f4) d2.
-  c'2 c4 e2 c4
-  a2. f2.
-  d'2. bes2.
-  f2. d2.
+  f4.( g8 f4) d2. |
+  f4.( g8 f4) d2. |
+  c'2 c4 a2. |
+  bes2. bes2. |
+  g2 g4 bes2 g4 |
+  f4.( g8 f4) d2. |
+  g2 g4 bes2 g4 |
+  f4.( g8 f4) d2. |
+  c'2 c4 e2 c4 |
+  a2. f2. |
+  d'2. bes2. |
+  f2. d2. |
+  bes2. \bar "|."
+}
+
+alto = \relative c' {
+  \global
+  d4.( e8 d4) bes2. |
+  d4.( e8 d4) bes2. |
+  f'2 f4 f2. |
+  f2. f2. |
+  es2 es4 g2 es4 |
+  d4.( e8 d4) bes2. |
+  es2 es4 g2 es4 |
+  d4.( e8 d4) bes2. |
+  f'2 f4 g2 g4 |
+  f2. d2. |
+  f2. f2. |
+  d2. bes2. |
+  d2. \bar "|."
+}
+
+tenor = \relative c' {
+  \global
+  bes4.( bes8 bes4) f2. |
+  bes4.( bes8 bes4) f2. |
+  a2 a4 c2. |
+  d2. d2. |
+  bes2 bes4 d2 bes4 |
+  bes4.( bes8 bes4) f2. |
+  bes2 bes4 d2 bes4 |
+  bes4.( bes8 bes4) f2. |
+  a2 a4 c2 a4 |
+  c2. a2. |
+  bes2. d2. |
+  bes2. f2. |
+  f2. \bar "|."
+}
+
+bass = \relative c {
+  \global
+  bes2. bes2. |
+  bes2. bes2. |
+  f'2 f4 f2. |
+  bes,2. bes2. |
+  es2 es4 es2 es4 |
+  bes2. bes2. |
+  es2 es4 es2 es4 |
+  bes2. bes2. |
+  f'2 f4 c2 c4 |
+  f2. f2. |
+  bes,2. bes2. |
+  bes2. bes2. |
   bes2. \bar "|."
 }
 
@@ -59,12 +117,25 @@ thirdVerse = \lyricmode {
 
 \score {
   <<
-    \new Staff {
-      \new Voice = "singer" { \melody }
+    \new ChordNames {
+      \set chordChanges = ##t
+      \harmonies
     }
-    \new Lyrics \lyricsto "singer" \firstVerse
-    \new Lyrics \lyricsto "singer" \secondVerse
-    \new Lyrics \lyricsto "singer" \thirdVerse
+    \new ChoirStaff <<
+      \new Staff \with { instrumentName = "S / A" } <<
+        \clef treble
+        \new Voice = "soprano" { \voiceOne \soprano }
+        \new Voice = "alto" { \voiceTwo \alto }
+      >>
+      \new Staff \with { instrumentName = "T / B" } <<
+        \clef "treble_8"
+        \new Voice = "tenor" { \voiceOne \tenor }
+        \new Voice = "bass" { \voiceTwo \bass }
+      >>
+    >>
+    \new Lyrics \lyricsto "soprano" \firstVerse
+    \new Lyrics \lyricsto "soprano" \secondVerse
+    \new Lyrics \lyricsto "soprano" \thirdVerse
   >>
   \layout { }
   \midi { }
