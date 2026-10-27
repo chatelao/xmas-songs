@@ -13,7 +13,12 @@ global = {
   \tempo 4 = 96
 }
 
-melody = \relative c'' {
+harmonies = \chordmode {
+  g2. | c2. | g2. | d2.:7 |
+  g2. | c2. | g4 d2:7 | g2. |
+}
+
+soprano = \relative c'' {
   \global
   d4 b4 g4 |
   e2 a4 |
@@ -23,6 +28,42 @@ melody = \relative c'' {
   e2 a4 |
   g4 fis4 a4 |
   g2. \bar "|."
+}
+
+alto = \relative c' {
+  \global
+  b'4 g4 d4 |
+  c2 e4 |
+  b'4 g4 d4 |
+  fis2. |
+  b4 g4 d4 |
+  c2 e4 |
+  d4 d4 fis4 |
+  d2. \bar "|."
+}
+
+tenor = \relative c' {
+  \global
+  d4 d4 b4 |
+  g2 c4 |
+  d4 d4 b4 |
+  c2. |
+  d4 d4 b4 |
+  g2 c4 |
+  b4 a4 c4 |
+  b2. \bar "|."
+}
+
+bass = \relative c {
+  \global
+  g'4 g4 g4 |
+  c,2 c4 |
+  g'4 g4 g4 |
+  d2. |
+  g4 g4 g4 |
+  c,2 c4 |
+  d4 d4 d4 |
+  g,2. \bar "|."
 }
 
 firstVerse = \lyricmode {
@@ -48,12 +89,25 @@ thirdVerse = \lyricmode {
 
 \score {
   <<
-    \new Staff {
-      \new Voice = "singer" { \melody }
+    \new ChordNames {
+      \set chordChanges = ##t
+      \harmonies
     }
-    \new Lyrics \lyricsto "singer" \firstVerse
-    \new Lyrics \lyricsto "singer" \secondVerse
-    \new Lyrics \lyricsto "singer" \thirdVerse
+    \new ChoirStaff <<
+      \new Staff \with { instrumentName = "S / A" } <<
+        \clef treble
+        \new Voice = "soprano" { \voiceOne \soprano }
+        \new Voice = "alto" { \voiceTwo \alto }
+      >>
+      \new Staff \with { instrumentName = "T / B" } <<
+        \clef "treble_8"
+        \new Voice = "tenor" { \voiceOne \tenor }
+        \new Voice = "bass" { \voiceTwo \bass }
+      >>
+    >>
+    \new Lyrics \lyricsto "soprano" \firstVerse
+    \new Lyrics \lyricsto "soprano" \secondVerse
+    \new Lyrics \lyricsto "soprano" \thirdVerse
   >>
   \layout { }
   \midi { }
