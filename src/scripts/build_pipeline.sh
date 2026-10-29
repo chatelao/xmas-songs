@@ -76,4 +76,22 @@ if [ -f "${SCRIPT_DIR}/generate_catalog.py" ]; then
   python3 "${SCRIPT_DIR}/generate_catalog.py"
 fi
 
+# 6. Assemble Site Package
+SITE_DIR="${BUILD_DIR}/site"
+echo "==> Assembling static site in ${SITE_DIR}..."
+mkdir -p "${SITE_DIR}"
+if [ -d "${REPO_ROOT}/src/web" ]; then
+  cp -r "${REPO_ROOT}/src/web/"* "${SITE_DIR}/"
+fi
+if [ -f "${BUILD_DIR}/catalog.json" ]; then
+  cp "${BUILD_DIR}/catalog.json" "${SITE_DIR}/"
+fi
+
+for sub in abc mp3 pdf lyrics lyrics_pdf; do
+  if [ -d "${BUILD_DIR}/${sub}" ]; then
+    mkdir -p "${SITE_DIR}/${sub}"
+    cp -r "${BUILD_DIR}/${sub}/"* "${SITE_DIR}/${sub}/" 2>/dev/null || true
+  fi
+done
+
 echo "==> Asset generation pipeline build complete!"

@@ -33,8 +33,9 @@ fi
 
 # Install Playwright and browser dependencies if package.json exists or via npx / python3
 if command -v python3 >/dev/null 2>&1; then
-  echo "==> Installing Playwright browser dependencies (chromium)..."
-  python3 -m playwright install chromium || true
+  echo "==> Installing Playwright python package and browser dependencies (chromium)..."
+  python3 -m pip install playwright --quiet || true
+  python3 -m playwright install chromium --with-deps || python3 -m playwright install chromium || true
 fi
 
 if command -v npx >/dev/null 2>&1; then
