@@ -1,5 +1,5 @@
 {
-  "count": 27,
+  "count": 28,
   "songs": [
     {
       "id": "alle_jahre_wieder",
@@ -54,21 +54,8 @@
       }
     },
     {
-      "id": "es_wird_scho_glei_dumpa",
-      "number": 5,
-      "title": "Es wird scho glei dumpa",
-      "composer": "Anton Reidinger (1884)",
-      "poet": "Anton Reidinger (1884)",
-      "assets": {
-        "ly": "src/songs/es_wird_scho_glei_dumpa/es_wird_scho_glei_dumpa.ly",
-        "pdf": "pdf/es_wird_scho_glei_dumpa.pdf",
-        "abc": "abc/es_wird_scho_glei_dumpa.abc",
-        "mp3": "mp3/es_wird_scho_glei_dumpa.mp3"
-      }
-    },
-    {
       "id": "froehliche_weihnacht_ueberall",
-      "number": 6,
+      "number": 5,
       "title": "Fröhliche Weihnacht überall",
       "composer": "Traditionell",
       "poet": "August Heinrich Hoffmann von Fallersleben (1885)",
@@ -81,7 +68,7 @@
     },
     {
       "id": "i_wish_you_a_merry_christmas",
-      "number": 7,
+      "number": 6,
       "title": "I Wish You a Merry Christmas",
       "composer": "Englisches Volkslied",
       "poet": "Traditionell",
@@ -94,7 +81,7 @@
     },
     {
       "id": "ihr_kinderlein_kommet",
-      "number": 8,
+      "number": 7,
       "title": "Ihr Kinderlein, kommet",
       "composer": "Johann Abraham Peter Schulz (1796)",
       "poet": "Christoph von Schmid (1798)",
@@ -107,7 +94,7 @@
     },
     {
       "id": "in_dulci_jubilo",
-      "number": 9,
+      "number": 8,
       "title": "In dulci jubilo",
       "composer": "Heinrich Seuse (14. Jh.)",
       "poet": "Heinrich Seuse (14. Jh.)",
@@ -120,7 +107,7 @@
     },
     {
       "id": "jingle_bells",
-      "number": 10,
+      "number": 9,
       "title": "Jingle Bells",
       "composer": "James Lord Pierpont (1857)",
       "poet": "James Lord Pierpont (1857)",
@@ -133,7 +120,7 @@
     },
     {
       "id": "kling_gloeckchen_klingelingeling",
-      "number": 11,
+      "number": 10,
       "title": "Kling, Glöckchen, klingelingeling",
       "composer": "Volksweise (19. Jh.)",
       "poet": "Karl Enslin (1854)",
@@ -146,7 +133,7 @@
     },
     {
       "id": "kommet_ihr_hirten",
-      "number": 12,
+      "number": 11,
       "title": "Kommet, ihr Hirten",
       "composer": "Böhmische Volksweise (1605)",
       "poet": "Carl Riedel (1870)",
@@ -159,7 +146,7 @@
     },
     {
       "id": "lasst_uns_froh_und_munter_sein",
-      "number": 13,
+      "number": 12,
       "title": "Lasst uns froh und munter sein",
       "composer": "Traditionell",
       "poet": "Volkslied aus dem Hunsrück (19. Jh.)",
@@ -168,6 +155,19 @@
         "pdf": "pdf/lasst_uns_froh_und_munter_sein.pdf",
         "abc": "abc/lasst_uns_froh_und_munter_sein.abc",
         "mp3": "mp3/lasst_uns_froh_und_munter_sein.mp3"
+      }
+    },
+    {
+      "id": "last_christmas",
+      "number": 13,
+      "title": "Last Christmas",
+      "composer": "George Michael (1984)",
+      "poet": "George Michael (1984)",
+      "assets": {
+        "ly": "src/songs/last_christmas/last_christmas.ly",
+        "pdf": "pdf/last_christmas.pdf",
+        "abc": "abc/last_christmas.abc",
+        "mp3": "mp3/last_christmas.mp3"
       }
     },
     {
@@ -249,8 +249,21 @@
       }
     },
     {
-      "id": "schneefloeckchen_weissroeckchen",
+      "id": "rudolph_the_red_nosed_reindeer",
       "number": 20,
+      "title": "Rudolph the Red-Nosed Reindeer",
+      "composer": "Johnny Marks (1949)",
+      "poet": "Johnny Marks (1949)",
+      "assets": {
+        "ly": "src/songs/rudolph_the_red_nosed_reindeer/rudolph_the_red_nosed_reindeer.ly",
+        "pdf": "pdf/rudolph_the_red_nosed_reindeer.pdf",
+        "abc": "abc/rudolph_the_red_nosed_reindeer.abc",
+        "mp3": "mp3/rudolph_the_red_nosed_reindeer.mp3"
+      }
+    },
+    {
+      "id": "schneefloeckchen_weissroeckchen",
+      "number": 21,
       "title": "Schneeflöckchen, Weissröckchen",
       "composer": "Traditionell",
       "poet": "Hedwig Haberkern (1869)",
@@ -263,7 +276,7 @@
     },
     {
       "id": "stern_ueber_bethlehem",
-      "number": 21,
+      "number": 22,
       "title": "Stern über Bethlehem",
       "composer": "Alfred Hans Zoller (1964)",
       "poet": "Alfred Hans Zoller (1964)",
@@ -276,7 +289,7 @@
     },
     {
       "id": "stille_nacht",
-      "number": 22,
+      "number": 23,
       "title": "Stille Nacht, heilige Nacht",
       "composer": "Franz Xaver Gruber (1818)",
       "poet": "Joseph Mohr (1816)",
@@ -289,7 +302,7 @@
     },
     {
       "id": "suesser_die_glocken_nie_klingen",
-      "number": 23,
+      "number": 24,
       "title": "Süsser die Glocken nie klingen",
       "composer": "Traditionell",
       "poet": "Friedrich Wilhelm Kritzinger (1860)",
@@ -302,7 +315,7 @@
     },
     {
       "id": "tochter_zion_freue_dich",
-      "number": 24,
+      "number": 25,
       "title": "Tochter Zion, freue dich",
       "composer": "Georg Friedrich Händel (1747)",
       "poet": "Friedrich Heinrich Ranke (1820)",
@@ -315,7 +328,7 @@
     },
     {
       "id": "vom_himmel_hoch_da_komm_ich_her",
-      "number": 25,
+      "number": 26,
       "title": "Vom Himmel hoch, da komm ich her",
       "composer": "Martin Luther (1539)",
       "poet": "Martin Luther (1535)",
@@ -328,7 +341,7 @@
     },
     {
       "id": "was_soll_das_bedeuten",
-      "number": 26,
+      "number": 27,
       "title": "Was soll das bedeuten",
       "composer": "Schlesische Volksweise",
       "poet": "Traditionell aus Schlesien",
@@ -341,7 +354,7 @@
     },
     {
       "id": "zu_bethlehem_geboren",
-      "number": 27,
+      "number": 28,
       "title": "Zu Bethlehem geboren",
       "composer": "Traditionell (1638)",
       "poet": "Friedrich Spee (1637)",
