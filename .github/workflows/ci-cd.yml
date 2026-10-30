@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -60,6 +60,38 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: 'build/site'
+
+      - name: Package Release Assets
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+        run: |
+          mkdir -p build/release_assets
+          cd build
+          zip -r release_assets/all_sheet_music_pdf.zip pdf/
+          zip -r release_assets/all_piano_mp3.zip mp3/
+          zip -r release_assets/all_abc_notation.zip abc/
+          zip -r release_assets/all_midi_files.zip midi/
+          zip -r release_assets/all_lyrics_markdown.zip lyrics/
+          zip -r release_assets/all_lyrics_pdf.zip lyrics_pdf/
+          cd ..
+          zip -r build/release_assets/all_lilypond_sources.zip src/songs/
+          cp build/pdf/*.pdf build/release_assets/
+          cp build/mp3/*.mp3 build/release_assets/
+          cp build/abc/*.abc build/release_assets/
+          cp build/midi/*.midi build/release_assets/
+          cp build/lyrics/*.md build/release_assets/
+          cp build/lyrics_pdf/*.pdf build/release_assets/
+
+      - name: Publish GitHub Release with Assets
+        uses: softprops/action-gh-release@v2
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+        with:
+          tag_name: "v1.0.${{ github.run_number }}"
+          name: "German Christmas Carols Release v1.0.${{ github.run_number }}"
+          body: "Automated release containing all German Christmas carols in all formats (.ly, .pdf, .mp3, .abc, .midi, .md lyrics, lyrics .pdf)."
+          files: build/release_assets/*
+          make_latest: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   deploy:
     environment:

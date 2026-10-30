@@ -59,6 +59,9 @@ def generate_catalog():
         pdf_path = f"pdf/{song_id}.pdf"
         abc_path = f"abc/{song_id}.abc"
         mp3_path = f"mp3/{song_id}.mp3"
+        midi_path = f"midi/{song_id}.midi"
+        lyrics_md_path = f"lyrics/{song_id}.md"
+        lyrics_pdf_path = f"lyrics_pdf/{song_id}_lyrics.pdf"
         ly_rel_path = f"src/songs/{song_id}/{song_id}.ly"
 
         entry = {
@@ -72,6 +75,9 @@ def generate_catalog():
                 "pdf": pdf_path if os.path.exists(os.path.join(BUILD_DIR, pdf_path)) else None,
                 "abc": abc_path if os.path.exists(os.path.join(BUILD_DIR, abc_path)) else None,
                 "mp3": mp3_path if os.path.exists(os.path.join(BUILD_DIR, mp3_path)) else None,
+                "midi": midi_path if os.path.exists(os.path.join(BUILD_DIR, midi_path)) else None,
+                "lyrics_md": lyrics_md_path if os.path.exists(os.path.join(BUILD_DIR, lyrics_md_path)) else None,
+                "lyrics_pdf": lyrics_pdf_path if os.path.exists(os.path.join(BUILD_DIR, lyrics_pdf_path)) else None,
             }
         }
         songs.append(entry)
