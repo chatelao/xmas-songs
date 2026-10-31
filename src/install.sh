@@ -34,10 +34,11 @@ $SUDO apt-get install -y --no-install-recommends \
   ca-certificates \
   curl
 
-# Ensure python-ly and fpdf2 libraries are accessible in current python environment
+# Ensure python-ly, fpdf2 and pypdf libraries are accessible in current python environment
 if command -v python3 >/dev/null 2>&1; then
   python3 -c "import ly" 2>/dev/null || python3 -m pip install python-ly --quiet || true
   python3 -c "import fpdf" 2>/dev/null || python3 -m pip install fpdf2 --quiet || true
+  python3 -c "import pypdf" 2>/dev/null || python3 -m pip install pypdf --quiet || true
 fi
 
 echo "==> Build dependencies installed successfully!"

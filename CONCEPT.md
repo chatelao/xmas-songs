@@ -9,7 +9,7 @@ The collection will be maintained with **LilyPond (`.ly`)** as the single primar
 The final assets made available include:
 - **LilyPond (`.ly`)**: Primary typographic master source files containing musical score and lyrics.
 - **ABC Notation (`.abc`)**: Derived or compiled text-based notation for web rendering and audio synthesis.
-- **PDF (Sheet Music)**: Ready-to-print, publication-grade vector sheet music compiled directly from the `.ly` master source.
+- **PDF (Sheet Music & Complete Booklet)**: Ready-to-print, publication-grade vector sheet music compiled directly from the `.ly` master source, and a consolidated complete Carol Booklet (`weihnachtslieder_liederbuch.pdf`) complete with festive cover art, running page numbers, and Table of Contents at the end.
 - **MP3**: High-quality piano audio recordings (`.mp3`) compiled directly from `.ly` master sources via MIDI audio synthesis.
 - **Markdown (`.md`)**: Pure text lyrics collection exported as clean Markdown files, published directly on GitHub Pages for easy reading and copy-pasting.
 - **PDF (Pure Text Lyrics)**: Standalone, clean text-only lyrics PDF documents without musical scores for easy singing and printing.
@@ -163,6 +163,15 @@ Additionally, the project provides an interactive web application hosted on **Gi
 
 ---
 
+### Strategic Choice 6: Consolidated Song Booklet Compilation Architecture
+- **Alternative 6A (Chosen)**: Post-processing PDF Assembler with Dynamic Overlays (`pypdf` + `fpdf2`) — Compile individual song PDFs from LilyPond first, then assemble them into a master booklet by overlaying dynamic running page numbers, prepending an artistic vector cover page, and appending an automated Table of Contents (Inhaltsverzeichnis) at the end.
+- **Alternative 6B**: Single Monolithic LilyPond Master File (`booklet.ly`) — Generate one massive LilyPond source file concatenating all scores with `\bookpart` and compiling it in a single pass.
+- **Alternative 6C**: LaTeX / Pandoc Wrapper Pipeline — Transcode LilyPond scores into EPS/PDF snippets and assemble the booklet using LaTeX / pdfLaTeX / XeLaTeX.
+
+*Selection Reason*: Alternative 6A reuses already compiled song score PDFs without duplicate LilyPond compilation overhead, isolates per-song layout adjustments, guarantees robust vector graphics generation via `fpdf2`, and positions the Table of Contents at the end of the booklet while stamping accurate running page numbers on every score page.
+
+---
+
 ## 5. Summary of Discarded Alternatives
 
 Below is a summary of all discarded options and the rationale behind choosing the primary alternatives:
@@ -179,3 +188,5 @@ Below is a summary of all discarded options and the rationale behind choosing th
 | **Piano MP3 Synthesis** | Alt 4C: Client-Side Only Synthesis (No MP3s) | Fails to provide downloadable standalone `.mp3` audio files for users wishing to listen offline or on standard media players. |
 | **Lyrics Extraction** | Alt 5B: Manual Pure Text Lyrics Files | Dual source maintenance leads to lyrics mismatch, missing stanzas, and extra manual effort across 25 carols. |
 | **Lyrics Extraction** | Alt 5C: Client-Side Browser DOM Extraction | Fails to provide downloadable pure text lyrics PDFs or static Markdown pages on GitHub Pages for offline reading or search indexers. |
+| **Booklet Compilation** | Alt 6B: Monolithic LilyPond `booklet.ly` | Compiling 28+ songs in a single LilyPond run consumes excessive memory, slows down builds, and complicates custom end-of-booklet TOC layout. |
+| **Booklet Compilation** | Alt 6C: LaTeX / Pandoc Assembler | Adds heavy TeX Live toolchain dependencies (several gigabytes) to CI runners and installer scripts. |
