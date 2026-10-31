@@ -17,6 +17,7 @@ The collection provides:
 - **LilyPond (`.ly`)**: Primary typographic master source files containing musical scores and lyrics.
 - **ABC Notation (`.abc`)**: Light-weight notation derived for browser-based rendering and audio synthesis.
 - **PDF Documents (Sheet Music)**: Publication-grade vector sheet music compiled directly from LilyPond.
+- **Complete Song Booklet (PDF)**: Consolidated songbook (`weihnachtslieder_liederbuch.pdf`) containing all carols, continuous page numbering, festive graphical cover page, and Table of Contents (Inhaltsverzeichnis) positioned at the end.
 - **MP3 Audio**: High-quality piano recordings synthesized directly from LilyPond MIDI files.
 - **Markdown (`.md`)**: Pure text lyrics collection formatted as Markdown on GitHub Pages.
 - **PDF Documents (Pure Text Lyrics)**: Standalone text-only lyrics documents compiled without score clutter for easy reading and printing.
