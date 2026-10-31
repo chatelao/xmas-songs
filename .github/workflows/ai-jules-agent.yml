@@ -29,7 +29,9 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ISSUE_NUM: ${{ github.event.issue.number }}
         run: |
-          gh issue comment "$ISSUE_NUM" --body "🤖 **Antigravity Agent** picked up this `ai` task. Restoring cached VM environment and preparing a Pull Request..."
+          cat << 'EOF' | gh issue comment "$ISSUE_NUM" --repo "$GITHUB_REPOSITORY" --body-file -
+          🤖 **Antigravity Agent** picked up this `ai` task. Restoring cached VM environment and preparing a Pull Request...
+          EOF
 
       - name: Checkout Repository
         uses: actions/checkout@v4
