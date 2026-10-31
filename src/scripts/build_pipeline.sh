@@ -12,6 +12,8 @@ ABC_DIR="${BUILD_DIR}/abc"
 MIDI_DIR="${BUILD_DIR}/midi"
 WAV_DIR="${BUILD_DIR}/wav"
 MP3_DIR="${BUILD_DIR}/mp3"
+LYRICS_DIR="${BUILD_DIR}/lyrics"
+LYRICS_PDF_DIR="${BUILD_DIR}/lyrics_pdf"
 SONGS_DIR="${REPO_ROOT}/src/songs"
 
 SOUNDFONT="/usr/share/sounds/sf2/FluidR3_GM.sf2"
@@ -20,7 +22,7 @@ if [ ! -f "${SOUNDFONT}" ]; then
 fi
 
 echo "==> Preparing build output directories..."
-mkdir -p "${PDF_DIR}" "${ABC_DIR}" "${MIDI_DIR}" "${WAV_DIR}" "${MP3_DIR}"
+mkdir -p "${PDF_DIR}" "${ABC_DIR}" "${MIDI_DIR}" "${WAV_DIR}" "${MP3_DIR}" "${LYRICS_DIR}" "${LYRICS_PDF_DIR}"
 
 if [ ! -d "${SONGS_DIR}" ] || [ -z "$(ls -A "${SONGS_DIR}" 2>/dev/null)" ]; then
   echo "No song directories found in ${SONGS_DIR}."
@@ -62,9 +64,15 @@ for song_dir in "${SONGS_DIR}"/*; do
       fi
 
       # 4. Derive ABC Notation
-      echo "    [4/4] Deriving ABC notation..."
+      echo "    [4/5] Deriving ABC notation..."
       if [ -f "${SCRIPT_DIR}/ly2abc.py" ]; then
         python3 "${SCRIPT_DIR}/ly2abc.py" "${ly_file}" "${ABC_DIR}/${song_id}.abc" || true
+      fi
+
+      # 5. Extract Pure Text Lyrics and Compile Lyrics PDF
+      echo "    [5/5] Extracting lyrics and compiling lyrics PDF..."
+      if [ -f "${SCRIPT_DIR}/ly2lyrics.py" ]; then
+        python3 "${SCRIPT_DIR}/ly2lyrics.py" "${ly_file}" "${LYRICS_DIR}/${song_id}.md" "${LYRICS_PDF_DIR}/${song_id}_lyrics.pdf" || true
       fi
     fi
   fi
@@ -87,11 +95,16 @@ if [ -f "${BUILD_DIR}/catalog.json" ]; then
   cp "${BUILD_DIR}/catalog.json" "${SITE_DIR}/"
 fi
 
-for sub in abc mp3 pdf lyrics lyrics_pdf; do
+for sub in abc mp3 pdf midi lyrics lyrics_pdf; do
   if [ -d "${BUILD_DIR}/${sub}" ]; then
     mkdir -p "${SITE_DIR}/${sub}"
     cp -r "${BUILD_DIR}/${sub}/"* "${SITE_DIR}/${sub}/" 2>/dev/null || true
   fi
 done
+
+if [ -d "${REPO_ROOT}/src/songs" ]; then
+  mkdir -p "${SITE_DIR}/src/songs"
+  cp -r "${REPO_ROOT}/src/songs/"* "${SITE_DIR}/src/songs/" 2>/dev/null || true
+fi
 
 echo "==> Asset generation pipeline build complete!"

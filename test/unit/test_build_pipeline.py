@@ -44,6 +44,26 @@ class TestBuildPipeline(unittest.TestCase):
             self.assertTrue(os.path.exists(mp3_path), f"MP3 asset for {song_id} does not exist")
             self.assertGreater(os.path.getsize(mp3_path), 0, f"MP3 asset for {song_id} is empty")
 
+    def test_midi_generation_for_all_songs(self):
+        for song_id in EXPECTED_SONGS:
+            midi_path = os.path.join(REPO_ROOT, "build", "midi", f"{song_id}.midi")
+            if not os.path.exists(midi_path):
+                midi_path = os.path.join(REPO_ROOT, "build", "midi", f"{song_id}.mid")
+            self.assertTrue(os.path.exists(midi_path), f"MIDI asset for {song_id} does not exist")
+            self.assertGreater(os.path.getsize(midi_path), 0, f"MIDI asset for {song_id} is empty")
+
+    def test_lyrics_md_generation_for_all_songs(self):
+        for song_id in EXPECTED_SONGS:
+            md_path = os.path.join(REPO_ROOT, "build", "lyrics", f"{song_id}.md")
+            self.assertTrue(os.path.exists(md_path), f"Lyrics MD asset for {song_id} does not exist")
+            self.assertGreater(os.path.getsize(md_path), 0, f"Lyrics MD asset for {song_id} is empty")
+
+    def test_lyrics_pdf_generation_for_all_songs(self):
+        for song_id in EXPECTED_SONGS:
+            pdf_path = os.path.join(REPO_ROOT, "build", "lyrics_pdf", f"{song_id}_lyrics.pdf")
+            self.assertTrue(os.path.exists(pdf_path), f"Lyrics PDF asset for {song_id} does not exist")
+            self.assertGreater(os.path.getsize(pdf_path), 0, f"Lyrics PDF asset for {song_id} is empty")
+
     def test_catalog_json_generation(self):
         catalog_path = os.path.join(REPO_ROOT, "build", "catalog.json")
         self.assertTrue(os.path.exists(catalog_path), "catalog.json does not exist")
@@ -61,6 +81,17 @@ class TestBuildPipeline(unittest.TestCase):
                 self.assertIsNotNone(song["assets"]["pdf"])
                 self.assertIsNotNone(song["assets"]["abc"])
                 self.assertIsNotNone(song["assets"]["mp3"])
+                self.assertIsNotNone(song["assets"]["midi"])
+                self.assertIsNotNone(song["assets"]["lyrics_md"])
+                self.assertIsNotNone(song["assets"]["lyrics_pdf"])
+                self.assertIsNotNone(song["assets"]["ly"])
+
+    def test_site_assembly_all_formats(self):
+        site_dir = os.path.join(REPO_ROOT, "build", "site")
+        self.assertTrue(os.path.exists(site_dir))
+        for format_dir in ["pdf", "abc", "mp3", "midi", "lyrics", "lyrics_pdf", "src/songs"]:
+            path = os.path.join(site_dir, format_dir)
+            self.assertTrue(os.path.exists(path), f"Site format directory missing: {format_dir}")
 
 if __name__ == "__main__":
     unittest.main()
