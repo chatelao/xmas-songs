@@ -25,11 +25,11 @@ soprano = \relative c'' {
   a2 b2 |
   a4. g8 fis4 g4 |
   a2 b2 |
-  a4. g8 fis4 g4 |
+  a4. g8 fis4 g4 \bar "||" \break
   a2 a2 |
   b2 cis4 d4 |
   cis2 b2 |
-  a1 |
+  a1 \bar "||" \break
   a4. b8 a4 g4 |
   fis4. g8 a2 |
   g4. a8 g4 fis4 |
