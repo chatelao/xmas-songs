@@ -5,7 +5,7 @@ Welcome to the **German Christmas Carols Collection** — an open-source library
 ## 🌐 Interactive Web Player
 
 Access the interactive web sheet music player and audio synthesizer hosted on GitHub Pages:
-👉 **[Interactive Web Player]([https://github.com/pages](https://chatelao.github.io/xmas-songs/))**
+👉 **[Interactive Web Player](https://chatelao.github.io/xmas-songs)**
 
 ---
 
