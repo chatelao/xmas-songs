@@ -1,0 +1,145 @@
+name: AI Issue Agent (Jules Mode)
+on:
+  issues:
+    types: [labeled]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+  id-token: write
+
+concurrency:
+  group: ai-issue-${{ github.event.issue.number }}
+  cancel-in-progress: true
+
+jobs:
+  jules-replica:
+    # Security Gate: Only run when tagged 'ai' AND triggered by a trusted repository member
+    if: >
+      github.event.label.name == 'ai' &&
+      (github.event.issue.author_association == 'OWNER' ||
+       github.event.issue.author_association == 'MEMBER' ||
+       github.event.issue.author_association == 'COLLABORATOR')
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Acknowledge Task on Issue (Jules UX)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUM: ${{ github.event.issue.number }}
+        run: |
+          gh issue comment "$ISSUE_NUM" --body "🤖 **Antigravity Agent** picked up this `ai` task. Restoring cached VM environment and preparing a Pull Request..."
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Restore Cached VM Setup (.ai-setup.sh)
+        id: vm-cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gemini
+            ~/.local
+            ~/.cache
+            ~/.npm
+            ~/.cargo
+            .venv
+            node_modules
+          # Cache invalidates automatically the instant .ai-setup.sh or lockfiles change
+          key: ai-vm-${{ runner.os }}-${{ hashFiles('.ai-setup.sh', '**/package-lock.json', '**/poetry.lock', '**/Cargo.lock') }}
+
+      - name: Execute .ai-setup.sh (Only on Cache Miss)
+        if: steps.vm-cache.outputs.cache-hit != 'true'
+        run: |
+          echo "Cache miss detected for current .ai-setup.sh hash. Provisioning environment..."
+          curl -fsSL https://antigravity.google/cli/install.sh | sh
+          if [ -f ".ai-setup.sh" ]; then
+            chmod +x .ai-setup.sh
+            ./.ai-setup.sh
+          else
+            echo "::warning::No .ai-setup.sh found at repository root. Proceeding with default runner environment."
+          fi
+
+      - name: Ensure Antigravity Binary is in PATH
+        run: |
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+          echo "$HOME/.gemini/bin" >> $GITHUB_PATH
+
+      - name: Authenticate to Google Cloud / Vertex via OIDC
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ secrets.WIF_PROVIDER }}
+          service_account: ${{ secrets.WIF_SERVICE_ACCOUNT }}
+
+      - name: Configure Headless Permission Grants (Fix for agy #548)
+        run: |
+          mkdir -p ~/.gemini/config ~/.gemini/antigravity-cli
+          cat << 'EOF' > ~/.gemini/config/config.json
+          {
+            "userSettings": {
+              "globalPermissionGrants": {
+                "allow": [
+                  "read_file(*)",
+                  "write_file(*)",
+                  "command(regex:.*)"
+                ]
+              }
+            }
+          }
+          EOF
+          cat << 'EOF' > ~/.gemini/antigravity-cli/settings.json
+          {
+            "quota": {
+              "aiCreditOverages": "Never",
+              "stopOnBaselineExhausted": true
+            }
+          }
+          EOF
+
+      - name: Run Antigravity Agent to Resolve Issue
+        env:
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+        run: |
+          git checkout -b "ai/issue-${ISSUE_NUMBER}"
+          agy -p "You are operating as an autonomous software engineering agent (like Google Jules).
+          Task: Resolve GitHub Issue #${ISSUE_NUMBER} - ${ISSUE_TITLE}
+          Specification:
+          ${ISSUE_BODY}
+
+          Instructions:
+          1. Inspect the codebase and formulate an implementation plan.
+          2. Implement the fix or feature cleanly.
+          3. Run the project's test suite and linter to verify your changes.
+          4. Do not modify .github/workflows or .ai-setup.sh." \
+            --mode=auto \
+            --sandbox \
+            --output-format=json \
+            --print-timeout=15m > /tmp/agy_result.json
+
+      - name: Create Pull Request and Link Issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+        run: |
+          git config user.name "antigravity-ai-bot"
+          git config user.email "ai-bot@antigravity.google"
+          git add -A
+          if git diff --staged --quiet; then
+            gh issue comment "$ISSUE_NUMBER" --body "⚠️ **Antigravity Agent** finished analysing the issue but generated no file modifications. Check the Actions run logs for details."
+            exit 1
+          fi
+          git commit -m "feat(ai): resolve #${ISSUE_NUMBER} - ${ISSUE_TITLE}"
+          git push origin "HEAD:ai/issue-${ISSUE_NUMBER}" --force
+          PR_URL=$(gh pr create \
+            --title "fix: ${ISSUE_TITLE} (#${ISSUE_NUMBER})" \
+            --body "Automated Pull Request generated by **Antigravity CLI** in response to tag \`ai\`.
+
+          Closes #${ISSUE_NUMBER}" \
+            --head "ai/issue-${ISSUE_NUMBER}")
+          gh issue comment "$ISSUE_NUMBER" --body "✅ **Antigravity Agent** has opened a Pull Request with the proposed solution: ${PR_URL}"
