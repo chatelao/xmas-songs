@@ -169,6 +169,25 @@ class TestWebPlayerE2E(unittest.TestCase):
         score_view = self.page.locator("#score-view")
         self.assertTrue(score_view.is_visible())
 
+    def test_sidebar_scroll_reachability(self):
+        """Verify that scrolling the song list in the sidebar smoothly displays all songs within the sidebar container."""
+        self.page.goto(self.app_url)
+        self.page.wait_for_selector("#song-list .song-item", timeout=5000)
+
+        # Confirm sidebar contains scrollable list and songs at the bottom can be reached
+        last_item = self.page.locator("#song-list .song-item").last
+        self.page.evaluate("document.getElementById('song-list').scrollTop = document.getElementById('song-list').scrollHeight")
+        self.page.wait_for_timeout(300)
+
+        self.assertTrue(last_item.is_visible())
+        # Check that sidebar bounds contain the visible song-list area and do not overflow page
+        sidebar_box = self.page.locator(".sidebar").bounding_box()
+        item_box = last_item.bounding_box()
+        self.assertIsNotNone(sidebar_box)
+        self.assertIsNotNone(item_box)
+        # The bottom of the item should not exceed the bottom of the sidebar (allowing slight margin)
+        self.assertLessEqual(item_box["y"] + item_box["height"], sidebar_box["y"] + sidebar_box["height"] + 5)
+
 
 if __name__ == "__main__":
     unittest.main()
