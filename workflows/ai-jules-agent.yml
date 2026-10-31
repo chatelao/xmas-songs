@@ -17,7 +17,7 @@ jobs:
   jules-replica:
     # Security Gate: Only run when tagged 'ai' AND triggered by a trusted repository member
     if: >
-      github.event.label.name == 'ai' &&
+      github.event.label.name == 'agy' &&
       (github.event.issue.author_association == 'OWNER' ||
        github.event.issue.author_association == 'MEMBER' ||
        github.event.issue.author_association == 'COLLABORATOR')
