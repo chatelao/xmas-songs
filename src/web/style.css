@@ -98,6 +98,14 @@ body {
   border-color: var(--secondary-color);
 }
 
+.catalog-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
 .catalog-container h2 {
   font-size: 1.1rem;
   color: var(--primary-color);

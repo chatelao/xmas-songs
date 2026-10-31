@@ -46,5 +46,15 @@ class TestWebApp(unittest.TestCase):
         self.assertIn("selectSong", content)
         self.assertIn("formatMarkdownLyrics", content)
 
+    def test_css_sidebar_scroll_structure(self):
+        """Verify style.css sets flex container and overflow on catalog-container and song-list for smooth scrolling."""
+        css_path = os.path.join(WEB_DIR, "style.css")
+        with open(css_path, "r", encoding="utf-8") as f:
+            content = f.read()
+
+        self.assertIn(".catalog-container", content)
+        self.assertIn("min-height: 0", content)
+        self.assertIn("overflow-y: auto", content)
+
 if __name__ == "__main__":
     unittest.main()
