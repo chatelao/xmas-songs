@@ -91,6 +91,10 @@ The overall architecture showing major modules and dataflows is illustrated belo
     - *Command 2*: `python3 src/scripts/lyrics2pdf.py build/lyrics/<song_id>.md build/lyrics_pdf/<song_id>_lyrics.pdf`
     - *Input*: `.ly` master source file.
     - *Output*: Pure text Markdown (`.md`) file and standalone text-only lyrics PDF document (`.pdf`).
+  - **Consolidated Booklet Compiler**:
+    - *Command*: `python3 src/scripts/generate_booklet.py build/pdf/weihnachtslieder_liederbuch.pdf`
+    - *Input*: Individual song PDFs from `build/pdf/` and `build/catalog.json`.
+    - *Output*: Consolidated `weihnachtslieder_liederbuch.pdf` complete with vector cover art, dynamic running page numbers, and Table of Contents (Inhaltsverzeichnis) positioned at the end.
 
 #### 3. Interactive Web Application Module (`src/web/`)
 - **Description**: Static client-side Single Page Application (SPA) utilizing `abcjs` for visual sheet music rendering and audio playback.
@@ -262,3 +266,5 @@ The following table summarizes all technical choices evaluated in this design, h
 | **Testing Suite** | Alt 4C: Manual Visual Testing | Lacks automated verification in CI/CD, risking visual regressions and broken links. |
 | **Lyrics Extraction** | Alt 5B: Separate Duplicate Markdown | Dual editing maintenance introduces typos, stanza mismatches, and synchronization drift. |
 | **Lyrics Extraction** | Alt 5C: Client-Side Browser Parsing | Fails to generate standalone downloadable text PDFs or SEO-friendly static Markdown files. |
+| **Booklet Generation** | Alt 6B: Monolithic LilyPond Score | LilyPond compilation is slow and memory-intensive; lacks easy programmatic control over end-of-document TOC pagination. |
+| **Booklet Generation** | Alt 6C: LaTeX Document Wrapper | Demands massive multi-gigabyte TeX Live distribution in CI environments. |

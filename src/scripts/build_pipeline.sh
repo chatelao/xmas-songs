@@ -78,7 +78,13 @@ for song_dir in "${SONGS_DIR}"/*; do
   fi
 done
 
-# 5. Generate Catalog Manifest
+# 5. Compile Complete Christmas Carols Booklet PDF (with Cover, Page Numbers & End TOC)
+if [ -f "${SCRIPT_DIR}/generate_booklet.py" ]; then
+  echo "==> Compiling complete Christmas Carol Booklet PDF..."
+  python3 "${SCRIPT_DIR}/generate_booklet.py" "${PDF_DIR}/weihnachtslieder_liederbuch.pdf" || true
+fi
+
+# 6. Generate Catalog Manifest
 if [ -f "${SCRIPT_DIR}/generate_catalog.py" ]; then
   echo "==> Generating song catalog manifest build/catalog.json..."
   python3 "${SCRIPT_DIR}/generate_catalog.py"

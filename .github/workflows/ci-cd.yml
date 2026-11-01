@@ -87,7 +87,7 @@ jobs:
         with:
           tag_name: "v1.0.${{ github.run_number }}"
           name: "German Christmas Carols Release v1.0.${{ github.run_number }}"
-          body: "Automated release containing all German Christmas carols in all formats (.ly, .pdf, .mp3, .abc, .midi, .md lyrics, lyrics .pdf)."
+          body: "Automated release containing all German Christmas carols in all formats (.ly, .pdf, .mp3, .abc, .midi, .md lyrics, lyrics .pdf, and complete song booklet .pdf)."
           files: build/release_assets/*
           make_latest: true
         env:

@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const mp3AudioEl = document.getElementById("mp3-audio");
 
   // Download links
+  const dlBooklet = document.getElementById("dl-booklet");
   const dlPdf = document.getElementById("dl-pdf");
   const dlMp3 = document.getElementById("dl-mp3");
   const dlLyricsPdf = document.getElementById("dl-lyrics-pdf");
@@ -241,6 +242,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const lyricsPdfPath = `${prefix}lyrics_pdf/${id}_lyrics.pdf`;
     const lyricsMdPath = `${prefix}lyrics/${id}.md`;
 
+    if (dlBooklet) dlBooklet.href = `${prefix}pdf/weihnachtslieder_liederbuch.pdf`;
     if (dlPdf) dlPdf.href = pdfPath;
     if (dlMp3) dlMp3.href = mp3Path;
     if (dlAbc) dlAbc.href = abcPath;

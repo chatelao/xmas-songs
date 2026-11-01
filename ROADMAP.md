@@ -14,6 +14,7 @@ This document outlines the execution roadmap for the **German Christmas Carols C
 | **Phase 4** | Interactive Web Application (abcjs Web Player) | ✅ Completed |
 | **Phase 5** | Test Harness & Visual Verification Suite | ✅ Completed |
 | **Phase 6** | CI/CD Integration & GitHub Pages Deployment | ✅ Completed |
+| **Phase 7** | Complete Song Booklet with Cover, Page Numbers & End TOC | ✅ Completed |
 
 ---
 
@@ -21,6 +22,7 @@ This document outlines the execution roadmap for the **German Christmas Carols C
 
 - [x] 🎼 **Single Primary Master Source**: Store all sheet music scores and lyrics in LilyPond (`.ly`) master files within `src/songs/`. ✅
 - [x] ⚙️ **Automated Compilation Pipeline**: Automatically derive sheet music PDF, ABC notation, and SoundFont acoustic piano MP3 audio files during build. ✅
+- [x] 📖 **Complete Song Booklet (PDF)**: Automatically assemble consolidated booklet with festive cover, continuous page numbers, and Table of Contents at the end on each push to main or release. ✅
 - [x] 📝 **Pure Text Lyrics Collection**: Automatically extract pure text Markdown (`.md`) lyrics for GitHub Pages and compile standalone text-only lyrics PDFs. ✅
 - [x] 🌐 **Interactive Web Player**: Provide an accessible GitHub Pages web app with `abcjs` dynamic rendering, pure text lyrics reader, and Web Audio playback for 25 German Christmas carols. ✅
 - [x] 🧪 **Automated Testing & Visual Verification**: End-to-end browser testing with Playwright visual screenshots and notation validation. ✅
@@ -144,3 +146,20 @@ Automate full build, test, and static site deployment workflows.
   - [x] Configure step to run full test suite and artifact generation.
 - [x] **Task 6.2: GitHub Pages Deployment** ✅
   - [x] Configure automated deployment step to publish `build/site/` to GitHub Pages upon push to main branch.
+
+---
+
+### Phase 7: Complete Song Booklet with Cover, Page Numbers & End TOC
+Generate a complete, publication-grade song booklet combining all carols.
+
+- [x] **Task 7.1: Booklet Generator Toolchain** ✅
+  - [x] Develop `src/scripts/generate_booklet.py` using `fpdf2` and `pypdf`.
+  - [x] Design festive cover page with vector tree, ornaments, stars, and border framing.
+  - [x] Implement dynamic running page number stamping across all song score pages.
+  - [x] Generate Table of Contents (Inhaltsverzeichnis) positioned at the end of the booklet.
+- [x] **Task 7.2: Pipeline & CI/CD Release Packaging** ✅
+  - [x] Integrate booklet generation into `src/scripts/build_pipeline.sh` and `catalog.json`.
+  - [x] Update web app UI (`index.html`, `app.js`) with booklet download option.
+  - [x] Package `weihnachtslieder_liederbuch.pdf` as release asset on push to main or release.
+- [x] **Task 7.3: Booklet Verification Testing** ✅
+  - [x] Add automated unit tests in `test/unit/test_booklet.py` verifying page count, cover presence, end TOC, and non-empty size.

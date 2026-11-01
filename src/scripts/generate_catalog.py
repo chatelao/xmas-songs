@@ -82,8 +82,13 @@ def generate_catalog():
         }
         songs.append(entry)
 
+    booklet_pdf = "pdf/weihnachtslieder_liederbuch.pdf"
     catalog_data = {
         "count": len(songs),
+        "booklet": {
+            "title": "Deutsche Weihnachtslieder - Das grosse Liederbuch",
+            "pdf": booklet_pdf if os.path.exists(os.path.join(BUILD_DIR, booklet_pdf)) else None
+        },
         "songs": songs
     }
 
