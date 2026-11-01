@@ -81,7 +81,6 @@ Create LilyPond primary master source files (`.ly`) for all 25 German Christmas 
   - [x] `Lasst uns froh und munter sein`
   - [x] `Leise rieselt der Schnee`
   - [x] `Macht hoch die Tür`
-  - [x] `Maria durch ein Dornwald ging`
   - [x] `Morgen, Kinder, wird’s was geben`
 - [x] **Task 3.4: Group 4 Carols (Songs 16–20)** ✅
   - [x] `O du fröhliche`
