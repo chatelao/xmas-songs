@@ -310,25 +310,57 @@ def create_toc_pages(song_entries, start_page_num):
     reader = pypdf.PdfReader(buf)
     return list(reader.pages)
 
+def parse_lilypond_headers(ly_filepath):
+    headers = {
+        "title": os.path.basename(os.path.dirname(ly_filepath)).replace('_', ' ').title(),
+        "composer": "Volkslied",
+        "poet": ""
+    }
+    if not os.path.exists(ly_filepath):
+        return headers
+
+    try:
+        with open(ly_filepath, 'r', encoding='utf-8') as f:
+            content = f.read()
+
+        header_match = re.search(r'\\header\s*\{([^}]+)\}', content, re.DOTALL)
+        if header_match:
+            header_block = header_match.group(1)
+            for line in header_block.splitlines():
+                line = line.strip()
+                if '=' in line:
+                    k, v = line.split('=', 1)
+                    k = k.strip().lower()
+                    v = v.strip().strip('"').strip("'")
+                    headers[k] = v
+    except Exception as e:
+        print(f"Warning reading headers from {ly_filepath}: {e}")
+
+    return headers
+
 def load_songs_catalog():
     if os.path.exists(CATALOG_PATH):
         try:
             with open(CATALOG_PATH, 'r', encoding='utf-8') as f:
                 data = json.load(f)
-                return data.get("songs", [])
+                songs = data.get("songs", [])
+                if songs:
+                    return songs
         except Exception as e:
             print(f"Warning loading catalog.json: {e}")
 
-    # Fallback scanning songs directory
+    # Fallback scanning songs directory directly from LilyPond headers
     songs = []
     if os.path.exists(SONGS_DIR):
         song_dirs = sorted([d for d in os.listdir(SONGS_DIR) if os.path.isdir(os.path.join(SONGS_DIR, d))])
         for idx, sid in enumerate(song_dirs, 1):
+            ly_path = os.path.join(SONGS_DIR, sid, f"{sid}.ly")
+            headers = parse_lilypond_headers(ly_path)
             songs.append({
                 "id": sid,
                 "number": idx,
-                "title": sid.replace('_', ' ').title(),
-                "composer": "Volkslied"
+                "title": headers.get("title", sid.replace('_', ' ').title()),
+                "composer": headers.get("composer", "Volkslied")
             })
     return songs
 
