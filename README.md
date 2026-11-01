@@ -40,18 +40,17 @@ The collection includes the following carols:
 10. **Lasst uns froh und munter sein**
 11. **Leise rieselt der Schnee**
 12. **Macht hoch die Tür**
-13. **Maria durch ein Dornwald ging**
-14. **Morgen, Kinder, wird’s was geben**
-15. **O du fröhliche**
-16. **O Tannenbaum**
-17. **Schneeflöckchen, Weissröckchen**
-18. **Stern über Bethlehem**
-19. **Stille Nacht, heilige Nacht**
-20. **Süsser die Glocken nie klingen**
-21. **Tochter Zion, freue dich**
-22. **Vom Himmel hoch, da komm ich her**
-23. **Was soll das bedeuten**
-24. **Zu Bethlehem geboren**
+13. **Morgen, Kinder, wird’s was geben**
+14. **O du fröhliche**
+15. **O Tannenbaum**
+16. **Schneeflöckchen, Weissröckchen**
+17. **Stern über Bethlehem**
+18. **Stille Nacht, heilige Nacht**
+19. **Süsser die Glocken nie klingen**
+20. **Tochter Zion, freue dich**
+21. **Vom Himmel hoch, da komm ich her**
+22. **Was soll das bedeuten**
+23. **Zu Bethlehem geboren**
 
 ### Additional Carols
 - **Jingle Bells**
