@@ -10,69 +10,70 @@
 global = {
   \key d \major
   \time 4/4
-  \tempo 4 = 100
+  \tempo 4 = 96
 }
 
 harmonies = \chordmode {
-  d2 a2 | d2 g2 | d1 |
-  g2 d2 | a1 |
-  d2 a2 | d2 g2 |
-  d2 a2 | d1 |
+  d2. a4:7 | d2 a2 | d1 |
+  a2:7 d2 | a2 d2 |
+  d2 g2 | d2 e2:m7 |
+  g2 a2:7 | d1 |
 }
 
-soprano = \relative c' {
+soprano = \relative c'' {
   \global
-  fis4 e4 d4 e4 |
-  fis2 g2 |
-  a1 |
-  b4 a4 g4 fis4 |
-  e1 |
-  a4 g4 fis4 e4 |
-  d2 g2 |
-  fis4( g4) e2 |
+  a4. b8 a4 g4 |
+  fis2 e2 |
+  d1 |
+  e4 fis4 g4 fis4 |
+  e2 fis2 |
+  fis4 g4 a4 b4 |
+  a2 g4( fis4) |
+  e2 fis4( e4) |
   d1 \bar "|."
 }
 
 alto = \relative c' {
   \global
-  d4 cis4 d4 cis4 |
-  d2 d2 |
-  e1 |
-  d4 d4 d4 d4 |
-  cis1 |
-  d4 d4 d4 cis4 |
-  d2 d2 |
-  d4( d4) cis2 |
+  fis4. g8 fis4 e4 |
+  d2 cis2 |
+  d1 |
+  cis4 d4 cis4 d4 |
+  cis2 d2 |
+  d4 e4 fis4 g4 |
+  fis2 e4( d4) |
+  d2 cis2 |
   d1 \bar "|."
 }
 
 tenor = \relative c' {
   \global
-  a4 a4 fis4 a4 |
-  a2 b2 |
-  a1 |
-  g4 a4 b4 a4 |
-  a1 |
-  fis4 g4 a4 a4 |
-  fis2 b2 |
-  a4( b4) a2 |
+  d4. d8 d4 b4 |
+  a2 g2 |
+  fis1 |
+  g4 a4 a4 a4 |
+  a2 a2 |
+  a4 a4 d4 d4 |
+  d2 b4( a4) |
+  b2 a4( g4) |
   fis1 \bar "|."
 }
 
 bass = \relative c {
   \global
-  d4 a4 d4 a4 |
-  d2 g,2 |
-  a1 |
-  g4 fis4 e4 d4 |
-  a'1 |
-  d,4 e4 fis4 a,4 |
-  d2 g,2 |
-  d'4( g,4) a2 |
+  d4. g8 fis4 e4 |
+  d2 a'2 |
+  d,1 |
+  a'4 d,4 e4 d4 |
+  a'2 d,2 |
+  d4 cis4 d4 g4 |
+  d2 e2 |
+  g2 a,2 |
   d1 \bar "|."
 }
 
 firstVerse = \lyricmode {
+  \set stanza = "1."
   Al -- le Jah -- re wie -- der
   kommt das Chris -- tus -- kind
   auf die Er -- de nie -- der,
@@ -80,6 +81,7 @@ firstVerse = \lyricmode {
 }
 
 secondVerse = \lyricmode {
+  \set stanza = "2."
   Kehrt mit sei -- nem Se -- gen
   ein in je -- des Haus,
   geht auf al -- len We -- gen
@@ -87,6 +89,7 @@ secondVerse = \lyricmode {
 }
 
 thirdVerse = \lyricmode {
+  \set stanza = "3."
   Steht auch mir zur Sei -- te
   still und un -- er -- kannt,
   dass es treu mich lei -- te
@@ -105,15 +108,15 @@ thirdVerse = \lyricmode {
         \new Voice = "soprano" { \voiceOne \soprano }
         \new Voice = "alto" { \voiceTwo \alto }
       >>
+      \new Lyrics \lyricsto "soprano" \firstVerse
+      \new Lyrics \lyricsto "soprano" \secondVerse
+      \new Lyrics \lyricsto "soprano" \thirdVerse
       \new Staff \with { instrumentName = "T / B" } <<
         \clef "treble_8"
         \new Voice = "tenor" { \voiceOne \tenor }
         \new Voice = "bass" { \voiceTwo \bass }
       >>
     >>
-    \new Lyrics \lyricsto "soprano" \firstVerse
-    \new Lyrics \lyricsto "soprano" \secondVerse
-    \new Lyrics \lyricsto "soprano" \thirdVerse
   >>
   \layout { }
   \midi { }
