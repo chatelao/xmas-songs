@@ -1,6 +1,6 @@
 # German Christmas Carols Collection (Deutsche Weihnachtslieder)
 
-Welcome to the **German Christmas Carols Collection** — an open-source library of 25 popular German Christmas carols (*die 25 bekanntesten deutschen Weihnachtslieder*).
+Welcome to the **German Christmas Carols Collection** — an open-source library of 22 popular Christmas carols (*die beliebtesten deutschen Weihnachtslieder*).
 
 ## 🌐 Interactive Web Player
 
@@ -11,7 +11,7 @@ Access the interactive web sheet music player and audio synthesizer hosted on Gi
 
 ## 🎼 Overview & Formats
 
-This repository serves as a curated collection of sheet music and lyrics for 25 German Christmas carols. All sheet music is maintained using **LilyPond (`.ly`)** as the single primary source of truth.
+This repository serves as a curated collection of sheet music and lyrics for 22 Christmas carols. All sheet music is maintained using **LilyPond (`.ly`)** as the single primary source of truth.
 
 The collection provides:
 - **LilyPond (`.ly`)**: Primary typographic master source files containing musical scores and lyrics.
@@ -29,32 +29,27 @@ The collection provides:
 The collection includes the following carols:
 
 1. **Alle Jahre wieder**
-2. **Am Weihnachtsbaume die Lichter brennen**
-3. **Der Christbaum ist der schönste Baum**
-4. **Es ist ein Ros entsprungen**
-5. **Fröhliche Weihnacht überall**
-6. **Ihr Kinderlein, kommet**
-7. **In dulci jubilo**
-8. **Kling, Glöckchen, klingelingeling**
-9. **Kommet, ihr Hirten**
-10. **Lasst uns froh und munter sein**
-11. **Leise rieselt der Schnee**
-12. **Macht hoch die Tür**
-13. **Morgen, Kinder, wird’s was geben**
-14. **O du fröhliche**
-15. **O Tannenbaum**
-16. **Schneeflöckchen, Weissröckchen**
-17. **Stern über Bethlehem**
-18. **Stille Nacht, heilige Nacht**
-19. **Süsser die Glocken nie klingen**
-20. **Tochter Zion, freue dich**
-21. **Vom Himmel hoch, da komm ich her**
-22. **Was soll das bedeuten**
-23. **Zu Bethlehem geboren**
+2. **Es ist ein Ros entsprungen**
+3. **Fröhliche Weihnacht überall**
+4. **Ihr Kinderlein, kommet**
+5. **In dulci jubilo**
+6. **Kling, Glöckchen, klingelingeling**
+7. **Kommet, ihr Hirten**
+8. **Lasst uns froh und munter sein**
+9. **Leise rieselt der Schnee**
+10. **Macht hoch die Tür**
+11. **O du fröhliche**
+12. **O Tannenbaum**
+13. **Schneeflöckchen, Weissröckchen**
+14. **Stille Nacht, heilige Nacht**
+15. **Süsser die Glocken nie klingen**
+16. **Tochter Zion, freue dich**
+17. **Vom Himmel hoch, da komm ich her**
+18. **Was soll das bedeuten**
 
 ### Additional Carols
 - **Jingle Bells**
-- **I Wish You a Merry Christmas**
+- **We Wish You a Merry Christmas**
 - **Rudolph the Red-Nosed Reindeer**
 - **Last Christmas**
 
