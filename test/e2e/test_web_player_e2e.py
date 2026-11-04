@@ -13,6 +13,12 @@ from playwright.sync_api import sync_playwright
 
 REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 SCREENSHOTS_DIR = os.path.join(os.path.dirname(__file__), "screenshots")
+SONGS_DIR = os.path.join(REPO_ROOT, "src", "songs")
+
+EXPECTED_SONG_COUNT = len([
+    d for d in os.listdir(SONGS_DIR)
+    if os.path.isdir(os.path.join(SONGS_DIR, d))
+])
 
 def find_free_port():
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
@@ -74,7 +80,7 @@ class TestWebPlayerE2E(unittest.TestCase):
         self.assertIn("Deutsche Weihnachtslieder", title)
 
         song_items = self.page.query_selector_all("#song-list .song-item")
-        self.assertGreaterEqual(len(song_items), 25)
+        self.assertEqual(len(song_items), EXPECTED_SONG_COUNT)
 
         active_title = self.page.locator("#current-song-title").text_content()
         self.assertIn("Alle Jahre wieder", active_title)
