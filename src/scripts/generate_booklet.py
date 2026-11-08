@@ -404,9 +404,9 @@ def generate_booklet(output_pdf_path=None):
         song_toc_entries.append((number, title, composer, start_song_page))
 
         for page in reader.pages:
+            added_page = writer.add_page(page)
             overlay_page = create_page_number_overlay(current_page)
-            page.merge_page(overlay_page)
-            writer.add_page(page)
+            added_page.merge_page(overlay_page)
             current_page += 1
 
     # 3. Add Table of Contents (TOC) at the end
