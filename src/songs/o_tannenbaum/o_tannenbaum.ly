@@ -26,25 +26,6 @@ soprano = \relative c' {
   f8. f16 f4 g4 |
   a8. a16 a4. a8 |
   g8 a8 bes4 e,4 |
-  g4 f4 r8 c'8 | \bar "||"
-  c4 a4 d8 d8 |
-  c4. c8 bes4 |
-  bes4 g4 c8 c8 |
-  bes4. bes8 a4 | \bar "||"
-  \tiny c,8( c8) \normalsize |
-  f8. f16 f4 g4 |
-  a8. a16 a4. a8 |
-  g8 a8 bes4 e,4 |
-  g4 f2 \bar "|."
-}
-% Korrektur für Takt 8/9 Übergang im 3/4-Takt:
-% Takt 8 hat "bes4(wenn) a4(schneit.)" + 1 Viertel Auftakt "O" = 3/4!
-sopranoFixed = \relative c' {
-  \global
-  \partial 4 c4 |
-  f8. f16 f4 g4 |
-  a8. a16 a4. a8 |
-  g8 a8 bes4 e,4 |
   g4 f4 c'8 c8 | \bar "||"
   c4 a4 d8 d8 |
   c4. c8 bes8 bes8 |
@@ -146,7 +127,7 @@ thirdVerse = \lyricmode {
     \new ChoirStaff <<
       \new Staff \with { instrumentName = "S / A" } <<
         \clef treble
-        \new Voice = "soprano" { \voiceOne \sopranoFixed }
+        \new Voice = "soprano" { \voiceOne \soprano }
         \new Voice = "alto" { \voiceTwo \alto }
       >>
       \new Lyrics \lyricsto "soprano" \firstVerse

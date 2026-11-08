@@ -27,96 +27,96 @@ soprano = \relative c'' {
   \global
   % Takt 1-4: Kling, Glöckchen, klingelingeling, kling, Glöckchen, kling!
   c4 a8 bes8 |
-  c16 d16 c16 bes16 a8 g8 |
-  g4 a8 bes8 |
-  c8 g8 a4 \bar "||"
+  c16 d16 c16 bes16 a8( g8) |
+  g4 a8( bes8) |
+  c8( g8) a4 \bar "||"
   % Takt 5-8: Lasst mich ein, ihr Kinder, ist so kalt der Winter,
   g8 g8 g8 a8 |
-  bes8 g8 a4 |
+  bes8( g8) a4 |
   g8 g8 g8 a8 |
-  bes8 g8 a4 |
+  bes8( g8) a4 |
   % Takt 9-12: öffnet mir die Türen, lasst mich nicht erfrieren!
   d8 d8 c8 bes8 |
-  a8 g8 f4 |
+  a8( g8) f4 |
   d'8 d8 c8 b8 |
-  c4 r4 \bar "||"
+  d4 c4 \bar "||"
   % Takt 13-16: Kling, Glöckchen, klingelingeling, kling, Glöckchen, kling!
   c4 a8 bes8 |
-  c16 d16 c16 bes16 a8 g8 |
-  g4 a8 bes8 |
-  c8 e,8 f4 \bar "|."
+  c16 d16 c16 bes16 a8( g8) |
+  g4 a8( bes8) |
+  c8( e,8) f4 \bar "|."
 }
 
 alto = \relative c' {
   \global
   % Takt 1-4
   f4 f8 f8 |
-  e16 f16 e16 d16 c8 e8 |
-  e4 f8 f8 |
-  e8 e8 f4 \bar "||"
+  e16 f16 e16 d16 c8( e8) |
+  e4 f8( f8) |
+  e8( e8) f4 \bar "||"
   % Takt 5-8
   e8 e8 e8 f8 |
-  g8 e8 f4 |
+  g8( e8) f4 |
   e8 e8 e8 f8 |
-  g8 e8 f4 |
+  g8( e8) f4 |
   % Takt 9-12
   g8 g8 e8 g8 |
-  f8 e8 f4 |
+  f8( e8) f4 |
   f8 f8 e8 d8 |
-  e4 r4 \bar "||"
+  f4 e4 \bar "||"
   % Takt 13-16
   f4 f8 f8 |
-  e16 f16 e16 d16 c8 e8 |
-  e4 f8 f8 |
-  e8 c8 c4 \bar "|."
+  e16 f16 e16 d16 c8( e8) |
+  e4 f8( f8) |
+  e8( c8) c4 \bar "|."
 }
 
 tenor = \relative c' {
   \global
   % Takt 1-4
   a4 c8 d8 |
-  c16 bes16 a16 g16 f8 c'8 |
-  c4 c8 d8 |
-  g,8 c8 c4 \bar "||"
+  c16 bes16 a16 g16 f8( c'8) |
+  c4 c8( d8) |
+  g,8( c8) c4 \bar "||"
   % Takt 5-8
   c8 c8 c8 c8 |
-  d8 bes8 c4 |
+  d8( bes8) c4 |
   c8 c8 c8 c8 |
-  d8 bes8 c4 |
+  d8( bes8) c4 |
   % Takt 9-12
   bes8 bes8 c8 c8 |
-  c8 bes8 a4 |
+  c8( bes8) a4 |
   a8 a8 g8 g8 |
-  g4 r4 \bar "||"
+  b4 g4 \bar "||"
   % Takt 13-16
   a4 c8 d8 |
-  c16 bes16 a16 g16 f8 c'8 |
-  c4 c8 d8 |
-  g,8 bes8 a4 \bar "|."
+  c16 bes16 a16 g16 f8( c'8) |
+  c4 c8( d8) |
+  g,8( bes8) a4 \bar "|."
 }
 
 bass = \relative c {
   \global
   % Takt 1-4 (Optimiert für treble_8: tiefster Ton ist das kleine f)
   f4 f8 bes,8 |
-  c16 c16 c16 c16 f8 c8 |
-  c4 f8 d8 |
-  c8 c8 f4 \bar "||"
+  c16 c16 c16 c16 f8( c8) |
+  c4 f8( d8) |
+  c8( c8) f4 \bar "||"
   % Takt 5-8
   c8 c8 c8 f8 |
-  g8 c,8 f4 |
+  g8( c,8) f4 |
   c8 c8 c8 f8 |
-  g8 c,8 f4 |
+  g8( c,8) f4 |
   % Takt 9-12
   g8 g8 c,8 e8 |
-  f8 c8 d4 |
+  f8( c8) d4 |
   d8 d8 g8 g8 |
-  c,4 r4 \bar "||"
+  g4 c,4 \bar "||"
   % Takt 13-16
   f4 f8 bes,8 |
-  c16 c16 c16 c16 f8 c8 |
-  c4 f8 d8 |
-  c8 c8 f4 \bar "|."
+  c16 c16 c16 c16 f8( c8) |
+  c4 f8( d8) |
+  c8( c8) f4 \bar "|."
 }
 
 firstVerse = \lyricmode {
@@ -124,7 +124,7 @@ firstVerse = \lyricmode {
   Kling, Glöck -- chen, klin -- ge -- lin -- ge -- ling,
   kling, Glöck -- chen, kling!
   Lasst mich ein, ihr Kin -- der,
-  ist so kalt der Win -- der,
+  ist so kalt der Win -- ter,
   öff -- net mir die Tü -- ren,
   lasst mich nicht er -- frie -- ren!
   Kling, Glöck -- chen, klin -- ge -- lin -- ge -- ling,

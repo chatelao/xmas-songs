@@ -3,7 +3,7 @@
 \header {
   title = "Alle Jahre wieder"
   composer = "Friedrich Silcher (1842)"
-  poet = "Johann Wilhelm Hey (1837)"
+  poet = "Wilhelm Hey (1837)"
   tagline = ##f
 }
 
@@ -14,22 +14,21 @@ global = {
 }
 
 harmonies = \chordmode {
-  d2. a4:7 | d2 a2 | d1 |
-  a2:7 d2 | a2 d2 |
+  d2. a4:7 | d2 a2 |
+  d2 b2:m | d2 a2 |
   d2 g2 | d2 e2:m7 |
-  g2 a2:7 | d1 |
+  a2:7 d4 a4:7 | d1
 }
 
 soprano = \relative c'' {
   \global
   a4. b8 a4 g4 |
   fis2 e2 |
-  d1 |
-  e4 fis4 g4 fis4 |
-  e2 fis2 |
+  d4 e4 fis4 g4 |
+  fis2( e2) |
   fis4 g4 a4 b4 |
   a2 g4( fis4) |
-  e2 fis4( e4) |
+  e4 g4 fis4 e4 |
   d1 \bar "|."
 }
 
@@ -37,38 +36,35 @@ alto = \relative c' {
   \global
   fis4. g8 fis4 e4 |
   d2 cis2 |
-  d1 |
-  cis4 d4 cis4 d4 |
-  cis2 d2 |
+  d4 cis4 d4 d4 |
+  d2( cis2) |
   d4 e4 fis4 g4 |
   fis2 e4( d4) |
-  d2 cis2 |
+  cis4 e4 d4 cis4 |
   d1 \bar "|."
 }
 
 tenor = \relative c' {
   \global
   d4. d8 d4 b4 |
-  a2 g2 |
-  fis1 |
-  g4 a4 a4 a4 |
   a2 a2 |
+  a4 a4 a4 b4 |
+  a1 |
   a4 a4 d4 d4 |
   d2 b4( a4) |
-  b2 a4( g4) |
+  a4 a4 a4 g4 |
   fis1 \bar "|."
 }
 
 bass = \relative c {
   \global
   d4. g8 fis4 e4 |
-  d2 a'2 |
-  d,1 |
-  a'4 d,4 e4 d4 |
-  a'2 d,2 |
+  d2 a2 |
+  fis'4 e4 d4 b4 |
+  d2( a2) |
   d4 cis4 d4 g4 |
   d2 e2 |
-  g2 a,2 |
+  a,4 a4 d4 a4 |
   d1 \bar "|."
 }
 
@@ -103,7 +99,7 @@ thirdVerse = \lyricmode {
       \harmonies
     }
     \new ChoirStaff <<
-      \new Staff \with { instrumentName = "S / A" } <<
+      \new Staff = "upper" \with { instrumentName = "S / A" } <<
         \clef treble
         \new Voice = "soprano" { \voiceOne \soprano }
         \new Voice = "alto" { \voiceTwo \alto }
@@ -111,7 +107,7 @@ thirdVerse = \lyricmode {
       \new Lyrics \lyricsto "soprano" \firstVerse
       \new Lyrics \lyricsto "soprano" \secondVerse
       \new Lyrics \lyricsto "soprano" \thirdVerse
-      \new Staff \with { instrumentName = "T / B" } <<
+      \new Staff = "lower" \with { instrumentName = "T / B" } <<
         \clef "treble_8"
         \new Voice = "tenor" { \voiceOne \tenor }
         \new Voice = "bass" { \voiceTwo \bass }

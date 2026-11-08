@@ -35,8 +35,8 @@ def clean_lyric_line(raw_line):
     if not raw_line:
         return ""
     # Remove \set or \override or \markup commands
-    raw_line = re.sub(r'\\set\s+[^=]+=[^ ]+', '', raw_line)
-    raw_line = re.sub(r'\\override\s+[^=]+=[^ ]+', '', raw_line)
+    raw_line = re.sub(r'\\set\s+\S+\s*=\s*(?:"[^"]*"|\S+)', '', raw_line)
+    raw_line = re.sub(r'\\override\s+\S+\s*=\s*(?:"[^"]*"|\S+)', '', raw_line)
     raw_line = re.sub(r'\\markup\s*\{[^}]*\}', '', raw_line)
 
     tokens = raw_line.split()
@@ -47,11 +47,13 @@ def clean_lyric_line(raw_line):
         cleaned_tokens.append(t)
 
     text = " ".join(cleaned_tokens)
+    # Remove standalone melisma extenders/underscores before joining hyphens
+    text = re.sub(r'(?<!\S)__?(?!\S)', '', text)
+    text = re.sub(r'\s+', ' ', text).strip()
     # Join hyphens: e.g. "Al -- le" -> "Alle"
     text = re.sub(r'\s+--\s+', '', text)
-    # Remove standalone ties or underscores
-    text = re.sub(r'\s+__?\s+', ' ', text)
-    text = re.sub(r'__?', '', text)
+    # Replace intra-word underscore (e.g. "'s_ist") with space
+    text = re.sub(r'(?<=\S)_(?=\S)', ' ', text)
 
     return text.strip()
 

@@ -142,17 +142,26 @@ def extract_bars_and_note_counts(ly_content, key_name, unit_frac=fractions.Fract
         m = re.search(r'\{([^}]+)\}', abs_content, re.DOTALL)
     notes_text = m.group(1) if m else abs_content
 
-    # Remove comments
+    # Remove comments and LilyPond commands with arguments
     notes_text = re.sub(r'%.*', '', notes_text)
+    notes_text = re.sub(r'\\bar\s+"[^"]*"', '', notes_text)
+    notes_text = re.sub(r'\\partial\s+[0-9.]+', '', notes_text)
+    notes_text = re.sub(r'\\time\s+[0-9]+/[0-9]+', '', notes_text)
+    notes_text = re.sub(r'\\key\s+\S+\s+\\\S+', '', notes_text)
+    notes_text = re.sub(r'\\tempo\s+[^\n]+', '', notes_text)
+    notes_text = re.sub(r'\^\s*\\markup\s*(?:\{(?:[^{}]|\{[^{}]*\})*\}|\S+)', '', notes_text)
+    notes_text = re.sub(r'\s+([~\)\]])', r'\1', notes_text)
 
     tokens = notes_text.split()
     bars = []
     current_bar = []
     prev_frac = fractions.Fraction(1, 4)
+    slur_depth = 0
+    prev_tied = False
 
     for tok in tokens:
         tok = tok.strip()
-        if not tok or tok.startswith('\\') or tok in ['}', '\\bar', '"|."']:
+        if not tok or tok.startswith('\\') or tok in ['}', '{']:
             continue
         if tok == '|':
             if current_bar:
@@ -160,15 +169,20 @@ def extract_bars_and_note_counts(ly_content, key_name, unit_frac=fractions.Fract
                 current_bar = []
             continue
 
-        clean_tok = re.sub(r'[\(\)\~\.\!]', '', tok)
+        open_slurs = tok.count('(')
+        close_slurs = tok.count(')')
+        has_tie = '~' in tok
 
-        m_rest = re.match(r'^r([0-9]*\.?)$', clean_tok)
+        clean_tok = re.sub(r'[\(\)\~\!\[\]]', '', tok)
+
+        m_rest = re.match(r'^[rR]([0-9]*\.?)$', clean_tok)
         if m_rest:
             dur_str = m_rest.group(1)
             frac = lilypond_duration_to_fraction(dur_str, prev_frac)
             prev_frac = frac
             dur_abc = fraction_to_abc_multiplier(frac, unit_frac)
-            current_bar.append((f"z{dur_abc}", False))
+            current_bar.append((f"z{dur_abc}", False, False, False))
+            prev_tied = False
             continue
 
         m_note = re.match(r'^([a-gA-G](?:es|is|s)?)([\'\,]*)([0-9]*\.?)$', clean_tok)
@@ -185,7 +199,18 @@ def extract_bars_and_note_counts(ly_content, key_name, unit_frac=fractions.Fract
                 step, alter = NOTE_PITCH_MAP[pitch_str]
                 net_octaves = octave_str.count("'") - octave_str.count(",") - 1
                 abc_pitch = pitch_to_abc(step, alter, net_octaves, key_name)
-                current_bar.append((f"{abc_pitch}{dur_abc}", True))
+
+                is_slur_cont = slur_depth > 0
+                is_tie_cont = prev_tied
+
+                prefix = "(" * open_slurs
+                suffix = (")" * close_slurs) + ("-" if has_tie else "")
+                abc_tok = f"{prefix}{abc_pitch}{dur_abc}{suffix}"
+
+                current_bar.append((abc_tok, True, is_slur_cont, is_tie_cont))
+
+                slur_depth = max(0, slur_depth + open_slurs - close_slurs)
+                prev_tied = has_tie
 
     if current_bar:
         bars.append(current_bar)
@@ -199,17 +224,23 @@ def extract_stanzas(content):
         matches = [(f"verse{i+1}", body) for i, body in enumerate(re.findall(r'\\lyricmode\s*\{([^}]+)\}', content, re.DOTALL))]
 
     for name, body in matches:
-        tokens = [t for t in body.split() if not t.startswith('%')]
+        body = re.sub(r'%.*', '', body)
+        body = re.sub(r'\\set\s+stanza\s*=\s*"[^"]*"', '', body)
+        body = re.sub(r'\\set\s+\S+\s*=\s*\S+', '', body)
+        body = re.sub(r'\\override\s+\S+\s*=\s*\S+', '', body)
+        tokens = body.split()
         syllables = []
         i = 0
         while i < len(tokens):
             tok = tokens[i]
-            if tok == '--':
+            if tok in ['--', '__']:
                 i += 1
                 continue
             if tok.startswith('\\') or tok in ['}', '{']:
                 i += 1
                 continue
+            if tok != '_':
+                tok = re.sub(r'(?<=\S)_(?=\S)', '~', tok)
             if i + 1 < len(tokens) and tokens[i+1] == '--':
                 syllables.append(tok + '-')
                 i += 2
@@ -254,7 +285,7 @@ def ly2abc(ly_content):
     for chunk in system_chunks:
         music_line_parts = []
         for bar in chunk:
-            bar_tokens = [tok for tok, is_n in bar]
+            bar_tokens = [tok for tok, is_n, _, _ in bar]
             music_line_parts.append(" ".join(bar_tokens))
 
         abc_lines.append(" | ".join(music_line_parts) + " |")
@@ -264,9 +295,13 @@ def ly2abc(ly_content):
             chunk_syls = []
             for bar in chunk:
                 bar_syl_list = []
-                for tok, is_n in bar:
+                for tok, is_n, is_slur_cont, is_tie_cont in bar:
                     if is_n:
-                        if cur_idx < len(syllables):
+                        if is_tie_cont:
+                            continue
+                        if is_slur_cont:
+                            bar_syl_list.append("_")
+                        elif cur_idx < len(syllables):
                             bar_syl_list.append(syllables[cur_idx])
                             cur_idx += 1
                         else:

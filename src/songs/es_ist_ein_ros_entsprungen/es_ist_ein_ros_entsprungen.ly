@@ -16,12 +16,12 @@ global = {
 % Akkorde exakt abgeleitet aus dem vierstimmigen Satz von Praetorius
 harmonies = \chordmode {
   % Stollen 1
-  f1 | bes2 f2 | d2:m c4 bes4 | c2 d2:m | g2:m7 c2 | bes2 f2 |
+  f1 | bes2 f2 | d2:m c4 bes4 | c2 d2:m | \time 6/4 c4 g2:m7 c2. | \time 4/4 bes2 f2 |
   % Stollen 2
-  f1 | bes2 f2 | d2:m c4 bes4 | c2 d2:m | g2:m7 c2 | bes2 f2 |
+  f1 | bes2 f2 | d2:m c4 bes4 | c2 d2:m | \time 6/4 c4 g2:m7 c2. | \time 4/4 bes2 f2 |
   % Abgesang
   f4 d2:m g4:m | c2:7 a2 | d4:m g4 c2 |
-  f2 bes4 f4 | d2:m c4 bes4 | c2 d2:m | g2:m7 c2 | bes2 f2 |
+  f2 bes4 f4 | d2:m c4 bes4 | c2 d2:m | \time 6/4 c4 g2:m7 c2. | \time 4/4 bes2 f2 |
 }
 
 soprano = \relative c'' {
@@ -30,26 +30,26 @@ soprano = \relative c'' {
   c2 c4 c4 |
   d4 c4 c2 |
   a2 g2 |
-  g2 f4( e4 ~ |
-  \time 6/4 e4) d2 c4 d2 |
+  g2 f4( e4~ |
+  \time 6/4 e4) d2( c4) d2 |
   \time 4/4 c1 \bar "||"
   
   % Stollen 2: "wie uns die Alten sungen, von Jesse kam die Art"
   c'2 c4 c4 |
   d4 c4 c2 |
   a2 g2 |
-  g2 f4( e4 ~ |
-  \time 6/4 e4) d2 c4 d2 |
+  g2 f4( e4~ |
+  \time 6/4 e4) d2( c4) d2 |
   \time 4/4 c1 \bar "||"
   
   % Abgesang: "und hat ein Blümlein 'bracht mitten im kalten Winter, wohl zu der halben Nacht."
-  r4 a4 g4 e4 |
+  r4 a'4 g4 e4 |
   f4 d4 c2 |
   r4 c'4 c4 c4 |
   d4 c4 c2 |
   a2 g2 |
-  g2 f4( e4 ~ |
-  \time 6/4 e4) d2 c4 d2 |
+  g2 f4( e4~ |
+  \time 6/4 e4) d2( c4) d2 |
   \time 4/4 c1 \bar "|."
 }
 
@@ -59,7 +59,7 @@ alto = \relative c' {
   a'2 a4 f4 |
   f4 f4 e2 |
   f2 e4 d4 |
-  e2 d4( c4 ~ |
+  e2 d4( c4~ |
   \time 6/4 c4) c4( b4) c4 b2 |
   \time 4/4 c1 \bar "||"
   
@@ -67,7 +67,7 @@ alto = \relative c' {
   a'2 a4 f4 |
   f4 f4 e2 |
   f2 e4 d4 |
-  e2 d4( c4 ~ |
+  e2 d4( c4~ |
   \time 6/4 c4) c4( b4) c4 b2 |
   \time 4/4 c1 \bar "||"
   
@@ -77,7 +77,7 @@ alto = \relative c' {
   r4 f'4 d4 e4 |
   f4 f4 f2 |
   f2 e4 d4 |
-  e2 d4( c4 ~ |
+  e2 d4( c4~ |
   \time 6/4 c4) c4( b4) c4 b2 |
   \time 4/4 c1 \bar "|."
 }
@@ -88,7 +88,7 @@ tenor = \relative c' {
   c2 c4 a4 |
   bes4 a4 g2 |
   a2 c4 f,4 |
-  c'2 a4( a4 ~ |
+  c'2 a4( a4~ |
   \time 6/4 a4) f4 g2 f2 |
   \time 4/4 e4( d4 e2) \bar "||"
   
@@ -96,17 +96,17 @@ tenor = \relative c' {
   c'2 c4 a4 |
   bes4 a4 g2 |
   a2 c4 f,4 |
-  c'2 a4( a4 ~ |
+  c'2 a4( a4~ |
   \time 6/4 a4) f4 g2 f2 |
   \time 4/4 e4( d4 e2) \bar "||"
   
   % Abgesang
   r4 c'4 bes4 bes4 |
-  a4 g4 ^\markup { \tiny "Original: cis im A" } e2 |
+  a4 g4 e2 | % Original: cis im Alt
   r4 a4 g4 g4 |
   bes4 f4 a2 |
   a2 c4 f,4 |
-  c'2 a4( a4 ~ |
+  c'2 a4( a4~ |
   \time 6/4 a4) f4 g2 f2 |
   \time 4/4 e4( d4 e2) \bar "|."
 }
@@ -117,7 +117,7 @@ bass = \relative c {
   f2 f4 f4 |
   bes,4 f'4 c2 |
   d2 c4 bes4 |
-  c2 d4( a4 ~ |
+  c2 d4( a4~ |
   \time 6/4 a4) bes4 g4 a4 g2 |
   \time 4/4 c2( f,2) \bar "||"
   
@@ -125,22 +125,23 @@ bass = \relative c {
   f'2 f4 f4 |
   bes,4 f'4 c2 |
   d2 c4 bes4 |
-  c2 d4( a4 ~ |
+  c2 d4( a4~ |
   \time 6/4 a4) bes4 g4 a4 g2 |
   \time 4/4 c2( f,2) \bar "||"
   
   % Abgesang
-  r4 f4 d4 g4 |
+  r4 f'4 d4 g4 |
   a4 bes4 a2 |
   r4 d,4 g4 c,4 |
   bes4 d4 f2 |
   d2 c4 bes4 |
-  c2 d4( a4 ~ |
+  c2 d4( a4~ |
   \time 6/4 a4) bes4 g4 a4 g2 |
   \time 4/4 c2( f,2) \bar "|."
 }
 
 firstVerse = \lyricmode {
+  \set stanza = "1."
   Es ist ein Ros ent -- sprun -- gen
   aus ei -- ner Wur -- zel zart,
   wie uns die Al -- ten sun -- gen,
@@ -151,10 +152,11 @@ firstVerse = \lyricmode {
 }
 
 secondVerse = \lyricmode {
+  \set stanza = "2."
   Das Rös -- lein, das ich mei -- ne,
   da -- von I -- sai -- as sagt,
   hat uns ge -- bracht al -- lei -- ne
-  die rei -- ne Magd Ma -- ri -- a.
+  die rei -- ne Magd Ma -- ria.
   Aus Got -- tes ew' -- gem Rat
   hat sie ein Kind ge -- bo -- ren
   und blieb ein rei -- ne Magd.

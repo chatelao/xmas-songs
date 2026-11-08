@@ -2,124 +2,201 @@
 
 \header {
   title = "Fröhliche Weihnacht überall"
-  composer = "Traditionell"
-  poet = "August Heinrich Hoffmann von Fallersleben (1885)"
+  composer = "Traditionell (19. Jh.)"
+  poet = "Heinrich Liebhart (1882) / Hoffmann von Fallersleben"
   tagline = ##f
 }
 
 global = {
-  \key g \major
+  \key f \major
   \time 2/4
   \tempo 4 = 100
 }
 
 harmonies = \chordmode {
-  g2 | g2 | d2:7 | g2 |
-  g2 | g2 | d2:7 | g2 |
-  g2 | g2 | c2 | d2 |
-  g2 | g2 | d2:7 | g2 |
+  % Refrain (Takt 1-20)
+  f2 | f2 | c2:7 | f2 |
+  f2 | f2 | c2:7 | f2 |
+  c2:7 | f2 | bes4 f4 | c2:7 |
+  f2 | f2 | c2:7 | f2 |
+  f2 | f2 | c2:7 | f2 |
+  % Strophe (Takt 21-28)
+  d4:m g4:m | d4:m a4 | d4:m g4:m | a2 |
+  d4:m g4:m | d4:m a4 | d4:m a4:7 | d2:m
 }
 
 soprano = \relative c'' {
   \global
-  d8 g,8 g8 b8 |
-  d4. b8 |
-  c8 a8 fis8 a8 |
-  g2 |
-  d'8 g,8 g8 b8 |
-  d4. b8 |
-  c8 a8 fis8 a8 |
-  g2 \bar "||"
-  b8 b8 b8 a8 |
-  g4 d4 |
-  c'8 c8 c8 b8 |
+  % Refrain A (Takt 1-8)
+  c8( bes8) a8 bes8 |
+  c4 a4 |
+  g8( a8) bes8( g8) |
+  c4( a4) |
+  c8 bes8 a8 bes8 |
+  c4 a4 |
+  g8( c8) e,8( g8) |
+  f2 |
+  % Zwischenspiel / Mittelteil Refrain (Takt 9-12)
+  g8 a8 bes4 |
+  a8 bes8 c4 |
+  d8 c8 bes8 a8 |
+  g8 f8 g4 |
+  % Refrain A' (Takt 13-20)
+  c8( bes8) a8 bes8 |
+  c4 a4 |
+  g8( a8) bes8( g8) |
+  c4( a4) |
+  c8 bes8 a8 bes8 |
+  c4 a4 |
+  g8( c8) e,8( g8) |
+  f2 \bar "||"
+  % Strophe (Takt 21-28)
+  a8 a8 g8 g8 |
+  f8 f8 e4 |
+  d8 e8 f8 g8 |
   a2 |
-  b8 b8 b8 a8 |
-  g4 d4 |
-  a'8 a8 b8 a8 |
-  g2 \bar "|."
+  a8 a8 g8 g8 |
+  f8 f8 e4 |
+  d8 f8 e8 cis8 |
+  d2 \bar "|."
 }
 
 alto = \relative c' {
   \global
-  b'8 d,8 d8 g8 |
-  b4. g8 |
-  a8 f8 d8 f8 |
-  d2 |
-  b'8 d,8 d8 g8 |
-  b4. g8 |
-  a8 f8 d8 f8 |
-  d2 \bar "||"
-  g8 g8 g8 f8 |
-  d4 d4 |
-  g8 g8 g8 g8 |
-  fis2 |
-  g8 g8 g8 f8 |
-  d4 d4 |
-  fis8 fis8 g8 fis8 |
-  d2 \bar "|."
+  f8( g8) f8 g8 |
+  a4 f4 |
+  e8( f8) g8( e8) |
+  f2 |
+  f8 g8 f8 g8 |
+  a4 f4 |
+  e4 c4 |
+  c2 |
+  e8 f8 g4 |
+  f8 g8 a4 |
+  bes8 a8 g8 f8 |
+  e8 d8 e4 |
+  f8( g8) f8 g8 |
+  a4 f4 |
+  e8( f8) g8( e8) |
+  f2 |
+  f8 g8 f8 g8 |
+  a4 f4 |
+  e4 c4 |
+  c2 \bar "||"
+  f8 f8 e8 e8 |
+  d8 d8 cis4 |
+  d8 cis8 d8 e8 |
+  cis2 |
+  f8 f8 e8 e8 |
+  d8 d8 cis4 |
+  d8 d8 cis8 a8 |
+  a2 \bar "|."
 }
 
 tenor = \relative c' {
   \global
-  d8 b8 b8 d8 |
-  d4. d8 |
-  d8 c8 a8 c8 |
-  b2 |
-  d8 b8 b8 d8 |
-  d4. d8 |
-  d8 c8 a8 c8 |
-  b2 \bar "||"
-  d8 d8 d8 c8 |
-  b4 b4 |
-  e8 e8 e8 d8 |
-  d2 |
-  d8 d8 d8 c8 |
-  b4 b4 |
-  c8 c8 d8 c8 |
-  b2 \bar "|."
+  a8( bes8) c8 bes8 |
+  a4 c4 |
+  c4 c8 c8 |
+  a4( c4) |
+  a8 bes8 c8 bes8 |
+  a4 c4 |
+  c4 bes4 |
+  a2 |
+  c8 c8 c4 |
+  c8 c8 c4 |
+  bes8 c8 d8 c8 |
+  c8 a8 c4 |
+  a8( bes8) c8 bes8 |
+  a4 c4 |
+  c4 c8 c8 |
+  a4( c4) |
+  a8 bes8 c8 bes8 |
+  a4 c4 |
+  c4 bes4 |
+  a2 \bar "||"
+  d8 d8 bes8 bes8 |
+  a8 a8 a4 |
+  a8 a8 a8 bes8 |
+  a2 |
+  d8 d8 bes8 bes8 |
+  a8 a8 a4 |
+  a8 a8 g8 e8 |
+  fis2 \bar "|."
 }
 
 bass = \relative c {
   \global
-  g'8 g8 g8 g8 |
-  g4. g8 |
-  d8 d8 d8 d8 |
-  g,2 |
-  g'8 g8 g8 g8 |
-  g4. g8 |
-  d8 d8 d8 d8 |
-  g,2 \bar "||"
-  g'8 g8 g8 g8 |
-  g4 g,4 |
-  c8 c8 c8 c8 |
-  d2 |
-  g8 g8 g8 g8 |
-  g4 g,4 |
-  d'8 d8 d8 d8 |
-  g,2 \bar "|."
+  f4 f8 f8 |
+  f4 f4 |
+  c4 c8 c8 |
+  f2 |
+  f8 f8 f8 f8 |
+  f4 f4 |
+  c4 c4 |
+  f2 |
+  c8 c8 e4 |
+  f8 f8 f4 |
+  bes,8 f'8 g8 f8 |
+  c8 c8 c4 |
+  f4 f8 f8 |
+  f4 f4 |
+  c4 c8 c8 |
+  f2 |
+  f8 f8 f8 f8 |
+  f4 f4 |
+  c4 c4 |
+  f2 \bar "||"
+  d8 d8 g8 g8 |
+  d8 d8 a4 |
+  d8 a8 d8 g8 |
+  a2 |
+  d,8 d8 g8 g8 |
+  d8 d8 a4 |
+  d8 d8 a8 a8 |
+  d2 \bar "|."
 }
 
 firstVerse = \lyricmode {
-  Fröh -- li -- che Weih -- nacht über -- all!
+  \set stanza = "1."
+  Fröh -- li -- che Weih -- nacht ü -- ber -- all!
   Tö -- net durch die Lüf -- te fro -- her Schall.
-  Fröh -- li -- che Weih -- nacht über -- all!
+  Weih -- nachts -- ton, Weih -- nachts -- baum,
+  Weih -- nachts -- duft in je -- dem Raum!
+  Fröh -- li -- che Weih -- nacht ü -- ber -- all!
   Tö -- net durch die Lüf -- te fro -- her Schall.
-  Weih -- nachts -- baum der Lich -- ter -- glanz
-  fällt in je -- den Raum;
-  sän -- gen wir ein' fro -- hen Tanz,
-  schmückt den Weih -- nachts -- baum.
+  Da -- rum al -- le stim -- met ein
+  in den Ju -- bel -- ton;
+  denn es kommt das Licht der Welt
+  von des Va -- ters Thron.
 }
 
 secondVerse = \lyricmode {
-  Fröh -- li -- che Weih -- nacht über -- all!
+  \set stanza = "2."
+  Fröh -- li -- che Weih -- nacht ü -- ber -- all!
   Tö -- net durch die Lüf -- te fro -- her Schall.
-  Fröh -- li -- che Weih -- nacht über -- all!
+  Weih -- nachts -- ton, Weih -- nachts -- baum,
+  Weih -- nachts -- duft in je -- dem Raum!
+  Fröh -- li -- che Weih -- nacht ü -- ber -- all!
   Tö -- net durch die Lüf -- te fro -- her Schall.
-  Über -- all ist Weih -- nachts -- zeit,
-  über -- all ist Lust;
-  wer sich liebt in In -- nig -- keit,
-  freut sich aus der Brust.
+  Licht auf dunk -- lem Le -- bens -- weg,
+  un -- ser Licht bist du;
+  denn du führst, die dir ver -- traun,
+  ein zur sel' -- gen Ruh.
+}
+
+thirdVerse = \lyricmode {
+  \set stanza = "3."
+  Fröh -- li -- che Weih -- nacht ü -- ber -- all!
+  Tö -- net durch die Lüf -- te fro -- her Schall.
+  Weih -- nachts -- ton, Weih -- nachts -- baum,
+  Weih -- nachts -- duft in je -- dem Raum!
+  Fröh -- li -- che Weih -- nacht ü -- ber -- all!
+  Tö -- net durch die Lüf -- te fro -- her Schall.
+  Was wir an -- dern je ge -- tan,
+  sei ge -- tan für dich,
+  dass be -- ken -- nen je -- der muss:
+  Christ -- kind kam für mich.
 }
 
 \score {
@@ -129,19 +206,20 @@ secondVerse = \lyricmode {
       \harmonies
     }
     \new ChoirStaff <<
-      \new Staff \with { instrumentName = "S / A" } <<
+      \new Staff = "upper" \with { instrumentName = "S / A" } <<
         \clef treble
         \new Voice = "soprano" { \voiceOne \soprano }
         \new Voice = "alto" { \voiceTwo \alto }
       >>
-      \new Staff \with { instrumentName = "T / B" } <<
+      \new Lyrics \lyricsto "soprano" \firstVerse
+      \new Lyrics \lyricsto "soprano" \secondVerse
+      \new Lyrics \lyricsto "soprano" \thirdVerse
+      \new Staff = "lower" \with { instrumentName = "T / B" } <<
         \clef "treble_8"
         \new Voice = "tenor" { \voiceOne \tenor }
         \new Voice = "bass" { \voiceTwo \bass }
       >>
     >>
-    \new Lyrics \lyricsto "soprano" \firstVerse
-    \new Lyrics \lyricsto "soprano" \secondVerse
   >>
   \layout { }
   \midi { }

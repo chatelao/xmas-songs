@@ -24,84 +24,84 @@ harmonies = \chordmode {
 soprano = \relative c'' {
   \global
   % Teil A1 (Takt 1-4): "Süs-ser die Glo-cken nie klin-gen, als zu der Weih-nachts-zeit"
-  b4 b8 a([ g]) a |
-  g4. d4 d8 |
-  g4 g8 a([ g]) a |
+  b8 b8 b8 a[ g] a |
+  g4. d4( d8) |
+  g4 g8 a[ g] a |
   b2. |
   % Teil A2 (Takt 5-8): "'s ist, als ob En-ge-lein sin-gen wie-der von Frie-den und Freud'"
-  a4 a8 fis([ e]) fis |
-  g4. d4 d8 |
-  fis4 fis8 a([ g]) fis |
+  a8 a8 a8 fis[ e] fis |
+  g4. d4( d8) |
+  fis8 fis8 fis8 a[ g] fis |
   g2. |
   % Teil B (Takt 9-12): "Wie sie ge-sun-gen in se-li-ger Nacht, wie sie ge-sun-gen in se-li-ger Nacht!"
-  a4 a8 a([ b]) c |
-  b4( a8) fis4 d8 |
-  b'4 b8 b([ c]) d |
-  c4( b8) a4. |
+  a8 a8 a8 a[ b] c |
+  b8 a8 fis8 d4. |
+  b'8 b8 b8 b[ c] d |
+  c8 b8 g8 a4. |
   % Teil C (Takt 13-16): "Glo-cken mit hei-li-gem Klang, klin-get die Er-de ent-lang!"
-  d4 d8 b([ a]) g |
-  e'4. c4 a8 |
-  g4 g8 b([ a]) fis |
+  d4 d8 b[ a] g |
+  e'4. c4( a8) |
+  g8 g8 g8 b[ a] fis |
   g2. \bar "|."
 }
 
 alto = \relative c'' {
   \global
-  g4 g8 fis([ e]) fis |
-  d4. b4 b8 |
-  d4 d8 fis([ e]) fis |
+  g8 g8 g8 fis[ e] fis |
+  d4. b4( b8) |
+  d4 d8 fis[ e] fis |
   g2. |
-  fis4 fis8 d([ cis]) d |
-  d4. b4 b8 |
-  d4 d8 fis([ e]) d |
+  fis8 fis8 fis8 d[ cis] d |
+  d4. b4( b8) |
+  d8 d8 d8 fis[ e] d |
   d2. |
-  fis4 fis8 fis([ g]) a |
-  g4( fis8) d4 d8 |
-  g4 g8 g([ a]) b |
-  a4( g8) fis4. |
-  g4 g8 g([ fis]) d |
-  g4. e4 e8 |
-  d4 d8 d([ c]) c |
+  fis8 fis8 fis8 fis[ g] a |
+  g8 fis8 d8 d4. |
+  g8 g8 g8 g[ a] b |
+  a8 g8 e8 fis4. |
+  g4 g8 g[ fis] d |
+  g4. e4( e8) |
+  d8 d8 d8 d[ c] c |
   b2. \bar "|."
 }
 
 tenor = \relative c' {
   \global
-  d4 d8 c([ b]) c |
-  b4. g4 g8 |
+  d8 d8 d8 c[ b] c |
+  b4. g4( g8) |
   b4 b8 d4 d8 |
   d2. |
-  c4 c8 a4 a8 |
-  b4. g4 g8 |
-  a4 a8 c([ b]) a |
+  c8 c8 c8 a4 a8 |
+  b4. g4( g8) |
+  a8 a8 a8 c[ b] a |
   b2. |
-  d4 d8 d4 d8 |
-  d4. a4 fis8 |
-  d'4 d8 d4 d8 |
-  d4. d4. |
-  b4 b8 d([ c]) b |
-  c4. g4 a8 |
-  b4 b8 g([ a]) a |
+  d8 d8 d8 d4 d8 |
+  d8 d8 a8 fis4. |
+  d'8 d8 d8 d4 d8 |
+  d8 d8 d8 d4. |
+  b4 b8 d[ c] b |
+  c4. g4( a8) |
+  b8 b8 b8 g[ a] a |
   g2. \bar "|."
 }
 
 bass = \relative c' {
   \global
-  g4 g8 d4 d8 |
-  g4. g,4 g8 |
+  g8 g8 g8 d4 d8 |
+  g4. g,4( g8) |
   g'4 g8 d4 d8 |
   g2. |
-  d4 d8 d4 d8 |
-  g4. g,4 g8 |
-  d'4 d8 d4 d8 |
+  d8 d8 d8 d4 d8 |
+  g4. g,4( g8) |
+  d'8 d8 d8 d4 d8 |
   g,2. |
-  d'4 d8 d4 d8 |
-  d4. d4 d8 |
+  d'8 d8 d8 d4 d8 |
+  d8 d8 d8 d4. |
+  g8 g8 g8 g4 b,8 |
+  d8 d8 d8 d4. |
   g4 g8 g4 b,8 |
-  d4. d4. |
-  g4 g8 g4 b,8 |
-  c4. c4 c8 |
-  d4 d8 d4 d8 |
+  c4. c4( c8) |
+  d8 d8 d8 d4 d8 |
   g,2. \bar "|."
 }
 
@@ -132,11 +132,11 @@ secondVerse = \lyricmode {
 thirdVerse = \lyricmode {
   \set stanza = "3."
   Klin -- get mit lieb -- li -- chem Schal -- le
-  ü -- ber die Mee -- re noch weit,
+  ü -- ber die Mee -- re weit,
   dass sich er -- freu -- en doch al -- le
-  se -- li -- ger Weih -- nachts -- zeit,
-  al -- le aufjauch -- zen mit ei -- nem Ge -- sang,
-  al -- le aufjauch -- zen mit ei -- nem Ge -- sang!
+  in se -- li -- ger Weih -- nachts -- zeit,
+  al -- le auf -- jauch -- zen mit ei -- nem Ge -- sang,
+  al -- le auf -- jauch -- zen mit ei -- nem Ge -- sang!
   Glo -- cken mit hei -- li -- gem Klang,
   klin -- get die Er -- de ent -- lang!
 }

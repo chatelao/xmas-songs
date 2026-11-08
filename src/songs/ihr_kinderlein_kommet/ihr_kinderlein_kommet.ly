@@ -24,10 +24,10 @@ harmonies = \chordmode {
   d2 | d2 | a2:7 | d2 |
 
   % Und seht, was in dieser ...
-  a2:7 | a2:7 | d2 | g2 |
+  a2:7 | a2:7 | d2 | d2 |
 
   % Der Vater im Himmel ...
-  d2 | a2:7 | d2 | d4.
+  a2:7 | a2:7 | d4 a4:7 | d4.
 }
 
 soprano = \relative c'' {
@@ -45,13 +45,13 @@ soprano = \relative c'' {
   fis4. fis8 |
 
   e4 e8 e |
-  e4 fis8 g |
+  g4 fis8 e |
   fis4 fis8 fis |
-  b4 a8 g |
+  fis4( a8) fis |
 
-  fis4 e8 d |
-  e4 cis8 e |
-  d4 d8 d |
+  e4 e8 e |
+  g4 fis8 e |
+  d4 fis8 e |
   d4. \bar "|."
 }
 
@@ -70,14 +70,14 @@ alto = \relative c' {
   d4. d8 |
 
   cis4 cis8 cis |
-  cis4 d8 e |
+  e4 d8 cis |
   d4 d8 d |
-  g4 fis8 e |
+  d4( fis8) d |
 
-  d4 cis8 b |
-  cis4 a8 cis |
-  d4 d8 d |
-  d4.
+  cis4 cis8 cis |
+  e4 d8 cis |
+  d4 d8 cis |
+  d4. \bar "|."
 }
 
 tenor = \relative c' {
@@ -95,14 +95,14 @@ tenor = \relative c' {
   a4. a8 |
 
   a4 a8 a |
-  a4 a8 cis |
   a4 a8 a |
-  d4 d8 b |
+  a4 a8 a |
+  a4. a8 |
 
-  a4 a8 fis |
-  a4 e8 g |
-  fis4 fis8 fis |
-  fis4.
+  a4 a8 a |
+  a4 a8 a |
+  fis4 a8 g |
+  fis4. \bar "|."
 }
 
 bass = \relative c {
@@ -122,12 +122,12 @@ bass = \relative c {
   a4 a8 a |
   a4 a8 a |
   d4 d8 d |
-  g4 g8 g |
+  d4. d8 |
 
-  d4 d8 d |
   a4 a8 a |
-  d4 d8 d |
-  d4.
+  a4 a8 a |
+  d4 a8 a |
+  d4. \bar "|."
 }
 
 firstVerse = \lyricmode {

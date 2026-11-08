@@ -20,7 +20,7 @@ harmonies = \chordmode {
   c1 | g1 | d1:7 | g1 |
 }
 
-% Soprano: klingend g' bis d'' (29 Notenereignisse, 28 Silben dank Slur in T. 14)
+% Soprano: klingend g' bis d'' (51 Notenereignisse passend zu 51 Silben)
 soprano = \relative c'' {
   \global
   b4 b4 b2 |
@@ -36,13 +36,13 @@ soprano = \relative c'' {
   b4 d4 g,4. a8 |
   b1 |
   c4 c4 c4. c8 |
-  c4 b4 b4 b8( b8) |
+  c4 b4 b4 b8 b8 |
   d4 d4 c4 a4 |
   g1 \bar "|."
 }
 
 % Alto: klingend d' bis g' (stets unterhalb des Soprans, keine Stimmkreuzung)
-alto = \relative c' {
+alto = \relative c'' {
   \global
   g4 g4 g2 |
   g4 g4 g2 |
@@ -57,7 +57,7 @@ alto = \relative c' {
   g4 g4 d4. fis8 |
   g1 |
   g4 g4 g4. g8 |
-  g4 g4 g4 g8( g8) |
+  g4 g4 g4 g8 g8 |
   fis4 fis4 fis4 fis4 |
   d1 \bar "|."
 }
@@ -78,7 +78,7 @@ tenor = \relative c' {
   d4 b4 b4. c8 |
   d1 |
   e4 e4 e4. e8 |
-  d4 d4 d4 d8( d8) |
+  d4 d4 d4 d8 d8 |
   a4 a4 d4 c4 |
   b1 \bar "|."
 }
@@ -99,13 +99,14 @@ bass = \relative c' {
   g4 g4 g4. d8 |
   g1 |
   c,4 e4 g4. c,8 |
-  g'4 g4 g4 g8( g8) |
+  g'4 g4 g4 g8 g8 |
   d4 d4 d4 d4 |
   g1 \bar "|."
 }
 
-% Exakt 28 Silben passend zu den Notenereignissen des Soprans
+% Exakt 51 Silben passend zu den Notenereignissen des Soprans
 firstVerse = \lyricmode {
+  \set stanza = "1."
   Jin -- gle bells, jin -- gle bells,
   jin -- gle all the way!
   O what fun it is to ride
@@ -123,18 +124,18 @@ firstVerse = \lyricmode {
       \harmonies
     }
     \new ChoirStaff <<
-      \new Staff \with { instrumentName = "S / A" } <<
+      \new Staff = "upper" \with { instrumentName = "S / A" } <<
         \clef treble
         \new Voice = "soprano" { \voiceOne \soprano }
         \new Voice = "alto" { \voiceTwo \alto }
       >>
-      \new Staff \with { instrumentName = "T / B" } <<
+      \new Lyrics \lyricsto "soprano" \firstVerse
+      \new Staff = "lower" \with { instrumentName = "T / B" } <<
         \clef "treble_8"
         \new Voice = "tenor" { \voiceOne \tenor }
         \new Voice = "bass" { \voiceTwo \bass }
       >>
     >>
-    \new Lyrics \lyricsto "soprano" \firstVerse
   >>
   \layout { }
   \midi { }

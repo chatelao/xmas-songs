@@ -80,22 +80,22 @@ firstVerse = \lyricmode {
   Vom Him -- mel hoch, da komm ich her,
   ich bring euch gu -- te neu -- e Mär;
   der gu -- ten Mär bring ich so viel,
-  da -- von ich sin -- gen und sa -- gen will.
+  da -- von ich sing'n und sa -- gen will.
 }
 
 secondVerse = \lyricmode {
   \set stanza = "2."
   Euch ist ein Kind -- lein heut ge -- born
   von ei -- ner Jung -- frau aus -- er -- korn,
-  ein Kind -- lein, so zart und fein,
-  das soll eu -- er Freud und Won -- ne sein.
+  ein Kin -- de -- lein, so zart und fein,
+  das soll eu'r Freud und Won -- ne sein.
 }
 
 thirdVerse = \lyricmode {
   \set stanza = "3."
   Es ist der Herr Christ, un -- ser Gott,
   der will euch führn aus al -- ler Not,
-  er will eu -- er Hei -- land se -- lig sein,
+  er will eu'r Hei -- land se -- lig sein,
   von al -- len Sün -- den ma -- chen rein.
 }
 
