@@ -144,7 +144,7 @@ def extract_bars_and_note_counts(ly_content, key_name, unit_frac=fractions.Fract
 
     # Remove comments and LilyPond commands with arguments
     notes_text = re.sub(r'%.*', '', notes_text)
-    notes_text = re.sub(r'\\bar\s+"[^"]*"', '', notes_text)
+    notes_text = re.sub(r'\\bar\s+"[^"]*"', ' | ', notes_text)
     notes_text = re.sub(r'\\partial\s+[0-9.]+', '', notes_text)
     notes_text = re.sub(r'\\time\s+[0-9]+/[0-9]+', '', notes_text)
     notes_text = re.sub(r'\\key\s+\S+\s+\\\S+', '', notes_text)
